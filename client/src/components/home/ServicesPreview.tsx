@@ -4,10 +4,20 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { services } from "@/data/services";
 
+import industrialCleaningImg from "@assets/generated_images/industrial_floor_cleaning_scene.png";
+import facilityMaintenanceImg from "@assets/generated_images/facility_maintenance_technician_working.png";
+import warehouseServicesImg from "@assets/generated_images/clean_warehouse_interior_scene.png";
+
 const iconMap: Record<string, typeof Warehouse> = {
   Warehouse,
   Wrench,
   Package,
+};
+
+const imageMap: Record<string, string> = {
+  "industrial-cleaning": industrialCleaningImg,
+  "facility-maintenance": facilityMaintenanceImg,
+  "warehouse-services": warehouseServicesImg,
 };
 
 export function ServicesPreview() {
@@ -35,31 +45,46 @@ export function ServicesPreview() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {previewServices.map((service, index) => {
             const IconComponent = iconMap[service.icon] || Warehouse;
+            const serviceImage = imageMap[service.id];
+
             return (
               <Card
                 key={service.id}
-                className="p-8 bg-white shadow-lg hover-elevate text-center"
+                className="overflow-hidden bg-white shadow-lg hover-elevate text-center flex flex-col"
                 data-testid={`card-service-${service.id}`}
               >
-                <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-6 mx-auto">
-                  <IconComponent className="w-7 h-7 text-sky-600" />
+                {serviceImage && (
+                  <div className="aspect-video w-full overflow-hidden">
+                    <img
+                      src={serviceImage}
+                      alt={service.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div className="p-8 flex-1 flex flex-col items-center">
+                  <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-6">
+                    <IconComponent className="w-7 h-7 text-sky-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-600 mb-6 leading-relaxed">
+                    {service.shortDesc}
+                  </p>
+                  <div className="mt-auto">
+                    <Link href={`/services#${service.id}`}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="border-sky-600 text-sky-600 hover:bg-sky-50 font-semibold"
+                        data-testid={`button-learn-more-${service.id}`}
+                      >
+                        Learn More <ArrowRight className="w-5 h-5 ml-2" />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-slate-600 mb-6 leading-relaxed">
-                  {service.shortDesc}
-                </p>
-                <Link href={`/services#${service.id}`}>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-sky-600 text-sky-600 hover:bg-sky-50 font-semibold"
-                    data-testid={`button-learn-more-${service.id}`}
-                  >
-                    Learn More <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
               </Card>
             );
           })}

@@ -50,10 +50,11 @@ export function ServicesPreview() {
                 <p className="text-slate-600 mb-6 leading-relaxed">
                   {service.shortDesc}
                 </p>
-                <Link href="/services">
+                <Link href={`/services#${service.id}`}>
                   <Button
+                    variant="outline"
                     size="sm"
-                    className="bg-sky-600 hover:bg-sky-700 text-white font-bold text-base"
+                    className="border-sky-600 text-sky-600 hover:bg-sky-50 font-semibold"
                     data-testid={`button-learn-more-${service.id}`}
                   >
                     Learn More <ArrowRight className="w-5 h-5 ml-2" />
@@ -67,9 +68,8 @@ export function ServicesPreview() {
         <div className="text-center mt-12">
           <Link href="/services">
             <Button
-              variant="outline"
               size="lg"
-              className="border-sky-600 text-sky-600 hover:bg-sky-50"
+              className="bg-sky-600 hover:bg-sky-700 text-white shadow-lg"
               data-testid="button-view-all-services"
             >
               View All Services

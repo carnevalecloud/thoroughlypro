@@ -73,7 +73,7 @@ export function Navbar() {
                             return (
                               <li key={service.id}>
                                 <Link
-                                  href={`/services#${service.id}`}
+                                  href={`/services/${service.id}`}
                                   className="flex items-center gap-3 rounded-md p-2 text-sm hover:bg-accent transition-colors"
                                   data-testid={`link-dropdown-${service.id}`}
                                 >
@@ -160,7 +160,7 @@ export function Navbar() {
                         return (
                           <Link
                             key={service.id}
-                            href={`/services#${service.id}`}
+                            href={`/services/${service.id}`}
                             className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-700"
                             onClick={() => setIsOpen(false)}
                             data-testid={`link-mobile-${service.id}`}

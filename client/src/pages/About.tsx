@@ -24,8 +24,8 @@ const timeline = [
   },
   {
     year: "2015",
-    title: "100+ Clients Milestone",
-    description: "Reached the milestone of serving over 100 active facilities across New Hampshire."
+    title: "Regional Growth",
+    description: "Successfully implemented comprehensive maintenance programs for large-scale industrial facilities."
   },
   {
     year: "Today",
@@ -95,7 +95,7 @@ export default function About() {
                     that keep their facilities running at peak performance.
                   </p>
                   <p>
-                    Today, we serve over 100 active facilities across the Granite State, 
+                    Today, we serve active facilities across the Granite State, 
                     from manufacturing plants and warehouses to commercial offices and 
                     medical centers. Our team brings decades of combined experience to 
                     every project we undertake.
@@ -176,7 +176,7 @@ export default function About() {
               Ready to Partner with Thoroughly Pro?
             </h2>
             <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
-              Join the 100+ facilities that trust us with their maintenance needs. 
+              Join the many facilities that trust us with their maintenance needs. 
               Let's discuss how we can help your facility thrive.
             </p>
             <Link href="/quote">

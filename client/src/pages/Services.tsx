@@ -47,7 +47,7 @@ export default function Services() {
                 return (
                   <Card 
                     key={service.id}
-                    className="p-8 lg:p-10 bg-white border-l-4 border-l-green-500 shadow-lg"
+                    className="p-8 lg:p-10 bg-white shadow-lg"
                     data-testid={`card-service-detail-${service.id}`}
                   >
                     <div className="grid lg:grid-cols-3 gap-8">

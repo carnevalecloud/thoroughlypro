@@ -46,11 +46,11 @@ export function ServicesPreview() {
                 </p>
                 <Link href="/services">
                   <Button 
-                    variant="ghost" 
-                    className="text-sky-600 hover:text-sky-700 font-medium"
+                    size="lg"
+                    className="bg-sky-600 hover:bg-sky-700 text-white font-semibold"
                     data-testid={`button-learn-more-${service.id}`}
                   >
-                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                    Learn More <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
               </Card>

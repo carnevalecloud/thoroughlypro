@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Phone, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteInfo } from "@/data/siteInfo";
-import heroImage from "@assets/generated_images/clean_industrial_facility_interior.png";
+import heroImage from "@assets/generated_images/nh_facility_with_mountain_views.png";
 
 export function Hero() {
   return (

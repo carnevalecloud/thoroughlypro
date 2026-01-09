@@ -1,20 +1,21 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { type User, type InsertUser, type Quote, type InsertQuote } from "@shared/schema";
 import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  createQuote(quote: InsertQuote): Promise<Quote>;
+  getQuotes(): Promise<Quote[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
+  private quotes: Map<string, Quote>;
 
   constructor() {
     this.users = new Map();
+    this.quotes = new Map();
   }
 
   async getUser(id: string): Promise<User | undefined> {
@@ -32,6 +33,23 @@ export class MemStorage implements IStorage {
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
     return user;
+  }
+
+  async createQuote(insertQuote: InsertQuote): Promise<Quote> {
+    const id = randomUUID();
+    const quote: Quote = { 
+      ...insertQuote, 
+      id,
+      company: insertQuote.company || null,
+      message: insertQuote.message || null,
+      createdAt: new Date()
+    };
+    this.quotes.set(id, quote);
+    return quote;
+  }
+
+  async getQuotes(): Promise<Quote[]> {
+    return Array.from(this.quotes.values());
   }
 }
 

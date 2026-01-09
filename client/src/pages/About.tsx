@@ -64,11 +64,11 @@ export default function About() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70" />
           
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-about-hero-title">
               About Us
             </h1>
-            <p className="text-xl text-slate-300 max-w-2xl">
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
               Four decades of trusted facility maintenance for New Hampshire's 
               industrial and commercial sectors.
             </p>

@@ -96,6 +96,7 @@ export function ServicesPreview() {
               className="bg-sky-600 hover:bg-sky-700 text-white shadow-lg"
               data-testid="button-view-all-services"
             >
+              <Wrench className="w-5 h-5 mr-2" />
               View All Services
             </Button>
           </Link>

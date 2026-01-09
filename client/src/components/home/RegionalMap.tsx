@@ -1,4 +1,4 @@
-import { MapPin, ArrowRight } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Link } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -52,7 +52,8 @@ export function RegionalMap() {
         <div className="text-center mt-10">
           <Link href="/areas">
             <Button size="lg" className="bg-sky-600 hover:bg-sky-700 text-white" data-testid="button-view-all-areas">
-              View Detailed Service Areas <ArrowRight className="w-5 h-5 ml-2" />
+              <MapPin className="w-5 h-5 mr-2" />
+              View Detailed Service Areas
             </Button>
           </Link>
         </div>

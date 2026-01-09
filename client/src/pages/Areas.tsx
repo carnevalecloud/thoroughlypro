@@ -20,7 +20,7 @@ export default function Areas() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/85 to-slate-900/70" />
           
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20">
+          <div className="relative z-10 w-full px-6 lg:px-8 xl:px-16 py-20">
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-areas-hero-title">
               Service Areas
             </h1>

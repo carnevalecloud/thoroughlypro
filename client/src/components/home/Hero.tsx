@@ -6,18 +6,18 @@ import heroImage from "@assets/generated_images/nh_facility_with_mountain_views.
 
 export function Hero() {
   return (
-    <section
-      className="relative min-h-[600px] lg:min-h-[700px] flex items-center"
-      data-testid="section-hero"
-    >
+    <section className="relative py-32" data-testid="section-hero">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})`, transform: 'scaleX(-1)' }}
+        style={{
+          backgroundImage: `url(${heroImage})`,
+          transform: "scaleX(-1)",
+        }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/70 to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
-        <div className="max-w-2xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-3xl">
           <div className="flex items-center gap-2 mb-6">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 border border-white/20">
               <CheckCircle className="w-4 h-4 text-green-400" />

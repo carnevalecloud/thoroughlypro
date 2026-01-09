@@ -38,10 +38,10 @@ export function ServicesPreview() {
             return (
               <Card
                 key={service.id}
-                className="p-8 bg-white shadow-lg hover-elevate"
+                className="p-8 bg-white shadow-lg hover-elevate text-center"
                 data-testid={`card-service-${service.id}`}
               >
-                <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-6">
+                <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-6 mx-auto">
                   <IconComponent className="w-7 h-7 text-sky-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">

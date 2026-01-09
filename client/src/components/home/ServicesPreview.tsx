@@ -53,19 +53,19 @@ export function ServicesPreview() {
                 className="overflow-hidden bg-white shadow-lg hover-elevate text-center flex flex-col"
                 data-testid={`card-service-${service.id}`}
               >
-                {serviceImage && (
-                  <div className="aspect-video w-full overflow-hidden">
+                <div className="relative aspect-video w-full overflow-hidden">
+                  {serviceImage && (
                     <img
                       src={serviceImage}
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
+                  )}
+                  <div className="absolute top-4 left-4 w-12 h-12 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md">
+                    <IconComponent className="w-6 h-6 text-sky-600" />
                   </div>
-                )}
+                </div>
                 <div className="p-8 flex-1 flex flex-col items-center">
-                  <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-6">
-                    <IconComponent className="w-7 h-7 text-sky-600" />
-                  </div>
                   <h3 className="text-xl font-semibold text-slate-900 mb-3">
                     {service.title}
                   </h3>

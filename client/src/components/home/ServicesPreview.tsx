@@ -47,7 +47,7 @@ export function ServicesPreview() {
                 <Link href="/services">
                   <Button 
                     variant="ghost" 
-                    className="text-sky-600 hover:text-sky-700 p-0 h-auto font-medium"
+                    className="text-sky-600 hover:text-sky-700 px-4 h-auto font-medium"
                     data-testid={`button-learn-more-${service.id}`}
                   >
                     Learn More <ArrowRight className="w-4 h-4 ml-1" />

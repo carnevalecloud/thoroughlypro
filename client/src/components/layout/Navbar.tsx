@@ -47,10 +47,10 @@ export function Navbar() {
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger
-                        className={`bg-transparent px-0 h-auto ${
+                        className={`bg-transparent px-0 h-auto hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent ${
                           location.startsWith("/services")
                             ? "text-sky-600"
-                            : "text-slate-600 hover:text-slate-900 hover:bg-transparent"
+                            : "text-slate-600 hover:text-slate-900"
                         }`}
                         data-testid="dropdown-services"
                       >
@@ -61,7 +61,7 @@ export function Navbar() {
                           <li>
                             <Link
                               href="/services"
-                              className="flex items-center gap-3 rounded-md p-2 text-sm hover:bg-accent transition-colors"
+                              className="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
                               data-testid="link-dropdown-all-services"
                             >
                               <Layers className="w-4 h-4 text-sky-600" />
@@ -74,7 +74,7 @@ export function Navbar() {
                               <li key={service.id}>
                                 <Link
                                   href={`/services/${service.id}`}
-                                  className="flex items-center gap-3 rounded-md p-2 text-sm hover:bg-accent transition-colors"
+                                  className="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
                                   data-testid={`link-dropdown-${service.id}`}
                                 >
                                   <Icon className="w-4 h-4 text-sky-600" />

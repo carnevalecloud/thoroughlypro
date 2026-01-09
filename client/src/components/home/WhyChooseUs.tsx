@@ -77,7 +77,7 @@ export function WhyChooseUs() {
                 <span className="font-semibold">Trusted Partner</span>
               </div>
               <p className="text-sm text-green-100">
-                Over 100 active facilities trust us with their maintenance needs.
+                Trusted by facilities across New Hampshire.
               </p>
             </div>
           </div>

@@ -14,16 +14,12 @@ export function Navbar() {
       data-testid="navbar"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link
-            href="/"
-            className="flex items-center"
-            data-testid="link-logo"
-          >
-            <img 
-              src="/tp-logo.webp" 
+        <div className="flex items-center justify-between h-24 lg:h-28">
+          <Link href="/" className="flex items-center" data-testid="link-logo">
+            <img
+              src="/tp-logo.webp"
               alt={siteInfo.name}
-              className="h-12 lg:h-14 w-auto"
+              className="h-16 lg:h-20 w-auto"
             />
           </Link>
 

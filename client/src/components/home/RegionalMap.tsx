@@ -12,15 +12,10 @@ export function RegionalMap() {
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4" data-testid="text-regions-title">
             Our Primary Service Areas
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             From the Upper Valley to the Capital Region, we provide comprehensive 
             facility services throughout the Granite State.
           </p>
-          <Link href="/areas">
-            <Button size="lg" className="bg-sky-600 hover:bg-sky-700 text-white" data-testid="button-view-all-areas">
-              View Detailed Service Areas <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -52,6 +47,14 @@ export function RegionalMap() {
               </ul>
             </Card>
           ))}
+        </div>
+
+        <div className="text-center mt-10">
+          <Link href="/areas">
+            <Button size="lg" className="bg-sky-600 hover:bg-sky-700 text-white" data-testid="button-view-all-areas">
+              View Detailed Service Areas <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

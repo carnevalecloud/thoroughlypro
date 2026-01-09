@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { regionalHubs, extendedTowns } from "@/data/areas";
-import heroImage from "@assets/generated_images/clean_industrial_facility_interior.png";
+import heroImage from "@assets/generated_images/new_hampshire_industrial_landscape_aerial.png";
 
 export default function Areas() {
   return (

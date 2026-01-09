@@ -13,7 +13,7 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-slate-900/60" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
+      <div className="relative z-10 w-full px-6 lg:px-8 xl:px-16 py-20 lg:py-32">
         <div className="max-w-3xl">
           <div className="flex items-center gap-2 mb-6">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 border border-white/20">

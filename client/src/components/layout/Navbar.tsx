@@ -17,15 +17,14 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link
             href="/"
-            className="flex items-center gap-1"
+            className="flex items-center"
             data-testid="link-logo"
           >
-            <span className="text-xl lg:text-2xl font-bold tracking-tight text-slate-900">
-              {siteInfo.logoText.primary}
-            </span>
-            <span className="text-xl lg:text-2xl font-bold tracking-tight text-green-600">
-              {siteInfo.logoText.accent}
-            </span>
+            <img 
+              src="/tp-logo.webp" 
+              alt={siteInfo.name}
+              className="h-10 lg:h-12 w-auto"
+            />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">

@@ -10,13 +10,12 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-1 mb-6" data-testid="link-footer-logo">
-              <span className="text-2xl font-bold tracking-tight text-white">
-                {siteInfo.logoText.primary}
-              </span>
-              <span className="text-2xl font-bold tracking-tight text-green-500">
-                {siteInfo.logoText.accent}
-              </span>
+            <Link href="/" className="flex items-center mb-6" data-testid="link-footer-logo">
+              <img 
+                src="/tp-logo.webp" 
+                alt={siteInfo.name}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="text-slate-400 max-w-md leading-relaxed mb-6">
               Serving New Hampshire's industrial and commercial sectors since 1983. 

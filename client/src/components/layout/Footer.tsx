@@ -14,7 +14,7 @@ export function Footer() {
               <img 
                 src="/tp-logo.webp" 
                 alt={siteInfo.name}
-                className="h-12 w-auto"
+                className="h-14 w-auto"
               />
             </Link>
             <p className="text-slate-400 max-w-md leading-relaxed mb-6">

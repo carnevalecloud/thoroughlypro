@@ -23,7 +23,7 @@ export function Navbar() {
             <img 
               src="/tp-logo.webp" 
               alt={siteInfo.name}
-              className="h-10 lg:h-12 w-auto"
+              className="h-12 lg:h-14 w-auto"
             />
           </Link>
 

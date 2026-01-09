@@ -1,5 +1,7 @@
-import { MapPin } from "lucide-react";
+import { MapPin, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { regionalHubs } from "@/data/areas";
 
 export function RegionalMap() {
@@ -8,12 +10,17 @@ export function RegionalMap() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4" data-testid="text-regions-title">
-            Serving All of New Hampshire
+            Our Primary Service Areas
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
             From the Upper Valley to the Capital Region, we provide comprehensive 
             facility services throughout the Granite State.
           </p>
+          <Link href="/areas">
+            <Button size="lg" className="bg-sky-600 hover:bg-sky-700 text-white" data-testid="button-view-all-areas">
+              View Detailed Service Areas <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -107,10 +107,6 @@ export default function Areas() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="grid lg:grid-cols-3 gap-8 text-center">
               <div>
-                <p className="text-5xl font-bold text-white mb-2">100+</p>
-                <p className="text-sky-100">Active Facilities</p>
-              </div>
-              <div>
                 <p className="text-5xl font-bold text-white mb-2">40+</p>
                 <p className="text-sky-100">Years of Service</p>
               </div>

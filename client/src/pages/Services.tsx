@@ -41,47 +41,35 @@ export default function Services() {
 
         <section className="py-16 lg:py-24 bg-white" data-testid="section-services-list">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="space-y-12">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {services.map((service, index) => {
                 const IconComponent = iconMap[service.icon] || Warehouse;
                 return (
                   <Card 
                     key={service.id}
-                    className="p-8 lg:p-10 bg-white shadow-lg"
+                    className="p-6 lg:p-8 bg-white shadow-lg hover-elevate flex flex-col"
                     data-testid={`card-service-detail-${service.id}`}
                   >
-                    <div className="grid lg:grid-cols-3 gap-8">
-                      <div className="lg:col-span-2">
-                        <div className="flex items-start gap-4 mb-6">
-                          <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0">
-                            <IconComponent className="w-7 h-7 text-sky-600" />
-                          </div>
-                          <div>
-                            <h2 className="text-2xl font-bold text-slate-900 mb-2">
-                              {service.title}
-                            </h2>
-                            <p className="text-slate-600 leading-relaxed">
-                              {service.fullDesc}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="bg-slate-50 rounded-lg p-6">
-                        <h3 className="font-semibold text-slate-900 mb-4">Key Features</h3>
-                        <ul className="space-y-3">
-                          {service.features.map((feature, featureIndex) => (
-                            <li 
-                              key={featureIndex}
-                              className="flex items-start gap-3 text-sm text-slate-600"
-                            >
-                              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-5">
+                      <IconComponent className="w-7 h-7 text-sky-600" />
                     </div>
+                    <h2 className="text-xl font-bold text-slate-900 mb-3">
+                      {service.title}
+                    </h2>
+                    <p className="text-slate-600 leading-relaxed mb-5 flex-grow">
+                      {service.shortDesc}
+                    </p>
+                    <ul className="space-y-2">
+                      {service.features.slice(0, 3).map((feature, featureIndex) => (
+                        <li 
+                          key={featureIndex}
+                          className="flex items-start gap-2 text-sm text-slate-600"
+                        >
+                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
                   </Card>
                 );
               })}

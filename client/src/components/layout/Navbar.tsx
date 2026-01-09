@@ -57,7 +57,7 @@ export function Navbar() {
                         {item.name}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid min-w-[16rem] w-64 gap-1 p-2">
+                        <ul className="grid w-64 gap-1 p-2">
                           <li>
                             <Link
                               href="/services"

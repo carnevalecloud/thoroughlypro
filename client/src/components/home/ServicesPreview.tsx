@@ -47,7 +47,7 @@ export function ServicesPreview() {
                 <Link href="/services">
                   <Button 
                     size="lg"
-                    className="bg-sky-600 hover:bg-sky-700 text-white font-semibold"
+                    className="bg-sky-600 hover:bg-sky-700 text-white font-bold text-base px-8 py-3"
                     data-testid={`button-learn-more-${service.id}`}
                   >
                     Learn More <ArrowRight className="w-5 h-5 ml-2" />

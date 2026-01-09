@@ -44,6 +44,7 @@ export interface Service {
   fullDesc: string;
   icon: string;
   features: string[];
+  targetAudiences: string[];
 }
 
 export interface RegionalHub {

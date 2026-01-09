@@ -13,6 +13,13 @@ export const services: Service[] = [
       "Production area sanitization",
       "Dust and debris removal from overhead structures",
       "Spill containment and cleanup protocols"
+    ],
+    targetAudiences: [
+      "Manufacturing plants",
+      "Production facilities",
+      "Machine shops",
+      "Assembly operations",
+      "Heavy industry sites"
     ]
   },
   {
@@ -27,6 +34,13 @@ export const services: Service[] = [
       "Plumbing and electrical repairs",
       "Structural inspections and repairs",
       "Emergency response services"
+    ],
+    targetAudiences: [
+      "Commercial buildings",
+      "Industrial complexes",
+      "Office parks",
+      "Retail centers",
+      "Healthcare facilities"
     ]
   },
   {
@@ -41,6 +55,13 @@ export const services: Service[] = [
       "Rack and shelving cleaning",
       "Waste management and recycling",
       "Pest control coordination"
+    ],
+    targetAudiences: [
+      "Distribution centers",
+      "Fulfillment warehouses",
+      "Cold storage facilities",
+      "Logistics hubs",
+      "Inventory storage sites"
     ]
   },
   {
@@ -55,6 +76,13 @@ export const services: Service[] = [
       "Window and glass cleaning",
       "Carpet and upholstery care",
       "Green cleaning options available"
+    ],
+    targetAudiences: [
+      "Corporate offices",
+      "Professional services firms",
+      "Financial institutions",
+      "Government buildings",
+      "Educational facilities"
     ]
   },
   {
@@ -69,6 +97,13 @@ export const services: Service[] = [
       "Strip and wax services",
       "Anti-slip treatments",
       "Floor restoration and repair"
+    ],
+    targetAudiences: [
+      "Showrooms",
+      "Retail spaces",
+      "Healthcare facilities",
+      "Schools and universities",
+      "Manufacturing floors"
     ]
   },
   {
@@ -83,6 +118,13 @@ export const services: Service[] = [
       "Post-construction cleanup",
       "Disaster recovery cleaning",
       "Biohazard remediation"
+    ],
+    targetAudiences: [
+      "Pharmaceutical facilities",
+      "Research laboratories",
+      "Food processing plants",
+      "Data centers",
+      "Medical device manufacturers"
     ]
   }
 ];

@@ -12,13 +12,13 @@ export function Hero() {
     >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${heroImage})`, transform: 'scaleX(-1)' }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/70 to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32 text-center">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
+        <div className="max-w-2xl">
+          <div className="flex items-center gap-2 mb-6">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 border border-white/20">
               <CheckCircle className="w-4 h-4 text-green-400" />
               Serving 100+ facilities across NH
@@ -33,7 +33,7 @@ export function Hero() {
           </h1>
 
           <p
-            className="text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto"
+            className="text-lg lg:text-xl text-slate-300 leading-relaxed mb-8"
             data-testid="text-hero-subheadline"
           >
             Expert maintenance and cleaning for manufacturing, warehousing, and
@@ -41,7 +41,7 @@ export function Hero() {
             tailored solutions.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start gap-4">
             <Link href="/quote">
               <Button
                 size="lg"

@@ -1,0 +1,84 @@
+Website Developer Canvas: Thoroughly Pro (Astro Edition)Project: Corporate Website RedesignTech Stack: Astro (v5+), Tailwind CSS v4, TypeScript, Phosphor Icons (React/Web)Design Aesthetic: Industrial, Professional, Clean, TrustworthyPrimary Goal: Drive phone calls and "Walk-Through" requests from Industrial/Manufacturing facility managers.1. Astro Architecture & Data LayerCore Principle: All content—text, contact info, navigation, and service details—must reside in src/data/ to allow for easy non-developer updates.A. Global Site Config (src/data/site.ts)Source of truth for global metadata, contact info, and navigation.export const siteInfo = {
+  name: "Thoroughly Pro",
+  logoText: {
+    primary: "THOROUGHLY",
+    accent: "PRO"
+  },
+  contact: {
+    phone: "(603) 496-8229",
+    phoneUrl: "tel:6034968229",
+    email: "thoroughlypro@yahoo.com",
+    address: {
+      line1: "PO Box 168",
+      line2: "Sunapee, NH 03782",
+      mapsLink: "[https://maps.google.com/?q=Sunapee+NH](https://maps.google.com/?q=Sunapee+NH)"
+    }
+  },
+  meta: {
+    lang: "en",
+    author: "Carnevale Design",
+    defaultDescription: "Serving New Hampshire’s industrial and commercial sectors since 1983. We listen, we consult, and we deliver tailored solutions.",
+    defaultTitle: "Thoroughly Pro | Commercial Facility Partners"
+  }
+};
+
+export const navigation = {
+  main: [
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Service Areas", href: "/areas" },
+  ],
+  cta: { name: "Get a Quote", href: "/quote" }
+};
+B. Services Data (src/data/services.ts)Schema for populating the Home Page teaser and Services Page.export interface Service {
+  id: string;
+  title: string;
+  shortDesc: string; // For Home Page
+  fullDesc: string;  // For Services Page
+  icon: string;      // Phosphor icon class name (e.g., "ph-warehouse")
+  features: string[]; // Bullet points
+  image?: string;    // Path to image in /public
+}
+
+export const services: Service[] = [
+  // ... Populate with content from Section 4 below
+];
+C. Areas Data (src/data/areas.ts)Schema for Regional Hubs and Extended lists.export const regionalHubs = [
+  { 
+    name: "Keene Region", 
+    focus: "Industrial & Manufacturing",
+    towns: ["Keene", "Swanzey", "Chesterfield", "Marlborough"] 
+  },
+  // ... Upper Valley, Capital Region, Lake Sunapee Region
+];
+
+export const extendedTowns = ["Bradford", "Bedford", "Manchester", "Derry", "Londonderry", "Hooksett", "Peterborough"];
+2. Global Design System (Tailwind v4)Global Styles (src/styles/global.css)Import this in src/layouts/Layout.astro.@import "tailwindcss";
+
+@theme {
+    /* Color Palette */
+    --color-brand-blue: #0E75BC;    /* Primary Corporate Blue */
+    --color-brand-green: #3AB54A;   /* Primary Accent Green */
+    --color-brand-green-hover: #2e913b; /* Darker Green for Hover States */
+    
+    --color-brand-dark: #0f172a;    /* Slate 900 - Deep Backgrounds/Headings */
+    --color-brand-light: #334155;   /* Slate 700 - Body Text */
+    --color-bg-base: #f8fafc;       /* Slate 50 - Page Background */
+
+    /* Typography */
+    --font-sans: "Inter", sans-serif;
+    
+    /* Spacing/Layout */
+    --container-width: 80rem;       /* max-w-7xl */
+}
+
+/* Base Styles */
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); background-color: var(--color-bg-base); color: var(--color-brand-dark); }
+
+/* Utility Classes */
+.hero-bg {
+  background-color: var(--color-brand-dark);
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' ... %3E"); /* Dot pattern */
+}
+AssetsFonts: Install @fontsource/inter and import in Layout.astro.Icons: Use phosphor-react or stick to CDN script in <head>.3. Component ArchitectureA. Layout (src/layouts/Layout.astro)Props: title (optional), description (optional).Head: Uses siteInfo.meta for defaults.Structure:<Navbar /> (Sticky)<slot /> (Page Content)<Footer />B. UI Components (src/components/)Navbar.astro: Maps navigation.main to links. Uses siteInfo.logoText.Footer.astro: Uses siteInfo.contact for address/phone.SectionHero.astro: Reusable page header.Props: title, subtitle, bgClass (optional).ServiceCard.astro: Renders a single service (Icon + Title + Desc).CtaButton.astro: Standardized Green Button style.Styles: bg-brand-green hover:bg-brand-green-hover text-white px-6 py-2.5 rounded-md shadow-lg transition.4. Page Content StrategyA. Home Page (src/pages/index.astro)Imports services from data.1. Hero SectionHeadline: More Than a Cleaning Service. We Are Your Facility Partner.Subhead: Serving New Hampshire’s industrial and commercial sectors since 1983.Components: <CtaButton href="/quote">Schedule a Walk-Through</CtaButton>2. Value Prop (The "Listen First" Approach)Headline: You Know Your Facility Best. We Listen.Content: Emphasize custom maintenance plans over "one-size-fits-all."Callout: "We don’t compete on being the 'cheapest.' We compete on value."3. Target Markets (Cards)Industrial: Warehouses, logistics, high-traffic.Medical: Trusted sanitization protocols.Corporate: Professional environments.4. Services TeaserMap over services.slice(0, 4) to display short descriptions.5. Why Us & AreasWhy Us: Collaborative Partnership, Responsive, Trusted Locally.Areas: Import regionalHubs names to display a quick list.B. Services Page (src/pages/services.astro)Imports full services array.1. Hero: "Tailored Solutions for Complex Environments."2. Service Blocks: Map over services. Alternating layout (Text Left/Image Right vs Text Right/Image Left).3. Process Visualization:* Walk-Through -> Diagnosis -> Proposal -> Partnership.C. Service Areas Page (src/pages/areas.astro)Imports regionalHubs and extendedTowns.1. Hero: "Local Teams. Regional Reach."2. "Why Local Matters": Copy about fast response times and nearby supervisors.3. Hubs Grid: Map regionalHubs to cards showing name, focus, and towns list.4. Extended List: Render extendedTowns as badges.D. About Page (src/pages/about.astro)Static content or src/data/team.ts.1. Hero: "Deep Roots in New Hampshire."2. History: Founded 1983. Family-owned.3. Philosophy: "We Listen First" (Understanding Hardships, Tailored Solutions).4. Leadership: Peter Mueller, Evan Cormier, David Streeter.E. Quote Page (src/pages/quote.astro)1. Hero: "Schedule Your Walk-Through."2. Form:* Facility Type (Dropdown)* Sq Footage (Dropdown)* Standard fields (Name, Company, Email, Phone).3. Sidebar: Uses siteInfo.contact to display phone/email for those skipping the form.5. SEO & Metadata StrategyImplemented dynamically in Layout.astro.Defaults (from site.ts):Title: Thoroughly Pro | Commercial Facility PartnersDesc: Serving New Hampshire’s industrial and commercial sectors since 1983.Page Overrides:Home: Commercial & Industrial Cleaning Services NH | Thoroughly ProServices: Janitorial, Floor Care & Building Maintenance | Thoroughly ProAreas: Service Areas: Keene, Lebanon, Concord & Southern NHAbout: About Thoroughly Pro | NH Family Owned Since 1983Technical:robots.txt & sitemap-index.xml (Use @astrojs/sitemap).Canonical URLs generated automatically.

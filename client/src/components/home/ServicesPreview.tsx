@@ -48,32 +48,32 @@ export function ServicesPreview() {
             const serviceImage = imageMap[service.id];
 
             return (
-              <Card
-                key={service.id}
-                className="overflow-hidden bg-white shadow-lg hover-elevate text-center flex flex-col"
-                data-testid={`card-service-${service.id}`}
-              >
-                <div className="relative aspect-video w-full overflow-hidden">
-                  {serviceImage && (
-                    <img
-                      src={serviceImage}
-                      alt={service.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  )}
-                  <div className="absolute top-4 left-4 w-12 h-12 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md">
-                    <IconComponent className="w-6 h-6 text-sky-600" />
+              <Link href={`/services#${service.id}`}>
+                <Card
+                  key={service.id}
+                  className="overflow-hidden bg-white shadow-lg hover-elevate text-center flex flex-col cursor-pointer"
+                  data-testid={`card-service-${service.id}`}
+                >
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    {serviceImage && (
+                      <img
+                        src={serviceImage}
+                        alt={service.title}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    )}
+                    <div className="absolute top-4 left-4 w-12 h-12 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md">
+                      <IconComponent className="w-6 h-6 text-sky-600" />
+                    </div>
                   </div>
-                </div>
-                <div className="p-8 flex-1 flex flex-col items-center">
-                  <h3 className="text-xl font-semibold text-slate-900 mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-600 mb-6 leading-relaxed">
-                    {service.shortDesc}
-                  </p>
-                  <div className="mt-auto">
-                    <Link href={`/services#${service.id}`}>
+                  <div className="p-8 flex-1 flex flex-col items-center">
+                    <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-600 mb-6 leading-relaxed">
+                      {service.shortDesc}
+                    </p>
+                    <div className="mt-auto">
                       <Button
                         variant="outline"
                         size="sm"
@@ -82,10 +82,10 @@ export function ServicesPreview() {
                       >
                         Learn More <ArrowRight className="w-5 h-5 ml-2" />
                       </Button>
-                    </Link>
+                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </Link>
             );
           })}
         </div>

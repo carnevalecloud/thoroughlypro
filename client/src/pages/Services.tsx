@@ -41,35 +41,45 @@ export default function Services() {
 
         <section className="py-16 lg:py-24 bg-white" data-testid="section-services-list">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid md:grid-cols-2 gap-8">
               {services.map((service, index) => {
                 const IconComponent = iconMap[service.icon] || Warehouse;
                 return (
                   <Card 
                     key={service.id}
-                    className="p-6 lg:p-8 bg-white shadow-lg hover-elevate flex flex-col"
+                    className="p-8 bg-white shadow-lg hover-elevate flex flex-col"
                     data-testid={`card-service-detail-${service.id}`}
                   >
-                    <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-5">
-                      <IconComponent className="w-7 h-7 text-sky-600" />
+                    <div className="flex items-start gap-5 mb-5">
+                      <div className="w-16 h-16 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="w-8 h-8 text-sky-600" />
+                      </div>
+                      <div>
+                        <h2 className="text-2xl font-bold text-slate-900 mb-2">
+                          {service.title}
+                        </h2>
+                        <p className="text-slate-500 text-sm">
+                          {service.shortDesc}
+                        </p>
+                      </div>
                     </div>
-                    <h2 className="text-xl font-bold text-slate-900 mb-3">
-                      {service.title}
-                    </h2>
-                    <p className="text-slate-600 leading-relaxed mb-5 flex-grow">
-                      {service.shortDesc}
+                    <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
+                      {service.fullDesc}
                     </p>
-                    <ul className="space-y-2">
-                      {service.features.slice(0, 3).map((feature, featureIndex) => (
-                        <li 
-                          key={featureIndex}
-                          className="flex items-start gap-2 text-sm text-slate-600"
-                        >
-                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="bg-slate-50 rounded-lg p-5">
+                      <h3 className="font-semibold text-slate-900 mb-3 text-sm uppercase tracking-wide">Key Features</h3>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {service.features.map((feature, featureIndex) => (
+                          <li 
+                            key={featureIndex}
+                            className="flex items-start gap-2 text-sm text-slate-600"
+                          >
+                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </Card>
                 );
               })}

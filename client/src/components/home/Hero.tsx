@@ -6,13 +6,16 @@ import heroImage from "@assets/generated_images/clean_industrial_facility_interi
 
 export function Hero() {
   return (
-    <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center" data-testid="section-hero">
-      <div 
+    <section
+      className="relative min-h-[600px] lg:min-h-[700px] flex items-center"
+      data-testid="section-hero"
+    >
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroImage})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-slate-900/60" />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-2 mb-6">
@@ -21,30 +24,37 @@ export function Hero() {
               Serving 100+ facilities across NH
             </span>
           </div>
-          
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6" data-testid="text-hero-headline">
+
+          <h1
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
+            data-testid="text-hero-headline"
+          >
             New Hampshire's Trusted Industrial Facility Partner Since 1983
           </h1>
-          
-          <p className="text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto" data-testid="text-hero-subheadline">
-            Expert maintenance and cleaning for manufacturing, warehousing, and commercial facilities. 
-            We listen, we consult, and we deliver tailored solutions.
+
+          <p
+            className="text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl mx-auto"
+            data-testid="text-hero-subheadline"
+          >
+            Expert maintenance and cleaning for manufacturing, warehousing, and
+            commercial facilities. We listen, we consult, and we deliver
+            tailored solutions.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/quote">
-              <Button 
-                size="lg" 
-                className="bg-green-600 hover:bg-green-700 text-white text-base px-8"
+              <Button
+                size="lg"
+                className="bg-green-600 hover:bg-green-700 text-white"
                 data-testid="button-hero-walkthrough"
               >
                 Request Walk-Through
               </Button>
             </Link>
             <a href={siteInfo.contact.phoneUrl}>
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 text-base"
                 data-testid="button-hero-call"
               >

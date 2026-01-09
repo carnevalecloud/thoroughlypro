@@ -5,7 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { ArrowLeft, ArrowRight, CheckCircle, Phone, Warehouse, Wrench, Package, Building, Layers, Sparkles } from "lucide-react";
-import heroImage from "@assets/generated_images/clean_industrial_facility_interior.png";
+import industrialCleaningImage from "@assets/generated_images/industrial_floor_cleaning_scene.png";
+import facilityMaintenanceImage from "@assets/generated_images/facility_maintenance_technician_working.png";
+import warehouseImage from "@assets/generated_images/clean_warehouse_interior_scene.png";
+import commercialCleaningImage from "@assets/generated_images/commercial_office_cleaning_scene.png";
+import floorCareImage from "@assets/generated_images/industrial_floor_polishing_work.png";
+import specialtyCleaningImage from "@assets/generated_images/specialty_cleanroom_cleaning_scene.png";
+
+const imageMap: Record<string, string> = {
+  "industrial-cleaning": industrialCleaningImage,
+  "facility-maintenance": facilityMaintenanceImage,
+  "warehouse-services": warehouseImage,
+  "commercial-cleaning": commercialCleaningImage,
+  "floor-care": floorCareImage,
+  "specialty-cleaning": specialtyCleaningImage,
+};
 
 const iconMap: Record<string, typeof Warehouse> = {
   Warehouse,
@@ -42,6 +56,7 @@ export default function ServiceDetail() {
   }
 
   const IconComponent = iconMap[service.icon] || Warehouse;
+  const heroImage = imageMap[service.id] || industrialCleaningImage;
   const otherServices = services.filter(s => s.id !== serviceId).slice(0, 3);
 
   return (

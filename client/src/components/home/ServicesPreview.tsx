@@ -61,16 +61,14 @@ export function ServicesPreview() {
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                       />
                     )}
+                    <div className="absolute top-4 left-4 w-12 h-12 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md">
+                      <IconComponent className="w-6 h-6 text-sky-600" />
+                    </div>
                   </div>
                   <div className="p-8 flex-1 flex flex-col">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center flex-shrink-0">
-                        <IconComponent className="w-5 h-5 text-sky-600" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-slate-900">
-                        {service.title}
-                      </h3>
-                    </div>
+                    <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                      {service.title}
+                    </h3>
                     <p className="text-slate-600 mb-6 leading-relaxed">
                       {service.shortDesc}
                     </p>

@@ -32,7 +32,7 @@ export function ServicesPreview() {
             return (
               <Card 
                 key={service.id} 
-                className="p-8 bg-white border-l-4 border-l-green-500 shadow-lg hover-elevate"
+                className="p-8 bg-white shadow-lg hover-elevate"
                 data-testid={`card-service-${service.id}`}
               >
                 <div className="w-14 h-14 rounded-lg bg-sky-100 flex items-center justify-center mb-6">

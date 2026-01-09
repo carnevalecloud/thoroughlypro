@@ -84,57 +84,59 @@ export default function ServiceDetail() {
         </section>
 
         <section className="py-16 lg:py-24 bg-white" data-testid="section-service-details">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="prose prose-lg max-w-none mb-12">
-              <p className="text-xl text-slate-600 leading-relaxed">
+              <p className="text-xl text-slate-600 leading-relaxed max-w-4xl">
                 {service.fullDesc}
               </p>
             </div>
 
-            <Card className="p-8 bg-slate-50 border-0 mb-12">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">What's Included</h2>
-              <ul className="grid md:grid-cols-2 gap-4">
-                {service.features.map((feature, index) => (
-                  <li 
-                    key={index}
-                    className="flex items-start gap-3 text-slate-700"
-                  >
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </Card>
+            <div className="grid lg:grid-cols-3 gap-8">
+              <Card className="lg:col-span-2 p-8 bg-slate-50 border-0">
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">What's Included</h2>
+                <ul className="grid md:grid-cols-2 gap-4">
+                  {service.features.map((feature, index) => (
+                    <li 
+                      key={index}
+                      className="flex items-start gap-3 text-slate-700"
+                    >
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
 
-            <div className="bg-sky-600 rounded-xl p-8 lg:p-10 text-center">
-              <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-                Ready to Get Started?
-              </h2>
-              <p className="text-sky-100 mb-6 max-w-xl mx-auto">
-                Contact us today for a free consultation and customized quote for your facility.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/quote">
-                  <Button 
-                    size="lg" 
-                    className="bg-green-600 hover:bg-green-700 text-white px-8"
-                    data-testid="button-service-quote"
-                  >
-                    Request a Quote <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                </Link>
-                <a href="tel:+16035551983">
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    className="bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20 px-8"
-                    data-testid="button-service-call"
-                  >
-                    <Phone className="w-5 h-5 mr-2" />
-                    (603) 555-1983
-                  </Button>
-                </a>
-              </div>
+              <Card className="p-8 shadow-lg flex flex-col">
+                <h2 className="text-xl font-bold text-slate-900 mb-3">
+                  Ready to Get Started?
+                </h2>
+                <p className="text-slate-600 mb-6 flex-grow">
+                  Contact us today for a free consultation and customized quote for your facility.
+                </p>
+                <div className="space-y-3">
+                  <Link href="/quote">
+                    <Button 
+                      size="lg" 
+                      className="w-full bg-green-600 hover:bg-green-700 text-white"
+                      data-testid="button-service-quote"
+                    >
+                      Request a Quote <ArrowRight className="w-5 h-5 ml-2" />
+                    </Button>
+                  </Link>
+                  <a href="tel:+16035551983" className="block">
+                    <Button 
+                      size="lg" 
+                      variant="outline"
+                      className="w-full"
+                      data-testid="button-service-call"
+                    >
+                      <Phone className="w-5 h-5 mr-2" />
+                      (603) 555-1983
+                    </Button>
+                  </a>
+                </div>
+              </Card>
             </div>
           </div>
         </section>

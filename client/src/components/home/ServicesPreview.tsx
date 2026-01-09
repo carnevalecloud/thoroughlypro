@@ -78,7 +78,7 @@ export function ServicesPreview() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-sky-600 hover:bg-sky-50 font-semibold p-0"
+                        className="text-sky-600 hover:bg-sky-50 font-semibold px-0 hover:px-3 transition-all duration-200"
                         data-testid={`button-learn-more-${service.id}`}
                       >
                         Learn More <ArrowRight className="w-5 h-5 ml-2" />

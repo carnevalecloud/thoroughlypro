@@ -4,11 +4,11 @@ export const services: Service[] = [
   {
     id: "industrial-cleaning",
     title: "Commercial & Industrial Cleaning",
-    shortDesc: "Daily cleaning services for manufacturing facilities with 5-day minimum schedules.",
+    shortDesc: "Daily cleaning services for manufacturing facilities that need consistent, reliable care.",
     fullDesc: "Our commercial and industrial cleaning services are designed for manufacturing environments that demand consistent, reliable cleaning. We work with you to understand your unique challenges and develop tailored cleaning programs that keep your facility running smoothly.",
     icon: "Warehouse",
     features: [
-      "5-day minimum cleaning schedules",
+      "Consistent daily cleaning programs",
       "Manufacturing floor cleaning",
       "Production area sanitization",
       "Restroom and break room maintenance",

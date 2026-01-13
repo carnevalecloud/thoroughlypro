@@ -83,7 +83,7 @@ export default function Areas() {
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
                 We specialize in maintaining industrial manufacturing facilities 
-                with 5-day minimum cleaning schedules to keep your operations 
+                with consistent daily cleaning to keep your operations 
                 running smoothly.
               </p>
               <div className="grid sm:grid-cols-3 gap-6">
@@ -92,8 +92,8 @@ export default function Areas() {
                   <p className="text-slate-600 dark:text-slate-400">Years Experience</p>
                 </div>
                 <div className="bg-white dark:bg-slate-900 rounded-xl p-6">
-                  <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-2">5-Day</p>
-                  <p className="text-slate-600 dark:text-slate-400">Minimum Schedule</p>
+                  <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-2">Daily</p>
+                  <p className="text-slate-600 dark:text-slate-400">Reliable Service</p>
                 </div>
                 <div className="bg-white dark:bg-slate-900 rounded-xl p-6">
                   <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-2">7</p>

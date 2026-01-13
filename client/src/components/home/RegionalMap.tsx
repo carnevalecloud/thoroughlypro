@@ -19,7 +19,7 @@ export function RegionalMap() {
             </h2>
             <p className="text-lg text-slate-300 mb-8">
               We maintain manufacturing facilities throughout Southern New Hampshire 
-              with consistent, reliable service on 5-day minimum schedules.
+              with consistent, reliable daily service.
             </p>
             
             <div className="grid grid-cols-3 gap-4 mb-8">
@@ -32,8 +32,8 @@ export function RegionalMap() {
                 <p className="text-sm text-slate-400">Communities</p>
               </div>
               <div className="text-center p-4 rounded-lg bg-white/5 border border-white/10">
-                <p className="text-2xl lg:text-3xl font-bold text-sky-400">5-Day</p>
-                <p className="text-sm text-slate-400">Minimum</p>
+                <p className="text-2xl lg:text-3xl font-bold text-sky-400">Daily</p>
+                <p className="text-sm text-slate-400">Service</p>
               </div>
             </div>
 

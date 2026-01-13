@@ -15,7 +15,7 @@ import { siteInfo } from "@/data/siteInfo";
 const faqs = [
   {
     question: "What types of facilities do you service?",
-    answer: "We specialize in industrial manufacturing facilities across Southern New Hampshire. We work with manufacturing plants, warehouses, distribution centers, and other industrial environments. We focus on clients who need consistent, reliable cleaning on 5-day minimum schedules."
+    answer: "We specialize in industrial manufacturing facilities across Southern New Hampshire. We work with manufacturing plants, warehouses, distribution centers, and other industrial environments. We focus on clients who need consistent, daily cleaning to keep operations running smoothly."
   },
   {
     question: "What geographic areas do you serve?",
@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "What is your minimum service schedule?",
-    answer: "We work best with facilities that need cleaning services at least 5 days per week. This allows us to provide consistent, reliable service and maintain the high standards your facility requires."
+    answer: "We work best with facilities that need regular, ongoing cleaning services. This allows us to provide consistent, reliable service and maintain the high standards your facility requires."
   },
   {
     question: "Are you licensed and insured?",

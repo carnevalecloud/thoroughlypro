@@ -11,7 +11,7 @@ const timeline = [
   {
     year: "1983",
     title: "Foundation",
-    description: "Thoroughly Pro was founded in Sunapee, NH with a commitment to quality facility maintenance."
+    description: "Thoroughly Pro was founded in Bradford, NH with a commitment to quality facility maintenance."
   },
   {
     year: "1995",

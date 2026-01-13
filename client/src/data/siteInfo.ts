@@ -11,9 +11,9 @@ export const siteInfo: SiteInfo = {
     phoneUrl: "tel:6034968229",
     email: "thoroughlypro@yahoo.com",
     address: {
-      line1: "PO Box 168",
-      line2: "Sunapee, NH 03782",
-      mapsLink: "https://maps.google.com/?q=Sunapee+NH"
+      line1: "Bradford, NH",
+      line2: "",
+      mapsLink: "https://maps.google.com/?q=Bradford+NH"
     }
   },
   meta: {

@@ -108,32 +108,33 @@ export default function Areas() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto">
               <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-                Ready to Get Started?
+                Ready to Transform Your Facility?
               </h2>
               <p className="text-slate-300 mb-8">
-                Contact us to discuss your facility's cleaning and maintenance needs.
+                Let's discuss how Thoroughly Pro can help maintain your facility 
+                at the highest standards. Give us a call to schedule a walk-through.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/quote">
+                <a href={siteInfo.contact.phoneUrl}>
                   <Button 
                     size="lg" 
                     className="bg-green-600 hover:bg-green-700 text-white"
-                    data-testid="button-areas-quote"
+                    data-testid="button-areas-call"
                   >
-                    Request a Quote <ArrowRight className="w-5 h-5 ml-2" />
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call {siteInfo.contact.phone}
                   </Button>
-                </Link>
-                <a href={siteInfo.contact.phoneUrl}>
+                </a>
+                <Link href="/quote">
                   <Button 
                     size="lg" 
                     variant="outline"
                     className="border-white/30 text-white bg-white/10 backdrop-blur-sm"
-                    data-testid="button-areas-call"
+                    data-testid="button-areas-quote"
                   >
-                    <Phone className="w-5 h-5 mr-2" />
-                    {siteInfo.contact.phone}
+                    Request a Consultation <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

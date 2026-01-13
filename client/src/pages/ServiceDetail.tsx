@@ -128,10 +128,10 @@ export default function ServiceDetail() {
               <div className="lg:col-span-1">
                 <Card className="p-8 shadow-lg sticky top-32 z-40">
                   <h2 className="text-xl font-bold text-slate-900 mb-3">
-                    Ready to Get Started?
+                    Ready to Transform Your Facility?
                   </h2>
                   <p className="text-slate-600 mb-6">
-                    Contact us today for a free consultation and customized quote for your facility.
+                    Give us a call to schedule a walk-through and discuss your needs.
                   </p>
                   <div className="space-y-3">
                     <Link href="/quote">

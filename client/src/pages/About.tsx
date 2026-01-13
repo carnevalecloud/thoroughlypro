@@ -181,11 +181,11 @@ export default function About() {
         <section className="py-16 bg-slate-900" data-testid="section-about-cta">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4">
-              Ready to Partner with Thoroughly Pro?
+              Ready to Transform Your Facility?
             </h2>
             <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
-              We're interested to hear what challenges you face. Give us a call 
-              to schedule a walk-through.
+              Let's discuss how Thoroughly Pro can help maintain your facility 
+              at the highest standards. Give us a call to schedule a walk-through.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={siteInfo.contact.phoneUrl}>

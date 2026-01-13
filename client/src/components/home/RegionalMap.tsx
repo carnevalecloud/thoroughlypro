@@ -1,8 +1,10 @@
 import { MapPin, Phone, Factory } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { serviceTowns } from "@/data/areas";
 import { siteInfo } from "@/data/siteInfo";
+
+const primaryTowns = ["Chesterfield", "Keene", "Concord"];
+const secondaryTowns = ["Swanzey", "Lebanon", "Newport", "New London"];
 
 export function RegionalMap() {
   return (
@@ -21,21 +23,6 @@ export function RegionalMap() {
               We maintain manufacturing facilities throughout Southern New Hampshire 
               with consistent, reliable daily service.
             </p>
-            
-            <div className="grid grid-cols-3 gap-4 mb-8">
-              <div className="text-center p-4 rounded-lg bg-white/5 border border-white/10">
-                <p className="text-2xl lg:text-3xl font-bold text-sky-400">40+</p>
-                <p className="text-sm text-slate-400">Years</p>
-              </div>
-              <div className="text-center p-4 rounded-lg bg-white/5 border border-white/10">
-                <p className="text-2xl lg:text-3xl font-bold text-sky-400">7</p>
-                <p className="text-sm text-slate-400">Communities</p>
-              </div>
-              <div className="text-center p-4 rounded-lg bg-white/5 border border-white/10">
-                <p className="text-2xl lg:text-3xl font-bold text-sky-400">Daily</p>
-                <p className="text-sm text-slate-400">Service</p>
-              </div>
-            </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <a href={siteInfo.contact.phoneUrl}>
@@ -61,24 +48,35 @@ export function RegionalMap() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-3">
-            {serviceTowns.map((town, index) => (
-              <div 
-                key={town.name}
-                className="group p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-sky-500/30 transition-colors"
-                data-testid={`chip-town-${index}`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-sky-500/20 flex items-center justify-center group-hover:bg-sky-500/30 transition-colors">
-                    <Factory className="w-5 h-5 text-sky-400" />
+          <div>
+            <div className="grid grid-cols-3 gap-4 mb-4">
+              {primaryTowns.map((town, index) => (
+                <div 
+                  key={town}
+                  className="group p-5 rounded-xl bg-white/10 border border-sky-500/30 hover:bg-white/15 transition-colors text-center"
+                  data-testid={`chip-town-primary-${index}`}
+                >
+                  <div className="w-12 h-12 rounded-lg bg-sky-500/30 flex items-center justify-center mx-auto mb-3 group-hover:bg-sky-500/40 transition-colors">
+                    <Factory className="w-6 h-6 text-sky-400" />
                   </div>
-                  <div>
-                    <p className="font-semibold text-white">{town.name}</p>
-                    <p className="text-xs text-slate-400">New Hampshire</p>
-                  </div>
+                  <p className="font-bold text-white text-lg">{town}</p>
+                  <p className="text-xs text-slate-400">NH</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            
+            <div className="grid grid-cols-4 gap-3">
+              {secondaryTowns.map((town, index) => (
+                <div 
+                  key={town}
+                  className="group p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-colors text-center"
+                  data-testid={`chip-town-secondary-${index}`}
+                >
+                  <p className="font-medium text-white text-sm">{town}</p>
+                  <p className="text-xs text-slate-500">NH</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

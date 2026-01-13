@@ -1,11 +1,11 @@
 import { Link } from "wouter";
-import { MapPin, ArrowRight, CheckCircle, Building2, Phone } from "lucide-react";
+import { MapPin, ArrowRight, CheckCircle, Phone } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { serviceTowns } from "@/data/areas";
+import { serviceTowns, serviceTypes } from "@/data/areas";
 import { siteInfo } from "@/data/siteInfo";
 import heroImage from "@assets/generated_images/new_hampshire_industrial_landscape_aerial.png";
 
@@ -30,21 +30,10 @@ export default function Areas() {
               <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-areas-hero-title">
                 Our Service Areas
               </h1>
-              <p className="text-xl text-slate-300 mb-6">
+              <p className="text-xl text-slate-300">
                 Proudly serving industrial and commercial facilities across 
-                New Hampshire's key business regions since 1983.
+                New Hampshire since 1983.
               </p>
-              <div className="flex flex-wrap gap-2">
-                {serviceTowns.map((town) => (
-                  <Badge 
-                    key={town.name}
-                    variant="outline" 
-                    className="text-white border-white/30 bg-white/10 backdrop-blur-sm"
-                  >
-                    {town.name}
-                  </Badge>
-                ))}
-              </div>
             </div>
           </div>
         </section>
@@ -56,119 +45,68 @@ export default function Areas() {
                 Communities We Serve
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                We've built lasting relationships with facilities in these key New Hampshire 
-                communities, providing reliable service you can count on.
+                We provide comprehensive facility services to all industries 
+                in these New Hampshire communities.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-16">
               {serviceTowns.map((town, index) => (
                 <Card 
                   key={town.name}
-                  className="p-6 hover-elevate transition-all duration-200 overflow-visible"
+                  className="p-6 text-center hover-elevate overflow-visible"
                   data-testid={`card-town-${index}`}
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-md bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-sky-600 dark:text-sky-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                        {town.name}
-                      </h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">
-                        New Hampshire
-                      </p>
-                    </div>
+                  <div className="w-12 h-12 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center mx-auto mb-4">
+                    <MapPin className="w-6 h-6 text-sky-600 dark:text-sky-400" />
                   </div>
-                  
-                  <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm leading-relaxed">
-                    {town.description}
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                    {town.name}
+                  </h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">
+                    New Hampshire
                   </p>
-                  
-                  <div className="space-y-2">
-                    {town.highlights.map((highlight, hIndex) => (
-                      <div 
-                        key={hIndex}
-                        className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400"
-                      >
-                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
                 </Card>
               ))}
+            </div>
+
+            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 lg:p-10">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
+                All Industries Served
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 text-center mb-8 max-w-2xl mx-auto">
+                We provide the same comprehensive services to all facility types 
+                across every community we serve.
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {serviceTypes.map((type, index) => (
+                  <div 
+                    key={index}
+                    className="flex items-center gap-3 bg-white dark:bg-slate-900 rounded-md p-4"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <span className="text-slate-700 dark:text-slate-200">{type}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         <section className="py-16 bg-slate-50 dark:bg-slate-800" data-testid="section-coverage-info">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
-                  Reliable Service, Local Expertise
-                </h2>
-                <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-                  With over 40 years of experience serving New Hampshire's industrial and 
-                  commercial facilities, we understand the unique needs of businesses in each 
-                  community we serve.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-slate-900 dark:text-white">Prompt Response Times</span>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">Same-day service available for urgent needs</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-slate-900 dark:text-white">Local Knowledge</span>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">We know the facilities and businesses in your community</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
-                    </div>
-                    <div>
-                      <span className="font-semibold text-slate-900 dark:text-white">Consistent Quality</span>
-                      <p className="text-sm text-slate-600 dark:text-slate-400">The same high standards across all service areas</p>
-                    </div>
-                  </li>
-                </ul>
+            <div className="grid lg:grid-cols-3 gap-8 text-center">
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-8">
+                <p className="text-5xl font-bold text-sky-600 dark:text-sky-400 mb-2">7</p>
+                <p className="text-slate-600 dark:text-slate-400 font-medium">Communities Served</p>
               </div>
-              
-              <div className="bg-white dark:bg-slate-900 rounded-xl p-8 shadow-lg">
-                <div className="text-center mb-8">
-                  <div className="w-16 h-16 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center mx-auto mb-4">
-                    <Building2 className="w-8 h-8 text-sky-600 dark:text-sky-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                    Serving 7 Key Communities
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    Focused coverage for better service
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-6 text-center border-t border-slate-200 dark:border-slate-700 pt-8">
-                  <div>
-                    <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-1">40+</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Years of Service</p>
-                  </div>
-                  <div>
-                    <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-1">1983</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Established</p>
-                  </div>
-                </div>
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-8">
+                <p className="text-5xl font-bold text-sky-600 dark:text-sky-400 mb-2">40+</p>
+                <p className="text-slate-600 dark:text-slate-400 font-medium">Years of Experience</p>
+              </div>
+              <div className="bg-white dark:bg-slate-900 rounded-xl p-8">
+                <p className="text-5xl font-bold text-sky-600 dark:text-sky-400 mb-2">All</p>
+                <p className="text-slate-600 dark:text-slate-400 font-medium">Industries Supported</p>
               </div>
             </div>
           </div>
@@ -181,8 +119,8 @@ export default function Areas() {
                 Ready to Get Started?
               </h2>
               <p className="text-slate-300 mb-8">
-                Whether you're in Keene, Concord, or anywhere in between, we're here to help 
-                keep your facility running smoothly.
+                No matter your industry, we're here to help keep your facility 
+                running smoothly.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/quote">

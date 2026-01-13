@@ -14,17 +14,6 @@ export const serviceTowns: ServiceTown[] = [
   { name: "New London" }
 ];
 
-export const serviceTypes = [
-  "Manufacturing Facilities",
-  "Commercial Buildings",
-  "Warehouses & Distribution",
-  "Healthcare Facilities",
-  "Educational Institutions",
-  "Government Buildings",
-  "Retail Centers",
-  "Industrial Plants"
-];
-
 export const regionalHubs: RegionalHub[] = [
   {
     name: "Keene Region",

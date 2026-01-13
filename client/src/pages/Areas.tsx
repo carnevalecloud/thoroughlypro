@@ -1,11 +1,11 @@
 import { Link } from "wouter";
-import { MapPin, ArrowRight, CheckCircle, Phone } from "lucide-react";
+import { MapPin, ArrowRight, Phone, Factory } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { serviceTowns, serviceTypes } from "@/data/areas";
+import { serviceTowns } from "@/data/areas";
 import { siteInfo } from "@/data/siteInfo";
 import heroImage from "@assets/generated_images/new_hampshire_industrial_landscape_aerial.png";
 
@@ -25,13 +25,13 @@ export default function Areas() {
             <div className="max-w-2xl">
               <Badge className="mb-4 bg-sky-500/20 text-sky-200 border-sky-500/30">
                 <MapPin className="w-3 h-3 mr-1" />
-                New Hampshire
+                Southern New Hampshire
               </Badge>
               <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-areas-hero-title">
                 Our Service Areas
               </h1>
               <p className="text-xl text-slate-300">
-                Proudly serving industrial and commercial facilities across 
+                Serving industrial manufacturing facilities across Southern 
                 New Hampshire since 1983.
               </p>
             </div>
@@ -45,12 +45,12 @@ export default function Areas() {
                 Communities We Serve
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                We provide comprehensive facility services to all industries 
-                in these New Hampshire communities.
+                We maintain multiple industrial manufacturing facilities 
+                across these Southern New Hampshire communities.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6 mb-16">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
               {serviceTowns.map((town, index) => (
                 <Card 
                   key={town.name}
@@ -69,44 +69,36 @@ export default function Areas() {
                 </Card>
               ))}
             </div>
-
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 lg:p-10">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">
-                All Industries Served
-              </h3>
-              <p className="text-slate-600 dark:text-slate-300 text-center mb-8 max-w-2xl mx-auto">
-                We provide the same comprehensive services to all facility types 
-                across every community we serve.
-              </p>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {serviceTypes.map((type, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center gap-3 bg-white dark:bg-slate-900 rounded-md p-4"
-                  >
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-slate-700 dark:text-slate-200">{type}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
-        <section className="py-16 bg-slate-50 dark:bg-slate-800" data-testid="section-coverage-info">
+        <section className="py-16 bg-slate-50 dark:bg-slate-800" data-testid="section-focus">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-8 text-center">
-              <div className="bg-white dark:bg-slate-900 rounded-xl p-8">
-                <p className="text-5xl font-bold text-sky-600 dark:text-sky-400 mb-2">7</p>
-                <p className="text-slate-600 dark:text-slate-400 font-medium">Communities Served</p>
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="w-16 h-16 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center mx-auto mb-6">
+                <Factory className="w-8 h-8 text-sky-600 dark:text-sky-400" />
               </div>
-              <div className="bg-white dark:bg-slate-900 rounded-xl p-8">
-                <p className="text-5xl font-bold text-sky-600 dark:text-sky-400 mb-2">40+</p>
-                <p className="text-slate-600 dark:text-slate-400 font-medium">Years of Experience</p>
-              </div>
-              <div className="bg-white dark:bg-slate-900 rounded-xl p-8">
-                <p className="text-5xl font-bold text-sky-600 dark:text-sky-400 mb-2">All</p>
-                <p className="text-slate-600 dark:text-slate-400 font-medium">Industries Supported</p>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                Industrial Manufacturing Focus
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
+                We specialize in maintaining industrial manufacturing facilities 
+                with 5-day minimum cleaning schedules to keep your operations 
+                running smoothly.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-6">
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-6">
+                  <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-2">40+</p>
+                  <p className="text-slate-600 dark:text-slate-400">Years Experience</p>
+                </div>
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-6">
+                  <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-2">5-Day</p>
+                  <p className="text-slate-600 dark:text-slate-400">Minimum Schedule</p>
+                </div>
+                <div className="bg-white dark:bg-slate-900 rounded-xl p-6">
+                  <p className="text-4xl font-bold text-sky-600 dark:text-sky-400 mb-2">7</p>
+                  <p className="text-slate-600 dark:text-slate-400">Communities</p>
+                </div>
               </div>
             </div>
           </div>
@@ -119,8 +111,7 @@ export default function Areas() {
                 Ready to Get Started?
               </h2>
               <p className="text-slate-300 mb-8">
-                No matter your industry, we're here to help keep your facility 
-                running smoothly.
+                Contact us to discuss your facility's cleaning and maintenance needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/quote">

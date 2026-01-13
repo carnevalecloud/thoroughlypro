@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone, Warehouse, Wrench, Package, Building, Layers, Sparkles } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  Warehouse,
+  Wrench,
+  Package,
+  Building,
+  Layers,
+  Sparkles,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -41,16 +51,16 @@ export function Navbar() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
-            {navigation.main.map((item) => (
+            {navigation.main.map((item) =>
               item.name === "Services" ? (
                 <NavigationMenu key={item.name}>
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger
-                        className={`bg-transparent px-0 h-auto hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent ${
+                        className={`bg-transparent px-0 h-auto hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent ${
                           location.startsWith("/services")
                             ? "text-sky-600"
-                            : "text-slate-600 hover:text-green-600"
+                            : "text-slate-600 hover:text-green-600 data-[state=open]:text-green-600"
                         }`}
                         data-testid="dropdown-services"
                       >
@@ -95,14 +105,14 @@ export function Navbar() {
                   className={`text-sm font-medium transition-colors ${
                     location === item.href
                       ? "text-sky-600"
-                      : "text-slate-600 hover:text-green-600"
+                      : "text-slate-600 hover:text-green-600 hover:bg-transparent"
                   }`}
                   data-testid={`link-nav-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   {item.name}
                 </Link>
-              )
-            ))}
+              ),
+            )}
           </div>
 
           <div className="hidden lg:flex items-center gap-4">
@@ -141,13 +151,15 @@ export function Navbar() {
             data-testid="mobile-menu"
           >
             <div className="flex flex-col gap-4">
-              {navigation.main.map((item) => (
+              {navigation.main.map((item) =>
                 item.name === "Services" ? (
                   <div key={item.name} className="flex flex-col gap-2">
                     <Link
                       href="/services"
                       className={`text-base font-medium ${
-                        location.startsWith("/services") ? "text-sky-600" : "text-slate-600"
+                        location.startsWith("/services")
+                          ? "text-sky-600"
+                          : "text-slate-600"
                       }`}
                       onClick={() => setIsOpen(false)}
                       data-testid="link-mobile-services"
@@ -184,8 +196,8 @@ export function Navbar() {
                   >
                     {item.name}
                   </Link>
-                )
-              ))}
+                ),
+              )}
               <a
                 href={siteInfo.contact.phoneUrl}
                 className="flex items-center gap-2 text-base font-medium text-slate-600"

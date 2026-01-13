@@ -57,7 +57,7 @@ export function Navbar() {
                   <NavigationMenuList>
                     <NavigationMenuItem>
                       <NavigationMenuTrigger
-                        className={`bg-transparent px-0 h-auto hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent ${
+                        className={`bg-transparent px-0 h-auto text-base font-medium hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent ${
                           location.startsWith("/services")
                             ? "text-sky-600 hover:text-sky-600 data-[state=open]:text-sky-600"
                             : "text-slate-600 hover:text-sky-600 data-[state=open]:text-sky-600"
@@ -102,7 +102,7 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`text-base font-medium transition-colors ${
                     location === item.href
                       ? "text-sky-600"
                       : "text-slate-600 hover:text-sky-600"
@@ -118,7 +118,7 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href={siteInfo.contact.phoneUrl}
-              className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+              className="flex items-center gap-2 text-base font-medium text-slate-600 hover:text-slate-900 transition-colors"
               data-testid="link-phone-header"
             >
               <Phone className="w-4 h-4" />

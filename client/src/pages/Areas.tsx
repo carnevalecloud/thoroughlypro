@@ -40,16 +40,6 @@ export default function Areas() {
 
         <section className="py-16 lg:py-24 bg-white dark:bg-slate-900" data-testid="section-towns">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12 lg:mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-                Communities We Serve
-              </h2>
-              <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                We maintain multiple industrial manufacturing facilities 
-                across these Southern New Hampshire communities.
-              </p>
-            </div>
-
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
               {serviceTowns.map((town, index) => (
                 <Card 

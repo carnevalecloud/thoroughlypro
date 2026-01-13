@@ -21,8 +21,8 @@ export default function Areas() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/75 to-slate-900/50" />
           
-          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20">
-            <div className="max-w-2xl">
+          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
+            <div className="max-w-2xl mx-auto">
               <Badge className="mb-4 bg-sky-500/20 text-sky-200 border-sky-500/30">
                 <MapPin className="w-3 h-3 mr-1" />
                 Southern New Hampshire

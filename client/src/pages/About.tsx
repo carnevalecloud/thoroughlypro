@@ -1,9 +1,10 @@
 import { Link } from "wouter";
-import { Calendar, Award, Users, CheckCircle, ArrowRight } from "lucide-react";
+import { Headphones, Users, Award, CheckCircle, ArrowRight, Phone } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { siteInfo } from "@/data/siteInfo";
 import heroImage from "@assets/generated_images/clean_industrial_facility_interior.png";
 
 const timeline = [
@@ -15,40 +16,45 @@ const timeline = [
   {
     year: "1995",
     title: "Regional Expansion",
-    description: "Expanded services to cover the Upper Valley, Capital Region, and Keene areas."
+    description: "Expanded services across Southern New Hampshire, building lasting client relationships."
   },
   {
     year: "2005",
-    title: "Industrial Specialization",
+    title: "Industrial Focus",
     description: "Developed specialized programs for manufacturing and warehouse facilities."
   },
   {
     year: "2015",
-    title: "Regional Growth",
-    description: "Successfully implemented comprehensive maintenance programs for large-scale industrial facilities."
+    title: "Multi-Site Expertise",
+    description: "Began managing multiple facilities for clients across several communities."
   },
   {
     year: "Today",
-    title: "Industry Leader",
-    description: "Continuing to set the standard for industrial facility maintenance in the Granite State."
+    title: "Trusted Partner",
+    description: "Continuing to listen, collaborate, and deliver tailored solutions for industrial facilities."
   }
 ];
 
 const values = [
   {
-    icon: Calendar,
-    title: "Reliability",
-    description: "We show up on time, every time. Your operations depend on consistent, dependable service."
-  },
-  {
-    icon: Award,
-    title: "Excellence",
-    description: "We take pride in delivering results that exceed expectations, every single time."
+    icon: Headphones,
+    title: "Professional",
+    description: "We approach every client interaction with professionalism and expertise built over 40+ years."
   },
   {
     icon: Users,
-    title: "Partnership",
-    description: "We view every client relationship as a long-term partnership built on trust and mutual success."
+    title: "Collaborative",
+    description: "We work hand-in-hand with your team, treating every relationship as a true partnership."
+  },
+  {
+    icon: Award,
+    title: "Respectful",
+    description: "We respect your expertise about your own facility and listen to your challenges first."
+  },
+  {
+    icon: CheckCircle,
+    title: "Thorough",
+    description: "We don't cut corners. Every job is completed to the highest standards, every time."
   }
 ];
 
@@ -69,8 +75,8 @@ export default function About() {
               About Us
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-              Four decades of trusted facility maintenance for New Hampshire's 
-              industrial and commercial sectors.
+              Your trusted facility partner since 1983. We listen first, 
+              then deliver tailored solutions.
             </p>
           </div>
         </section>
@@ -84,21 +90,20 @@ export default function About() {
                 </h2>
                 <div className="space-y-4 text-slate-600 leading-relaxed">
                   <p>
-                    Since 1983, Thoroughly Pro has been the trusted partner for facility 
-                    managers across New Hampshire. What started as a small local operation 
-                    has grown into the region's leading industrial and commercial maintenance 
-                    provider.
+                    Since 1983, Thoroughly Pro has been a trusted commercial cleaning partner 
+                    in New Hampshire. What started as a small local operation has grown into 
+                    a respected provider of industrial and commercial cleaning services.
                   </p>
                   <p>
-                    Our success is built on a simple philosophy: listen to our clients, 
-                    understand their unique challenges, and deliver customized solutions 
-                    that keep their facilities running at peak performance.
+                    Unlike standard vendors, we operate as a facility consultant. We start 
+                    by listening to understand your unique challenges, because you're the 
+                    expert on what hardships you experience day to day. Only after listening 
+                    do we bring our experience to bear in the form of a tailored solution.
                   </p>
                   <p>
-                    Today, we serve active facilities across the Granite State, 
-                    from manufacturing plants and warehouses to commercial offices and 
-                    medical centers. Our team brings decades of combined experience to 
-                    every project we undertake.
+                    Today, we specialize in long-term partnerships with industrial manufacturing 
+                    facilities across Southern New Hampshire. We prioritize health, safety, 
+                    and reliability in everything we do.
                   </p>
                 </div>
               </div>
@@ -144,23 +149,26 @@ export default function About() {
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold text-slate-900 mb-10 text-center">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4 text-center">
                 Our Values
               </h2>
-              <div className="grid md:grid-cols-3 gap-8">
+              <p className="text-slate-600 text-center mb-10 max-w-2xl mx-auto">
+                These four words guide everything we do.
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {values.map((value, index) => (
                   <Card 
                     key={index}
-                    className="p-8 text-center"
+                    className="p-6 text-center"
                     data-testid={`value-${index}`}
                   >
-                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-                      <value.icon className="w-8 h-8 text-green-600" />
+                    <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                      <value.icon className="w-7 h-7 text-green-600" />
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-900 mb-3">
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2">
                       {value.title}
                     </h3>
-                    <p className="text-slate-600">
+                    <p className="text-slate-600 text-sm">
                       {value.description}
                     </p>
                   </Card>
@@ -176,18 +184,31 @@ export default function About() {
               Ready to Partner with Thoroughly Pro?
             </h2>
             <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
-              Join the many facilities that trust us with their maintenance needs. 
-              Let's discuss how we can help your facility thrive.
+              We're interested to hear what challenges you face. Give us a call 
+              to schedule a walk-through.
             </p>
-            <Link href="/quote">
-              <Button 
-                size="lg" 
-                className="bg-green-600 hover:bg-green-700 text-white"
-                data-testid="button-about-quote"
-              >
-                Request a Consultation <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href={siteInfo.contact.phoneUrl}>
+                <Button 
+                  size="lg" 
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                  data-testid="button-about-call"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call {siteInfo.contact.phone}
+                </Button>
+              </a>
+              <Link href="/quote">
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  className="border-white/30 text-white bg-white/10 backdrop-blur-sm"
+                  data-testid="button-about-quote"
+                >
+                  Request a Consultation <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

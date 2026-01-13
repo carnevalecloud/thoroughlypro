@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Warehouse, Wrench, Package, Building, Layers, Sparkles, CheckCircle, ArrowRight } from "lucide-react";
+import { Warehouse, Package, Layers, Sparkles, ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
@@ -9,9 +9,7 @@ import heroImage from "@assets/generated_images/clean_industrial_facility_interi
 
 const iconMap: Record<string, typeof Warehouse> = {
   Warehouse,
-  Wrench,
   Package,
-  Building,
   Layers,
   Sparkles,
 };
@@ -33,8 +31,8 @@ export default function Services() {
               Our Services
             </h1>
             <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-              Comprehensive facility maintenance and cleaning solutions tailored 
-              for industrial and commercial environments.
+              Tailored cleaning and maintenance solutions for industrial 
+              manufacturing facilities. We listen first, then deliver.
             </p>
           </div>
         </section>

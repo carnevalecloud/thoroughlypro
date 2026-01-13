@@ -1,23 +1,26 @@
 import { Link } from "wouter";
-import { ArrowRight, Warehouse, Wrench, Package } from "lucide-react";
+import { ArrowRight, Warehouse, Package, Sparkles, Layers } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { services } from "@/data/services";
 
 import industrialCleaningImg from "@assets/generated_images/industrial_floor_cleaning_scene.png";
-import facilityMaintenanceImg from "@assets/generated_images/facility_maintenance_technician_working.png";
 import warehouseServicesImg from "@assets/generated_images/clean_warehouse_interior_scene.png";
+import commercialCleaningImg from "@assets/generated_images/commercial_office_cleaning_scene.png";
+import floorCareImg from "@assets/generated_images/industrial_floor_polishing_work.png";
 
 const iconMap: Record<string, typeof Warehouse> = {
   Warehouse,
-  Wrench,
   Package,
+  Sparkles,
+  Layers,
 };
 
 const imageMap: Record<string, string> = {
   "industrial-cleaning": industrialCleaningImg,
-  "facility-maintenance": facilityMaintenanceImg,
-  "warehouse-services": warehouseServicesImg,
+  "facility-cleanouts": warehouseServicesImg,
+  "carpet-cleaning": commercialCleaningImg,
+  "floor-care": floorCareImg,
 };
 
 export function ServicesPreview() {
@@ -37,8 +40,8 @@ export function ServicesPreview() {
             Our Core Services
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Comprehensive facility maintenance and cleaning solutions tailored
-            for New Hampshire's industrial and commercial sectors.
+            Tailored cleaning and maintenance solutions for industrial 
+            manufacturing facilities across Southern New Hampshire.
           </p>
         </div>
 
@@ -96,7 +99,6 @@ export function ServicesPreview() {
               className="bg-sky-600 hover:bg-sky-700 text-white shadow-lg"
               data-testid="button-view-all-services"
             >
-              <Wrench className="w-5 h-5 mr-2" />
               View All Services
             </Button>
           </Link>

@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Phone, CheckCircle } from "lucide-react";
+import { Phone, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteInfo } from "@/data/siteInfo";
 import heroImage from "@assets/generated_images/nh_facility_with_mountain_views.png";
@@ -20,8 +20,8 @@ export function Hero() {
         <div className="max-w-3xl">
           <div className="flex items-center gap-2 mb-6">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white/90 border border-white/20">
-              <CheckCircle className="w-4 h-4 text-green-400" />
-              Serving 100+ facilities across NH
+              <Headphones className="w-4 h-4 text-green-400" />
+              We Listen First
             </span>
           </div>
 
@@ -29,39 +29,39 @@ export function Hero() {
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
             data-testid="text-hero-headline"
           >
-            New Hampshire's Trusted Industrial Facility Partner Since 1983
+            Your Trusted Facility Partner Since 1983
           </h1>
 
           <p
             className="text-lg lg:text-xl text-slate-300 leading-relaxed mb-8"
             data-testid="text-hero-subheadline"
           >
-            Expert maintenance and cleaning for manufacturing, warehousing, and
-            commercial facilities. We listen, we consult, and we deliver
-            tailored solutions.
+            We listen to your challenges, then deliver tailored cleaning and 
+            maintenance solutions for industrial manufacturing facilities 
+            across Southern New Hampshire.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <Link href="/quote">
-              <Button
-                size="lg"
-                className="bg-green-600 hover:bg-green-700 text-white"
-                data-testid="button-hero-walkthrough"
-              >
-                Request Walk-Through
-              </Button>
-            </Link>
             <a href={siteInfo.contact.phoneUrl}>
               <Button
                 size="lg"
-                variant="outline"
-                className="border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 text-base"
+                className="bg-green-600 hover:bg-green-700 text-white"
                 data-testid="button-hero-call"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call {siteInfo.contact.phone}
               </Button>
             </a>
+            <Link href="/quote">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 text-base"
+                data-testid="button-hero-walkthrough"
+              >
+                Request Walk-Through
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

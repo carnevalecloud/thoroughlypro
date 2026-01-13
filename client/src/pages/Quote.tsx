@@ -100,11 +100,24 @@ export default function Quote() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12 lg:mb-16">
               <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-4" data-testid="text-quote-title">
-                Request a Free Quote
+                Let's Talk About Your Facility
               </h1>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Tell us about your facility and we'll create a customized maintenance 
-                plan tailored to your specific needs.
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
+                The fastest way to get started is to give us a call. We'll schedule 
+                a walk-through to understand your specific needs.
+              </p>
+              <a href={siteInfo.contact.phoneUrl}>
+                <Button 
+                  size="lg" 
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                  data-testid="button-quote-call-top"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  Call {siteInfo.contact.phone}
+                </Button>
+              </a>
+              <p className="text-sm text-slate-500 mt-4">
+                Or fill out the form below and we'll contact you within 24 hours.
               </p>
             </div>
 

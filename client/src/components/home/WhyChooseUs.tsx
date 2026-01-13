@@ -4,28 +4,28 @@ import heroImage from "@assets/generated_images/clean_industrial_facility_interi
 const differentiators = [
   {
     number: "01",
-    title: "Local Expertise Since 1983",
-    description: "Four decades of understanding New Hampshire's industrial landscape and building lasting relationships."
+    title: "We Listen First",
+    description: "Every facility has unique challenges. We start by listening to understand your specific needs before proposing solutions."
   },
   {
     number: "02",
-    title: "Customized Solutions",
-    description: "No cookie-cutter approaches. Every facility gets a tailored maintenance plan based on specific needs."
+    title: "Tailored Solutions",
+    description: "No cookie-cutter approaches. We develop customized cleaning programs based on your facility's requirements."
   },
   {
     number: "03",
-    title: "Reliable & Responsive",
-    description: "We respond within 24 hours and show up when we say we will. Your operations depend on it."
+    title: "Responsive & Reliable",
+    description: "Quick response times and consistent service you can count on. Your operations depend on it."
   },
   {
     number: "04",
-    title: "Comprehensive Services",
-    description: "From daily cleaning to emergency maintenance, we handle all aspects of facility upkeep."
+    title: "Collaborative Partnership",
+    description: "We work hand-in-hand with your team, treating every client relationship as a long-term partnership."
   },
   {
     number: "05",
-    title: "Licensed & Insured",
-    description: "Full coverage and proper certifications for peace of mind and compliance requirements."
+    title: "40+ Years Experience",
+    description: "Since 1983, we've built deep expertise in maintaining industrial manufacturing facilities across Southern New Hampshire."
   }
 ];
 
@@ -39,8 +39,9 @@ export function WhyChooseUs() {
               Why Facility Managers Choose Thoroughly Pro
             </h2>
             <p className="text-lg text-slate-600 mb-10">
-              We understand the unique challenges of maintaining industrial and commercial 
-              facilities. Here's what sets us apart from the competition.
+              We understand that you're the expert on your facility's challenges. 
+              That's why we listen first, then bring our experience to deliver 
+              solutions that actually work.
             </p>
 
             <div className="space-y-6">
@@ -77,7 +78,7 @@ export function WhyChooseUs() {
                 <span className="font-semibold">Trusted Partner</span>
               </div>
               <p className="text-sm text-green-100">
-                Trusted by facilities across New Hampshire.
+                Professional, collaborative, respectful, and thorough.
               </p>
             </div>
           </div>

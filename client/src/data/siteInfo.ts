@@ -19,8 +19,8 @@ export const siteInfo: SiteInfo = {
   meta: {
     lang: "en",
     author: "Carnevale Design",
-    defaultDescription: "Serving New Hampshire's industrial and commercial sectors since 1983. We listen, we consult, and we deliver tailored solutions.",
-    defaultTitle: "Thoroughly Pro | Commercial Facility Partners"
+    defaultDescription: "Thoroughly Pro has been a trusted commercial cleaning partner in Southern New Hampshire since 1983. We listen first, then deliver tailored solutions for industrial manufacturing facilities.",
+    defaultTitle: "Thoroughly Pro | Your Trusted Facility Partner Since 1983"
   }
 };
 
@@ -29,6 +29,7 @@ export const navigation: Navigation = {
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Service Areas", href: "/areas" },
+    { name: "FAQ", href: "/faq" },
   ],
   cta: { name: "Get a Quote", href: "/quote" }
 };

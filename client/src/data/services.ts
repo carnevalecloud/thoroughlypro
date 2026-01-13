@@ -3,128 +3,86 @@ import type { Service } from "@shared/schema";
 export const services: Service[] = [
   {
     id: "industrial-cleaning",
-    title: "Industrial Cleaning",
-    shortDesc: "Deep cleaning for manufacturing floors, equipment, and production areas.",
-    fullDesc: "Our industrial cleaning services are designed for the unique challenges of manufacturing environments. We use specialized equipment and eco-friendly solutions to maintain your facility's cleanliness while minimizing downtime.",
+    title: "Commercial & Industrial Cleaning",
+    shortDesc: "Daily cleaning services for manufacturing facilities with 5-day minimum schedules.",
+    fullDesc: "Our commercial and industrial cleaning services are designed for manufacturing environments that demand consistent, reliable cleaning. We work with you to understand your unique challenges and develop tailored cleaning programs that keep your facility running smoothly.",
     icon: "Warehouse",
     features: [
-      "High-pressure floor cleaning and degreasing",
-      "Equipment and machinery cleaning",
+      "5-day minimum cleaning schedules",
+      "Manufacturing floor cleaning",
       "Production area sanitization",
-      "Dust and debris removal from overhead structures",
-      "Spill containment and cleanup protocols"
+      "Restroom and break room maintenance",
+      "Trash and recycling management",
+      "Customized cleaning protocols"
     ],
     targetAudiences: [
       "Manufacturing plants",
+      "Industrial facilities",
       "Production facilities",
-      "Machine shops",
-      "Assembly operations",
-      "Heavy industry sites"
+      "Warehouse operations"
     ]
   },
   {
-    id: "facility-maintenance",
-    title: "Facility Maintenance",
-    shortDesc: "Comprehensive upkeep for commercial and industrial buildings.",
-    fullDesc: "Keep your facility running smoothly with our comprehensive maintenance services. From routine inspections to emergency repairs, we handle all aspects of building upkeep so you can focus on your core business.",
-    icon: "Wrench",
-    features: [
-      "Preventive maintenance programs",
-      "HVAC system maintenance",
-      "Plumbing and electrical repairs",
-      "Structural inspections and repairs",
-      "Emergency response services"
-    ],
-    targetAudiences: [
-      "Commercial buildings",
-      "Industrial complexes",
-      "Office parks",
-      "Retail centers",
-      "Healthcare facilities"
-    ]
-  },
-  {
-    id: "warehouse-services",
-    title: "Warehouse Services",
-    shortDesc: "Specialized solutions for distribution and storage facilities.",
-    fullDesc: "Our warehouse services address the specific needs of distribution centers and storage facilities. We understand the importance of maintaining clean, safe, and efficient warehouse operations.",
+    id: "facility-cleanouts",
+    title: "Facility & Warehouse Cleanouts",
+    shortDesc: "Complete cleanout services for facilities transitioning, relocating, or renovating.",
+    fullDesc: "When your facility needs a fresh start, our cleanout services handle everything. From removing debris and unwanted materials to deep cleaning every surface, we prepare your space for its next chapter. We listen to your timeline and work around your schedule.",
     icon: "Package",
     features: [
-      "Floor scrubbing and polishing",
-      "Loading dock cleaning",
-      "Rack and shelving cleaning",
-      "Waste management and recycling",
-      "Pest control coordination"
+      "Complete debris removal",
+      "Heavy-duty deep cleaning",
+      "Post-construction cleanup",
+      "Move-in/move-out preparation",
+      "Warehouse clearing and cleaning",
+      "Flexible scheduling around your operations"
     ],
     targetAudiences: [
-      "Distribution centers",
-      "Fulfillment warehouses",
-      "Cold storage facilities",
-      "Logistics hubs",
-      "Inventory storage sites"
+      "Facilities in transition",
+      "Warehouse relocations",
+      "Post-renovation spaces",
+      "New tenant preparation"
     ]
   },
   {
-    id: "commercial-cleaning",
-    title: "Commercial Cleaning",
-    shortDesc: "Professional cleaning for offices and commercial spaces.",
-    fullDesc: "Create a welcoming environment for your employees and customers with our commercial cleaning services. We provide flexible scheduling and customized cleaning plans to meet your specific needs.",
-    icon: "Building",
+    id: "carpet-cleaning",
+    title: "Carpet Cleaning & Extraction",
+    shortDesc: "Professional carpet cleaning with powerful extraction equipment for visible results.",
+    fullDesc: "Our carpet cleaning services deliver results that consistently surprise our clients. Using professional-grade extraction equipment, we remove deep-seated dirt, stains, and allergens that regular vacuuming can't reach. See your carpets restored to their original condition.",
+    icon: "Sparkles",
     features: [
-      "Office and common area cleaning",
-      "Restroom sanitization",
-      "Window and glass cleaning",
-      "Carpet and upholstery care",
-      "Green cleaning options available"
+      "Hot water extraction cleaning",
+      "Deep stain removal",
+      "High-traffic area treatment",
+      "Allergen and dust removal",
+      "Quick-dry technology",
+      "Commercial-grade equipment"
     ],
     targetAudiences: [
-      "Corporate offices",
-      "Professional services firms",
-      "Financial institutions",
-      "Government buildings",
-      "Educational facilities"
+      "Office spaces",
+      "Commercial buildings",
+      "Industrial facilities",
+      "Any carpeted environment"
     ]
   },
   {
     id: "floor-care",
-    title: "Floor Care",
-    shortDesc: "Expert care for all types of industrial and commercial flooring.",
-    fullDesc: "Protect your investment with our specialized floor care services. Whether you have concrete, epoxy, VCT, or specialty flooring, we have the expertise and equipment to keep your floors looking their best.",
+    title: "Floor Stripping & Rewaxing",
+    shortDesc: "Restore and protect your floors with professional stripping and rewaxing services.",
+    fullDesc: "Protect your flooring investment with our professional floor care services. We strip away old wax buildup, clean the underlying surface, and apply fresh protective coatings that extend the life of your floors and keep them looking their best.",
     icon: "Layers",
     features: [
-      "Concrete sealing and polishing",
-      "Epoxy floor maintenance",
-      "Strip and wax services",
-      "Anti-slip treatments",
-      "Floor restoration and repair"
+      "Complete floor stripping",
+      "Multi-coat wax application",
+      "High-speed buffing and burnishing",
+      "VCT and tile floor care",
+      "Concrete floor maintenance",
+      "Scheduled maintenance programs"
     ],
     targetAudiences: [
-      "Showrooms",
-      "Retail spaces",
-      "Healthcare facilities",
-      "Schools and universities",
-      "Manufacturing floors"
-    ]
-  },
-  {
-    id: "specialty-cleaning",
-    title: "Specialty Cleaning",
-    shortDesc: "Customized cleaning solutions for unique environments.",
-    fullDesc: "Some facilities require specialized cleaning approaches. Our team is trained and equipped to handle unique cleaning challenges in cleanrooms, laboratories, food processing areas, and other specialized environments.",
-    icon: "Sparkles",
-    features: [
-      "Cleanroom and laboratory cleaning",
-      "Food-safe cleaning protocols",
-      "Post-construction cleanup",
-      "Disaster recovery cleaning",
-      "Biohazard remediation"
-    ],
-    targetAudiences: [
-      "Pharmaceutical facilities",
-      "Research laboratories",
-      "Food processing plants",
-      "Data centers",
-      "Medical device manufacturers"
+      "Manufacturing floors",
+      "Warehouse facilities",
+      "Commercial buildings",
+      "Retail spaces"
     ]
   }
 ];

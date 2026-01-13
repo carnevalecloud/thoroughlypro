@@ -1,10 +1,10 @@
-import { Clock, Users, Shield, Award } from "lucide-react";
+import { Clock, Headphones, Shield, MapPin } from "lucide-react";
 
 const stats = [
   { icon: Clock, label: "Since 1983", sublabel: "40+ Years Experience" },
-  { icon: Users, label: "Trusted by Many", sublabel: "Active Facilities" },
+  { icon: Headphones, label: "We Listen First", sublabel: "Tailored Solutions" },
   { icon: Shield, label: "Licensed & Insured", sublabel: "Full Coverage" },
-  { icon: Award, label: "Trusted Partner", sublabel: "Industry Certified" },
+  { icon: MapPin, label: "Southern NH", sublabel: "7 Communities Served" },
 ];
 
 export function TrustBar() {

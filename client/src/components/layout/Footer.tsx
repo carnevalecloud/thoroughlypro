@@ -18,8 +18,9 @@ export function Footer() {
               />
             </Link>
             <p className="text-slate-400 max-w-md leading-relaxed mb-6">
-              Serving New Hampshire's industrial and commercial sectors since 1983. 
-              We listen, we consult, and we deliver tailored facility maintenance solutions.
+              Your trusted commercial cleaning partner since 1983. We listen first, 
+              then deliver tailored solutions for industrial manufacturing facilities 
+              across Southern New Hampshire.
             </p>
             <div className="flex items-center gap-2 text-sm text-slate-400">
               <Clock className="w-4 h-4" />

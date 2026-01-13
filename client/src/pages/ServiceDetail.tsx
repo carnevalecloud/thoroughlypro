@@ -6,28 +6,22 @@ import { Card } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { testimonials } from "@/data/testimonials";
 import { siteInfo } from "@/data/siteInfo";
-import { ArrowLeft, ArrowRight, CheckCircle, Phone, Warehouse, Wrench, Package, Building, Layers, Sparkles, Users, Quote, Shield, Clock, Award } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle, Phone, Warehouse, Package, Layers, Sparkles, Users, Quote, Shield, Clock, Award } from "lucide-react";
 import industrialCleaningImage from "@assets/generated_images/industrial_floor_cleaning_scene.png";
-import facilityMaintenanceImage from "@assets/generated_images/facility_maintenance_technician_working.png";
 import warehouseImage from "@assets/generated_images/clean_warehouse_interior_scene.png";
 import commercialCleaningImage from "@assets/generated_images/commercial_office_cleaning_scene.png";
 import floorCareImage from "@assets/generated_images/industrial_floor_polishing_work.png";
-import specialtyCleaningImage from "@assets/generated_images/specialty_cleanroom_cleaning_scene.png";
 
 const imageMap: Record<string, string> = {
   "industrial-cleaning": industrialCleaningImage,
-  "facility-maintenance": facilityMaintenanceImage,
-  "warehouse-services": warehouseImage,
-  "commercial-cleaning": commercialCleaningImage,
+  "facility-cleanouts": warehouseImage,
+  "carpet-cleaning": commercialCleaningImage,
   "floor-care": floorCareImage,
-  "specialty-cleaning": specialtyCleaningImage,
 };
 
 const iconMap: Record<string, typeof Warehouse> = {
   Warehouse,
-  Wrench,
   Package,
-  Building,
   Layers,
   Sparkles,
 };
@@ -171,7 +165,7 @@ export default function ServiceDetail() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-slate-900 mb-4 text-center">Why Choose Thoroughly Pro</h2>
             <p className="text-slate-600 text-center max-w-2xl mx-auto mb-12">
-              Trusted by New Hampshire businesses since 1983
+              Trusted by Southern NH facilities since 1983
             </p>
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">

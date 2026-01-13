@@ -13,8 +13,8 @@ export function RegionalMap() {
             Our Primary Service Areas
           </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            From the Upper Valley to the Capital Region, we provide comprehensive 
-            facility services throughout the Granite State.
+            We serve industrial manufacturing facilities across seven communities 
+            in Southern New Hampshire.
           </p>
         </div>
 

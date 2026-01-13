@@ -11,6 +11,7 @@ import ServiceDetail from "@/pages/ServiceDetail";
 import About from "@/pages/About";
 import Areas from "@/pages/Areas";
 import Quote from "@/pages/Quote";
+import FAQ from "@/pages/FAQ";
 import NotFound from "@/pages/not-found";
 
 const pageVariants = {
@@ -56,6 +57,7 @@ function Router() {
           <Route path="/about" component={About} />
           <Route path="/areas" component={Areas} />
           <Route path="/quote" component={Quote} />
+          <Route path="/faq" component={FAQ} />
           <Route component={NotFound} />
         </Switch>
       </motion.div>

@@ -4,9 +4,12 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { services } from "@/data/services";
 import heroImage from "@assets/generated_images/clean_industrial_facility_interior.png";
+import industrialCleaningImage from "@assets/generated_images/industrial_floor_cleaning_scene.png";
+import warehouseImage from "@assets/generated_images/clean_warehouse_interior_scene.png";
+import commercialCleaningImage from "@assets/generated_images/commercial_office_cleaning_scene.png";
+import floorCareImage from "@assets/generated_images/industrial_floor_polishing_work.png";
 
 const iconMap: Record<string, typeof Warehouse> = {
   Warehouse,
@@ -15,13 +18,14 @@ const iconMap: Record<string, typeof Warehouse> = {
   Sparkles,
 };
 
-const primaryServiceIds = ["industrial-cleaning", "facility-cleanouts"];
-const secondaryServiceIds = ["carpet-cleaning", "floor-care"];
+const imageMap: Record<string, string> = {
+  "industrial-cleaning": industrialCleaningImage,
+  "facility-cleanouts": warehouseImage,
+  "carpet-cleaning": commercialCleaningImage,
+  "floor-care": floorCareImage,
+};
 
 export default function Services() {
-  const primaryServices = services.filter(s => primaryServiceIds.includes(s.id));
-  const secondaryServices = services.filter(s => secondaryServiceIds.includes(s.id));
-
   return (
     <div className="min-h-screen bg-background" data-testid="page-services">
       <Navbar />
@@ -46,65 +50,38 @@ export default function Services() {
 
         <section className="py-16 lg:py-24 bg-white" data-testid="section-services-list">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <Badge className="bg-sky-100 text-sky-700 border-sky-200 mb-4">Core Services</Badge>
-              <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">Primary Services</h2>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
-              {primaryServices.map((service) => {
-                const IconComponent = iconMap[service.icon] || Warehouse;
-                return (
-                  <Link key={service.id} href={`/services/${service.id}`}>
-                    <Card 
-                      className="p-8 bg-white shadow-lg border-2 border-sky-100 hover-elevate cursor-pointer h-full flex flex-col"
-                      data-testid={`card-service-${service.id}`}
-                    >
-                      <div className="w-16 h-16 rounded-xl bg-sky-100 flex items-center justify-center mb-5">
-                        <IconComponent className="w-8 h-8 text-sky-600" />
-                      </div>
-                      <h2 className="text-2xl font-bold text-slate-900 mb-3">
-                        {service.title}
-                      </h2>
-                      <p className="text-slate-600 leading-relaxed flex-grow">
-                        {service.shortDesc}
-                      </p>
-                      <div className="mt-6 flex items-center text-sky-600 font-medium">
-                        Learn more <ArrowRight className="w-5 h-5 ml-2" />
-                      </div>
-                    </Card>
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-semibold text-slate-700">Additional Services</h3>
-            </div>
-            
             <div className="grid md:grid-cols-2 gap-6">
-              {secondaryServices.map((service) => {
+              {services.map((service) => {
                 const IconComponent = iconMap[service.icon] || Warehouse;
+                const serviceImage = imageMap[service.id] || industrialCleaningImage;
                 return (
                   <Link key={service.id} href={`/services/${service.id}`}>
                     <Card 
-                      className="p-6 bg-slate-50 hover-elevate cursor-pointer h-full flex flex-col"
+                      className="overflow-hidden hover-elevate cursor-pointer h-full"
                       data-testid={`card-service-${service.id}`}
                     >
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-slate-200 flex items-center justify-center flex-shrink-0">
-                          <IconComponent className="w-6 h-6 text-slate-600" />
-                        </div>
-                        <div className="flex-grow">
-                          <h2 className="text-lg font-bold text-slate-900 mb-1">
-                            {service.title}
-                          </h2>
-                          <p className="text-slate-600 text-sm leading-relaxed">
-                            {service.shortDesc}
-                          </p>
-                          <div className="mt-3 flex items-center text-sky-600 font-medium text-sm">
-                            Learn more <ArrowRight className="w-4 h-4 ml-1" />
+                      <div className="relative h-48">
+                        <img 
+                          src={serviceImage} 
+                          alt={service.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+                        <div className="absolute bottom-4 left-4">
+                          <div className="w-12 h-12 rounded-lg bg-sky-600 flex items-center justify-center">
+                            <IconComponent className="w-6 h-6 text-white" />
                           </div>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h2 className="text-xl font-bold text-slate-900 mb-2">
+                          {service.title}
+                        </h2>
+                        <p className="text-slate-600 text-sm leading-relaxed">
+                          {service.shortDesc}
+                        </p>
+                        <div className="mt-4 flex items-center text-sky-600 font-medium text-sm">
+                          Learn more <ArrowRight className="w-4 h-4 ml-1" />
                         </div>
                       </div>
                     </Card>

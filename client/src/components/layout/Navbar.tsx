@@ -59,7 +59,7 @@ export function Navbar() {
                       <NavigationMenuTrigger
                         className={`bg-transparent px-0 h-auto hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent ${
                           location.startsWith("/services")
-                            ? "text-sky-600"
+                            ? "text-sky-600 hover:text-sky-600 data-[state=open]:text-sky-600"
                             : "text-slate-600 hover:text-sky-600 data-[state=open]:text-sky-600"
                         }`}
                         data-testid="dropdown-services"

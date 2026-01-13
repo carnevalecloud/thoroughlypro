@@ -50,7 +50,7 @@ export function Navbar() {
                         className={`bg-transparent px-0 h-auto hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent ${
                           location.startsWith("/services")
                             ? "text-sky-600"
-                            : "text-slate-600 hover:text-slate-900"
+                            : "text-slate-600 hover:text-green-600"
                         }`}
                         data-testid="dropdown-services"
                       >
@@ -95,7 +95,7 @@ export function Navbar() {
                   className={`text-sm font-medium transition-colors ${
                     location === item.href
                       ? "text-sky-600"
-                      : "text-slate-600 hover:text-slate-900"
+                      : "text-slate-600 hover:text-green-600"
                   }`}
                   data-testid={`link-nav-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
                 >

@@ -18,7 +18,7 @@ export default function Home() {
         <ServicesPreview />
         <RegionalMap />
         <WhyChooseUs />
-        <Testimonials />
+        {/* <Testimonials /> */}
         <CTASection />
       </main>
       <Footer />

@@ -192,7 +192,7 @@ export default function ServiceDetail() {
               </Card>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            {/* <div className="grid md:grid-cols-2 gap-6">
               {displayedTestimonials.map((testimonial) => (
                 <Card key={testimonial.id} className="p-6">
                   <Quote className="w-8 h-8 text-sky-200 mb-4" />
@@ -203,7 +203,7 @@ export default function ServiceDetail() {
                   </div>
                 </Card>
               ))}
-            </div>
+            </div> */}
           </div>
         </section>
 

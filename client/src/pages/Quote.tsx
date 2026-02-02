@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
 import { Phone, Mail, MapPin, Clock, CheckCircle } from "lucide-react";
 import { z } from "zod";
 import { Navbar } from "@/components/layout/Navbar";
@@ -27,16 +26,15 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { siteInfo } from "@/data/siteInfo";
 import { services } from "@/data/services";
-import { apiRequest } from "@/lib/queryClient";
 
 const quoteFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   company: z.string().optional(),
   email: z.string().email("Please enter a valid email address"),
   phone: z.string().min(10, "Please enter a valid phone number"),
-  facilityType: z.string().min(1, "Please select a facility type"),
-  serviceInterest: z.string().min(1, "Please select a service"),
-  message: z.string().optional(),
+  facility_type: z.string().min(1, "Please select a facility type"),
+  service_interest: z.string().min(1, "Please select a service"),
+  additional_details: z.string().optional(),
 });
 
 type QuoteFormValues = z.infer<typeof quoteFormSchema>;
@@ -61,35 +59,45 @@ export default function Quote() {
       company: "",
       email: "",
       phone: "",
-      facilityType: "",
-      serviceInterest: "",
-      message: "",
+      facility_type: "",
+      service_interest: "",
+      additional_details: "",
     },
   });
 
-  const mutation = useMutation({
-    mutationFn: async (data: QuoteFormValues) => {
-      const response = await apiRequest("POST", "/api/quotes", data);
-      return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Request Submitted!",
-        description: "We'll contact you within 24 hours to schedule your consultation.",
-      });
-      form.reset();
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "There was a problem submitting your request. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
+  const onSubmit = async (data: QuoteFormValues) => {
+    // Create a form element and submit it
+    const formElement = document.createElement("form");
+    formElement.method = "post";
+    formElement.action = "https://forms.carnevale.cloud/process.php";
+    
+    // Add hidden field
+    const hiddenField = document.createElement("input");
+    hiddenField.type = "hidden";
+    hiddenField.name = "form_tools_form_id";
+    hiddenField.value = "14";
+    formElement.appendChild(hiddenField);
 
-  const onSubmit = (data: QuoteFormValues) => {
-    mutation.mutate(data);
+    // Add all form fields
+    Object.entries(data).forEach(([key, value]) => {
+      if (value) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = String(value);
+        formElement.appendChild(input);
+      }
+    });
+
+    document.body.appendChild(formElement);
+    formElement.submit();
+    document.body.removeChild(formElement);
+
+    toast({
+      title: "Request Submitted!",
+      description: "We'll contact you within 24 hours to schedule your consultation.",
+    });
+    form.reset();
   };
 
   return (
@@ -126,6 +134,7 @@ export default function Quote() {
                 <Card className="p-8 bg-white" data-testid="card-quote-form">
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <input type="hidden" name="form_tools_form_id" value="14" />
                       <div className="grid md:grid-cols-2 gap-6">
                         <FormField
                           control={form.control}
@@ -205,7 +214,7 @@ export default function Quote() {
                       <div className="grid md:grid-cols-2 gap-6">
                         <FormField
                           control={form.control}
-                          name="facilityType"
+                          name="facility_type"
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Facility Type *</FormLabel>
@@ -229,7 +238,7 @@ export default function Quote() {
                         />
                         <FormField
                           control={form.control}
-                          name="serviceInterest"
+                          name="service_interest"
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Service Interest *</FormLabel>
@@ -255,7 +264,7 @@ export default function Quote() {
 
                       <FormField
                         control={form.control}
-                        name="message"
+                        name="additional_details"
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Additional Details</FormLabel>
@@ -276,10 +285,10 @@ export default function Quote() {
                         type="submit" 
                         size="lg"
                         className="w-full bg-green-600 hover:bg-green-700 text-white"
-                        disabled={mutation.isPending}
+                        disabled={form.formState.isSubmitting}
                         data-testid="button-submit-quote"
                       >
-                        {mutation.isPending ? "Submitting..." : "Request Free Consultation"}
+                        {form.formState.isSubmitting ? "Submitting..." : "Request Free Consultation"}
                       </Button>
                     </form>
                   </Form>

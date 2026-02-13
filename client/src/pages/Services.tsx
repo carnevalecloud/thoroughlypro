@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Warehouse, Package, Layers, Sparkles, ArrowRight } from "lucide-react";
+import { PageHead } from "@/components/PageHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
@@ -28,6 +29,10 @@ const imageMap: Record<string, string> = {
 export default function Services() {
   return (
     <div className="min-h-screen bg-background" data-testid="page-services">
+      <PageHead
+        title="Our Services"
+        description="Tailored cleaning and maintenance solutions for industrial manufacturing facilities across Southern New Hampshire. Commercial cleaning, facility cleanouts, carpet cleaning, and floor care."
+      />
       <Navbar />
       <main>
         <section className="relative min-h-[400px] flex items-center" data-testid="section-services-hero">

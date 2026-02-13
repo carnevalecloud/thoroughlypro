@@ -1,0 +1,5 @@
+# https://www.robotstxt.org/robotstxt.html
+# Production build overwrites this with sitemap URL (see script/generate-sitemap.ts)
+User-agent: *
+Allow: /
+Disallow: /api/

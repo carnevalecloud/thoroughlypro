@@ -38,6 +38,10 @@ async function buildAll() {
   console.log("building client...");
   await viteBuild();
 
+  console.log("generating sitemap...");
+  const { generateSitemap } = await import("./generate-sitemap");
+  await generateSitemap();
+
   console.log("building server...");
   const pkg = JSON.parse(await readFile("package.json", "utf-8"));
   const allDeps = [

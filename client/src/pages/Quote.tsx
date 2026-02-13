@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { PageHead } from "@/components/PageHead";
 import { siteInfo } from "@/data/siteInfo";
 import { services } from "@/data/services";
 import { useReCaptcha } from "@/hooks/use-recaptcha";
@@ -119,6 +120,10 @@ export default function Quote() {
 
   return (
     <div className="min-h-screen bg-background" data-testid="page-quote">
+      <PageHead
+        title="Get a Quote"
+        description="Request a consultation for commercial cleaning and facility maintenance services. We'll discuss your needs and create a tailored proposal for your Southern New Hampshire facility."
+      />
       <Navbar />
       <main>
         <section className="py-16 lg:py-24 bg-slate-50" data-testid="section-quote-form">

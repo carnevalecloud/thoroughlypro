@@ -1,9 +1,14 @@
+import { PageHead } from "@/components/PageHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
+      <PageHead
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist. Return to Thoroughly Pro's home page for commercial cleaning services in Southern New Hampshire."
+      />
       <Card className="w-full max-w-md mx-4">
         <CardContent className="pt-6">
           <div className="flex mb-4 gap-2">

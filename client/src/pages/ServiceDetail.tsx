@@ -1,4 +1,5 @@
 import { useParams, Link } from "wouter";
+import { PageHead } from "@/components/PageHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -59,6 +60,11 @@ export default function ServiceDetail() {
 
   return (
     <div className="min-h-screen bg-background" data-testid={`page-service-${service.id}`}>
+      <PageHead
+        title={service.title}
+        description={service.shortDesc}
+        image={heroImage}
+      />
       <Navbar />
       <main>
         <section className="relative min-h-[400px] flex items-center" data-testid="section-service-hero">

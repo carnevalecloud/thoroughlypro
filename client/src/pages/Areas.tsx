@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { MapPin, ArrowRight, Phone, Factory } from "lucide-react";
+import { PageHead } from "@/components/PageHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
@@ -13,6 +14,10 @@ import heroImage from "@assets/generated_images/new_hampshire_industrial_landsca
 export default function Areas() {
   return (
     <div className="min-h-screen bg-background" data-testid="page-areas">
+      <PageHead
+        title="Service Areas"
+        description="Serving industrial manufacturing facilities across Southern New Hampshire since 1983. We cover Chesterfield, Keene, Swanzey, Concord, Lebanon, Newport, and New London."
+      />
       <Navbar />
       <main>
         <section className="relative min-h-[450px] flex items-center" data-testid="section-areas-hero">

@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Headphones, Users, Award, CheckCircle, ArrowRight, Phone } from "lucide-react";
+import { PageHead } from "@/components/PageHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
@@ -62,6 +63,10 @@ const values = [
 export default function About() {
   return (
     <div className="min-h-screen bg-background" data-testid="page-about">
+      <PageHead
+        title="About Us"
+        description="Your trusted facility partner since 1983. We listen first, then deliver tailored cleaning and maintenance solutions for industrial manufacturing facilities in Southern New Hampshire."
+      />
       <Navbar />
       <main>
         <section className="relative min-h-[400px] flex items-center" data-testid="section-about-hero">

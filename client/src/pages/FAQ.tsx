@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Phone, ArrowRight, HelpCircle } from "lucide-react";
+import { PageHead } from "@/components/PageHead";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
@@ -59,6 +60,10 @@ const faqs = [
 export default function FAQ() {
   return (
     <div className="min-h-screen bg-background" data-testid="page-faq">
+      <PageHead
+        title="FAQ"
+        description="Frequently asked questions about Thoroughly Pro's commercial cleaning services, service areas, and how we work with industrial manufacturing facilities in Southern New Hampshire."
+      />
       <Navbar />
       <main>
         <section className="py-16 lg:py-20 bg-slate-900" data-testid="section-faq-hero">

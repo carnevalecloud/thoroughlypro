@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { siteInfo } from "@/data/siteInfo";
+import { trackPhoneClick } from "@/utils/analytics";
 
 const faqs = [
   {
@@ -108,9 +109,14 @@ export default function FAQ() {
                 to discuss your facility's needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href={siteInfo.contact.phoneUrl}>
-                  <Button 
-                    size="lg" 
+                <a
+                  href={siteInfo.contact.phoneUrl}
+                  onClick={() =>
+                    trackPhoneClick(siteInfo.contact.phone, "FAQ Page - CTA")
+                  }
+                >
+                  <Button
+                    size="lg"
                     className="bg-green-600 hover:bg-green-700 text-white"
                     data-testid="button-faq-call"
                   >

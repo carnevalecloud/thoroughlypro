@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { siteInfo, navigation } from "@/data/siteInfo";
 import { services } from "@/data/services";
+import { trackPhoneClick } from "@/utils/analytics";
 
 const iconMap: Record<string, React.ElementType> = {
   Warehouse,
@@ -200,6 +201,9 @@ export function Navbar() {
               )}
               <a
                 href={siteInfo.contact.phoneUrl}
+                onClick={() =>
+                  trackPhoneClick(siteInfo.contact.phone, "Navbar - Mobile")
+                }
                 className="flex items-center gap-2 text-base font-medium text-slate-600"
                 data-testid="link-phone-mobile"
               >

@@ -27,6 +27,7 @@ import {
 import { siteInfo } from "@/data/siteInfo";
 import { services } from "@/data/services";
 import { useReCaptcha } from "@/hooks/use-recaptcha";
+import { trackGenerateLead, trackPhoneClick, trackEmailClick } from "@/utils/analytics";
 
 const quoteFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -92,14 +93,18 @@ export default function Quote() {
       }
 
       // Submit using fetch to prevent redirect
-      const response = await fetch("https://forms.carnevale.cloud/process.php", {
+      await fetch("https://forms.carnevale.cloud/process.php", {
         method: "POST",
         body: formData,
         mode: "no-cors", // Prevent CORS issues
       });
 
-      // Since we're using no-cors, we can't check the response
-      // But we'll assume success if no error was thrown
+      // Track successful form submission in GA4
+      trackGenerateLead({
+        facilityType: data.facility_type,
+        serviceInterest: data.service_interest,
+      });
+
       setIsSubmitted(true);
       form.reset();
     } catch (error) {
@@ -126,9 +131,17 @@ export default function Quote() {
                 The fastest way to get started is to give us a call. We'll schedule 
                 a walk-through to understand your specific needs.
               </p>
-              <a href={siteInfo.contact.phoneUrl}>
-                <Button 
-                  size="lg" 
+              <a
+                href={siteInfo.contact.phoneUrl}
+                onClick={() =>
+                  trackPhoneClick(
+                    siteInfo.contact.phone,
+                    "Quote Page - Top CTA"
+                  )
+                }
+              >
+                <Button
+                  size="lg"
                   className="bg-green-600 hover:bg-green-700 text-white"
                   data-testid="button-quote-call-top"
                 >
@@ -155,9 +168,17 @@ export default function Quote() {
                       <p className="text-lg text-slate-600 mb-6 max-w-md mx-auto">
                         Thank you for contacting us! We'll review your request and get back to you within 24 hours to schedule your consultation.
                       </p>
-                      <a href={siteInfo.contact.phoneUrl}>
-                        <Button 
-                          size="lg" 
+                      <a
+                        href={siteInfo.contact.phoneUrl}
+                        onClick={() =>
+                          trackPhoneClick(
+                            siteInfo.contact.phone,
+                            "Quote Page - Success CTA"
+                          )
+                        }
+                      >
+                        <Button
+                          size="lg"
                           className="bg-green-600 hover:bg-green-700 text-white"
                           data-testid="button-success-call"
                         >
@@ -352,8 +373,14 @@ export default function Quote() {
                       </div>
                     </a>
 
-                    <a 
+                    <a
                       href={`mailto:${siteInfo.contact.email}`}
+                      onClick={() =>
+                        trackEmailClick(
+                          siteInfo.contact.email,
+                          "Quote Page - Sidebar"
+                        )
+                      }
                       className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors"
                       data-testid="link-quote-email"
                     >

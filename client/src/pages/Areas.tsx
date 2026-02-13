@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { serviceTowns } from "@/data/areas";
 import { siteInfo } from "@/data/siteInfo";
+import { trackPhoneClick } from "@/utils/analytics";
 import heroImage from "@assets/generated_images/new_hampshire_industrial_landscape_aerial.png";
 
 export default function Areas() {
@@ -105,9 +106,14 @@ export default function Areas() {
                 at the highest standards. Give us a call to schedule a walk-through.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href={siteInfo.contact.phoneUrl}>
-                  <Button 
-                    size="lg" 
+                <a
+                  href={siteInfo.contact.phoneUrl}
+                  onClick={() =>
+                    trackPhoneClick(siteInfo.contact.phone, "Areas Page - CTA")
+                  }
+                >
+                  <Button
+                    size="lg"
                     className="bg-green-600 hover:bg-green-700 text-white"
                     data-testid="button-areas-call"
                   >

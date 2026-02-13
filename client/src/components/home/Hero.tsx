@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Phone, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteInfo } from "@/data/siteInfo";
+import { trackPhoneClick } from "@/utils/analytics";
 import heroImage from "@assets/generated_images/nh_facility_with_mountain_views.png";
 
 export function Hero() {
@@ -42,7 +43,12 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <a href={siteInfo.contact.phoneUrl}>
+            <a
+              href={siteInfo.contact.phoneUrl}
+              onClick={() =>
+                trackPhoneClick(siteInfo.contact.phone, "Hero - CTA")
+              }
+            >
               <Button
                 size="lg"
                 className="bg-green-600 hover:bg-green-700 text-white"

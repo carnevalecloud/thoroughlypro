@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { siteInfo, navigation } from "@/data/siteInfo";
+import { trackPhoneClick, trackEmailClick } from "@/utils/analytics";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -59,8 +60,11 @@ export function Footer() {
             <h3 className="text-white font-semibold mb-6" data-testid="text-footer-contact">Contact Us</h3>
             <ul className="space-y-4">
               <li>
-                <a 
-                  href={siteInfo.contact.phoneUrl} 
+                <a
+                  href={siteInfo.contact.phoneUrl}
+                  onClick={() =>
+                    trackPhoneClick(siteInfo.contact.phone, "Footer")
+                  }
                   className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors"
                   data-testid="link-footer-phone"
                 >
@@ -69,8 +73,11 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a 
-                  href={`mailto:${siteInfo.contact.email}`} 
+                <a
+                  href={`mailto:${siteInfo.contact.email}`}
+                  onClick={() =>
+                    trackEmailClick(siteInfo.contact.email, "Footer")
+                  }
                   className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors"
                   data-testid="link-footer-email"
                 >

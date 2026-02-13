@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteInfo } from "@/data/siteInfo";
+import { trackPhoneClick } from "@/utils/analytics";
 
 export function CTASection() {
   return (
@@ -16,9 +17,14 @@ export function CTASection() {
             at the highest standards. Give us a call to schedule a walk-through.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href={siteInfo.contact.phoneUrl}>
-              <Button 
-                size="lg" 
+            <a
+              href={siteInfo.contact.phoneUrl}
+              onClick={() =>
+                trackPhoneClick(siteInfo.contact.phone, "CTA Section")
+              }
+            >
+              <Button
+                size="lg"
                 className="bg-green-600 hover:bg-green-700 text-white"
                 data-testid="button-cta-call"
               >

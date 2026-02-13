@@ -2,6 +2,7 @@ import { MapPin, Phone, Factory } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { siteInfo } from "@/data/siteInfo";
+import { trackPhoneClick } from "@/utils/analytics";
 
 const primaryTowns = ["Chesterfield", "Keene", "Concord"];
 const secondaryTowns = ["Swanzey", "Lebanon", "Newport", "New London"];
@@ -25,9 +26,17 @@ export function RegionalMap() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href={siteInfo.contact.phoneUrl}>
-                <Button 
-                  size="lg" 
+              <a
+                href={siteInfo.contact.phoneUrl}
+                onClick={() =>
+                  trackPhoneClick(
+                    siteInfo.contact.phone,
+                    "Regional Map - Home"
+                  )
+                }
+              >
+                <Button
+                  size="lg"
                   className="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto"
                   data-testid="button-areas-call"
                 >

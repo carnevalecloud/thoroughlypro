@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { siteInfo } from "@/data/siteInfo";
+import { trackPhoneClick } from "@/utils/analytics";
 import heroImage from "@assets/generated_images/clean_industrial_facility_interior.png";
 
 const timeline = [
@@ -188,9 +189,14 @@ export default function About() {
               at the highest standards. Give us a call to schedule a walk-through.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={siteInfo.contact.phoneUrl}>
-                <Button 
-                  size="lg" 
+              <a
+                href={siteInfo.contact.phoneUrl}
+                onClick={() =>
+                  trackPhoneClick(siteInfo.contact.phone, "About Page - CTA")
+                }
+              >
+                <Button
+                  size="lg"
                   className="bg-green-600 hover:bg-green-700 text-white"
                   data-testid="button-about-call"
                 >

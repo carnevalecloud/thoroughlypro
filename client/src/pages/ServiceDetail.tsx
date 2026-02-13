@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { services } from "@/data/services";
 import { testimonials } from "@/data/testimonials";
 import { siteInfo } from "@/data/siteInfo";
+import { trackPhoneClick } from "@/utils/analytics";
 import { ArrowLeft, ArrowRight, CheckCircle, Phone, Warehouse, Package, Layers, Sparkles, Users, Quote, Shield, Clock, Award } from "lucide-react";
 import industrialCleaningImage from "@assets/generated_images/industrial_floor_cleaning_scene.png";
 import warehouseImage from "@assets/generated_images/clean_warehouse_interior_scene.png";
@@ -143,9 +144,18 @@ export default function ServiceDetail() {
                         Request a Quote <ArrowRight className="w-5 h-5 ml-2" />
                       </Button>
                     </Link>
-                    <a href={siteInfo.contact.phoneUrl} className="block">
-                      <Button 
-                        size="lg" 
+                    <a
+                      href={siteInfo.contact.phoneUrl}
+                      onClick={() =>
+                        trackPhoneClick(
+                          siteInfo.contact.phone,
+                          `Service Detail - ${service.title}`
+                        )
+                      }
+                      className="block"
+                    >
+                      <Button
+                        size="lg"
                         variant="outline"
                         className="w-full"
                         data-testid="button-service-call"

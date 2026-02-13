@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Switch, Route, useLocation } from "wouter";
+import { trackPageView } from "@/utils/analytics";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -39,7 +40,12 @@ function ScrollToTop() {
 
 function Router() {
   const [location] = useLocation();
-  
+
+  // Track SPA page views on route changes
+  useEffect(() => {
+    trackPageView(location, document.title);
+  }, [location]);
+
   return (
     <AnimatePresence mode="wait">
       <motion.div

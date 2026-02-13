@@ -1,0 +1,164 @@
+---
+import { siteInfo, navigation } from "../data/siteInfo";
+import { services } from "../data/services";
+---
+
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm" data-testid="navbar">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-24 lg:h-28">
+      <a href="/" class="flex items-center" data-testid="link-logo">
+        <img src="/tp-logo.webp" alt={siteInfo.name} class="h-16 lg:h-20 w-auto" />
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        {navigation.main.map((item) =>
+          item.name === "Services" ? (
+            <div class="relative group">
+              <button
+                type="button"
+                class="text-base font-medium text-slate-600 hover:text-sky-600 bg-transparent border-none cursor-pointer"
+                data-testid="dropdown-services"
+              >
+                {item.name}
+              </button>
+              <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <ul class="grid w-64 gap-1 p-2 bg-white rounded-lg shadow-lg border border-slate-200">
+                  <li>
+                    <a
+                      href="/services"
+                      class="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                      data-testid="link-dropdown-all-services"
+                    >
+                      <span class="icon-[ph--stack] w-4 h-4 text-sky-600 inline-block"></span> All Services
+                    </a>
+                  </li>
+                  {services.map((service) => (
+                    <li>
+                      <a
+                        href={`/services/${service.id}`}
+                        class="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                        data-testid={`link-dropdown-${service.id}`}
+                      >
+                        {service.icon === "Warehouse" && <span class="icon-[ph--warehouse] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
+                        {service.icon === "Package" && <span class="icon-[ph--package] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
+                        {service.icon === "Sparkles" && <span class="icon-[ph--sparkle] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
+                        {service.icon === "Layers" && <span class="icon-[ph--stack] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
+                        {service.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="text-base font-medium text-slate-600 hover:text-sky-600 transition-colors"
+              data-testid={`link-nav-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              {item.name}
+            </a>
+          )
+        )}
+      </div>
+
+      <div class="hidden lg:flex items-center gap-4">
+        <a
+          href={siteInfo.contact.phoneUrl}
+          class="flex items-center gap-2 text-base font-medium text-slate-600 hover:text-slate-900 transition-colors"
+          data-testid="link-phone-header"
+        >
+          <span class="icon-[ph--phone] w-4 h-4 inline-block" aria-hidden="true"></span>
+          {siteInfo.contact.phone}
+        </a>
+        <a
+          href={navigation.cta.href}
+          class="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-green-600 text-white hover:bg-green-700 transition-colors"
+          data-testid="button-get-quote-header"
+        >
+          {navigation.cta.name}
+        </a>
+      </div>
+
+      <button
+        type="button"
+        class="lg:hidden p-2"
+        data-testid="button-mobile-menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        id="mobile-menu-btn"
+      >
+        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="lg:hidden hidden py-4 border-t border-slate-200" data-testid="mobile-menu">
+      <div class="flex flex-col gap-4">
+        {navigation.main.map((item) =>
+          item.name === "Services" ? (
+            <div class="flex flex-col gap-2" key={item.name}>
+              <a href="/services" class="text-base font-medium text-slate-600" data-testid="link-mobile-services">
+                {item.name}
+              </a>
+              <div class="pl-4 flex flex-col gap-2">
+                {services.map((service) => (
+                  <a
+                    href={`/services/${service.id}`}
+                    class="text-sm text-slate-500 hover:text-slate-700"
+                    data-testid={`link-mobile-${service.id}`}
+                  >
+                    {service.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="text-base font-medium text-slate-600"
+              data-testid={`link-mobile-${item.name.toLowerCase().replace(/\s+/g, "-")}`}
+            >
+              {item.name}
+            </a>
+          )
+        )}
+        <a
+          href={siteInfo.contact.phoneUrl}
+          class="text-base font-medium text-slate-600"
+          data-testid="link-phone-mobile"
+        >
+          {siteInfo.contact.phone}
+        </a>
+        <a
+          href={navigation.cta.href}
+          class="w-full inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-green-600 text-white hover:bg-green-700"
+          data-testid="button-get-quote-mobile"
+        >
+          {navigation.cta.name}
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
+    const menu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    if (menu?.classList.contains("hidden")) {
+      menu.classList.remove("hidden");
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+    } else {
+      menu?.classList.add("hidden");
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    }
+  });
+</script>

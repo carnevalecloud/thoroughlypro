@@ -1,0 +1,95 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { siteInfo } from "../data/siteInfo";
+import { serviceTowns } from "../data/areas";
+---
+
+<PageLayout
+  title="Service Areas"
+  description="Serving industrial manufacturing facilities across Southern New Hampshire since 1983. We cover Chesterfield, Keene, Swanzey, Concord, Lebanon, Newport, and New London."
+>
+  <div class="min-h-screen bg-background" data-testid="page-areas">
+    <section class="relative min-h-[450px] flex items-center" data-testid="section-areas-hero">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/images/nh-landscape.png');" />
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/75 to-slate-900/50" />
+      <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
+        <div class="max-w-2xl mx-auto">
+          <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-sky-500/20 text-sky-200 border border-sky-500/30 text-sm mb-4">
+            <span class="icon-[ph--map-pin] w-3 h-3 inline-block"></span> Southern New Hampshire
+          </span>
+          <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-areas-hero-title">Our Service Areas</h1>
+          <p class="text-xl text-slate-300">
+            Serving industrial manufacturing facilities across Southern New Hampshire since 1983.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 lg:py-24 bg-white" data-testid="section-towns">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+          {serviceTowns.map((town, index) => (
+            <div class="p-6 text-center rounded-lg border border-slate-200 hover-elevate overflow-visible" data-testid={`card-town-${index}`}>
+              <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center mx-auto mb-4">
+                <span class="icon-[ph--map-pin] w-6 h-6 text-sky-600 inline-block"></span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900">{town.name}</h3>
+              <p class="text-sm text-slate-500">New Hampshire</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-slate-50" data-testid="section-focus">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <div class="w-16 h-16 rounded-full bg-sky-100 flex items-center justify-center mx-auto mb-6">
+            <span class="icon-[ph--factory] w-12 h-12 text-sky-600 inline-block"></span>
+          </div>
+          <h2 class="text-3xl font-bold text-slate-900 mb-4">Industrial Manufacturing Focus</h2>
+          <p class="text-lg text-slate-600 mb-8">
+            We specialize in maintaining industrial manufacturing facilities with consistent daily cleaning to keep your operations running smoothly.
+          </p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <p class="text-4xl font-bold text-sky-600 mb-2">40+</p>
+              <p class="text-slate-600">Years Experience</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <p class="text-4xl font-bold text-sky-600 mb-2">Daily</p>
+              <p class="text-slate-600">Reliable Service</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <p class="text-4xl font-bold text-sky-600 mb-2">7</p>
+              <p class="text-slate-600">Communities</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-slate-900" data-testid="section-areas-cta">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-2xl lg:text-3xl font-bold text-white mb-4">Ready to Transform Your Facility?</h2>
+          <p class="text-slate-300 mb-8">
+            Let's discuss how Thoroughly Pro can help maintain your facility at the highest standards. Give us a call to schedule a walk-through.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href={siteInfo.contact.phoneUrl}>
+              <button class="inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-areas-call">
+                <span class="icon-[ph--phone] w-5 h-5 inline-block align-middle"></span> Call {siteInfo.contact.phone}
+              </button>
+            </a>
+            <a href="/quote">
+              <button class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium border border-white/30 text-white bg-white/10 hover:bg-white/20" data-testid="button-areas-quote">
+                Request a Consultation <span class="icon-[ph--arrow-right] w-5 h-5 inline-block"></span>
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</PageLayout>

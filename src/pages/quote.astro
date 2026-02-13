@@ -1,0 +1,148 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import { siteInfo } from "../data/siteInfo";
+import { services } from "../data/services";
+
+const facilityTypes = [
+  "Manufacturing Plant",
+  "Warehouse/Distribution Center",
+  "Commercial Office",
+  "Medical Facility",
+  "Food Processing",
+  "Retail Space",
+  "Other",
+];
+---
+
+<PageLayout
+  title="Get a Quote"
+  description="Request a consultation for commercial cleaning and facility maintenance services. We'll discuss your needs and create a tailored proposal for your Southern New Hampshire facility."
+>
+  <div class="min-h-screen bg-background" data-testid="page-quote">
+    <section class="py-16 lg:py-24 bg-slate-50" data-testid="section-quote-form">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-12 lg:mb-16">
+          <h1 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4" data-testid="text-quote-title">Let's Talk About Your Facility</h1>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
+            The fastest way to get started is to give us a call. We'll schedule a walk-through to understand your specific needs.
+          </p>
+          <a href={siteInfo.contact.phoneUrl}>
+            <button class="inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-quote-call-top">
+              <span class="icon-[ph--phone] w-5 h-5 inline-block align-middle"></span> Call {siteInfo.contact.phone}
+            </button>
+          </a>
+          <p class="text-sm text-slate-500 mt-4">Or fill out the form below and we'll contact you within 24 hours.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
+          <div class="lg:col-span-2">
+            <div id="quote-form" class="p-8 bg-white rounded-lg shadow-sm border border-slate-200" data-testid="card-quote-form">
+              <form action="https://forms.carnevale.cloud/process.php" method="POST" class="space-y-6">
+                <input type="hidden" name="form_tools_form_id" value="14" />
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
+                    <input type="text" id="name" name="name" required minlength="2" placeholder="John Smith" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-name" />
+                  </div>
+                  <div>
+                    <label for="company" class="block text-sm font-medium text-slate-700 mb-1">Company Name</label>
+                    <input type="text" id="company" name="company" placeholder="Your Company" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-company" />
+                  </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="john@company.com" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-email" />
+                  </div>
+                  <div>
+                    <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required minlength="10" placeholder="(603) 555-1234" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-phone" />
+                  </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="facility_type" class="block text-sm font-medium text-slate-700 mb-1">Facility Type *</label>
+                    <select id="facility_type" name="facility_type" required class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="select-facility-type">
+                      <option value="">Select facility type</option>
+                      {facilityTypes.map((type) => (
+                        <option value={type}>{type}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label for="service_interest" class="block text-sm font-medium text-slate-700 mb-1">Service Interest *</label>
+                    <select id="service_interest" name="service_interest" required class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="select-service-interest">
+                      <option value="">Select a service</option>
+                      {services.map((service) => (
+                        <option value={service.title}>{service.title}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label for="additional_details" class="block text-sm font-medium text-slate-700 mb-1">Additional Details</label>
+                  <textarea id="additional_details" name="additional_details" rows="5" placeholder="Tell us about your facility and specific needs..." class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="textarea-message" />
+                </div>
+                <button type="submit" class="w-full inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-submit-quote">
+                  Request Free Consultation
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="p-6 bg-slate-900 text-white rounded-lg" data-testid="card-contact-info">
+              <h3 class="text-lg font-semibold mb-6">Contact Information</h3>
+              <div class="space-y-4">
+                <a href={siteInfo.contact.phoneUrl} class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors" data-testid="link-quote-phone">
+                  <div class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center"><span class="icon-[ph--phone] w-5 h-5 text-white inline-block"></span></div>
+                  <div>
+                    <p class="text-sm text-slate-400">Call Us</p>
+                    <p class="font-medium">{siteInfo.contact.phone}</p>
+                  </div>
+                </a>
+                <a href={`mailto:${siteInfo.contact.email}`} class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors" data-testid="link-quote-email">
+                  <div class="w-10 h-10 rounded-lg bg-sky-600 flex items-center justify-center"><span class="icon-[ph--envelope-simple] w-5 h-5 text-white inline-block"></span></div>
+                  <div>
+                    <p class="text-sm text-slate-400">Email Us</p>
+                    <p class="font-medium text-sm">{siteInfo.contact.email}</p>
+                  </div>
+                </a>
+                <a href={siteInfo.contact.address.mapsLink} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors" data-testid="link-quote-address">
+                  <div class="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center"><span class="icon-[ph--map-pin] w-5 h-5 text-white inline-block"></span></div>
+                  <div>
+                    <p class="text-sm text-slate-400">Location</p>
+                    <p class="font-medium text-sm">
+                      {siteInfo.contact.address.line1}<br />
+                      {siteInfo.contact.address.line2}
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="p-6 bg-green-50 border border-green-200 rounded-lg" data-testid="card-response-time">
+              <div class="flex items-start gap-4">
+                <span class="icon-[ph--clock] w-6 h-6 text-green-600 inline-block"></span>
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">Quick Response</h4>
+                  <p class="text-sm text-slate-600">We respond to all inquiries within 24 hours during business days.</p>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 rounded-lg border border-slate-200 bg-white" data-testid="card-what-to-expect">
+              <h4 class="font-semibold text-slate-900 mb-4">What to Expect</h4>
+              <ul class="space-y-3">
+                {["Initial phone consultation", "Free on-site walk-through", "Customized maintenance proposal", "Flexible scheduling options"].map((item) => (
+                  <li class="flex items-center gap-3 text-sm text-slate-600">
+                    <span class="icon-[ph--check-circle] w-4 h-4 text-green-500 inline-block"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</PageLayout>

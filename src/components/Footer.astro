@@ -1,0 +1,78 @@
+---
+import { siteInfo, navigation } from "../data/siteInfo";
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 text-slate-300" data-testid="footer">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      <div class="lg:col-span-2">
+        <a href="/" class="flex items-center mb-6" data-testid="link-footer-logo">
+          <img src="/tp-logo.webp" alt={siteInfo.name} class="h-14 w-auto" />
+        </a>
+        <p class="text-slate-400 max-w-md leading-relaxed mb-6">
+          Your trusted commercial cleaning partner since 1983. We listen first, then deliver tailored solutions for industrial manufacturing facilities across Southern New Hampshire.
+        </p>
+        <div class="flex items-center gap-2 text-sm text-slate-400">
+          <span class="icon-[ph--clock] w-4 h-4 inline-block" aria-hidden="true"></span>
+          <span>Response within 24 hours</span>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-white font-semibold mb-6" data-testid="text-footer-quicklinks">Quick Links</h3>
+        <ul class="space-y-4">
+          <li>
+            <a href="/" class="text-slate-400 hover:text-white transition-colors" data-testid="link-footer-home">Home</a>
+          </li>
+          {navigation.main.map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-400 hover:text-white transition-colors" data-testid={`link-footer-${item.name.toLowerCase().replace(/\s+/g, "-")}`}>
+                {item.name}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/quote" class="text-slate-400 hover:text-white transition-colors" data-testid="link-footer-quote">Get a Quote</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-white font-semibold mb-6" data-testid="text-footer-contact">Contact Us</h3>
+        <ul class="space-y-4">
+          <li>
+            <a href={siteInfo.contact.phoneUrl} class="flex items-center gap-3 text-slate-400 hover:text-white transition-colors" data-testid="link-footer-phone">
+              <span class="icon-[ph--phone] w-5 h-5 text-green-500 inline-block"></span>
+              {siteInfo.contact.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${siteInfo.contact.email}`} class="flex items-center gap-3 text-slate-400 hover:text-white transition-colors" data-testid="link-footer-email">
+              <span class="icon-[ph--envelope-simple] w-5 h-5 text-green-500 inline-block"></span>
+              {siteInfo.contact.email}
+            </a>
+          </li>
+          <li>
+            <a href={siteInfo.contact.address.mapsLink} target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 text-slate-400 hover:text-white transition-colors" data-testid="link-footer-address">
+              <span class="icon-[ph--map-pin] w-5 h-5 text-green-500 inline-block"></span>
+              <span>
+                {siteInfo.contact.address.line1}<br />
+                {siteInfo.contact.address.line2}
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-slate-800">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-slate-500" data-testid="text-footer-copyright">
+          © {currentYear} {siteInfo.name}. All rights reserved.
+        </p>
+        <p class="text-sm text-slate-500">Licensed & Insured | Serving New Hampshire Since 1983</p>
+      </div>
+    </div>
+  </div>
+</footer>

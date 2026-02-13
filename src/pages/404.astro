@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { siteInfo } from "../data/siteInfo";
+---
+
+<Layout title="Page Not Found" description="The page you're looking for doesn't exist. Return to Thoroughly Pro's home page for commercial cleaning services in Southern New Hampshire.">
+  <div class="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50 px-6" data-testid="page-404">
+    <div class="max-w-xl w-full text-center">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-200 mb-8"><span class="icon-[ph--question] w-10 h-10 text-slate-500 inline-block"></span></div>
+      <p class="text-6xl lg:text-7xl font-bold text-slate-300 mb-4">404</p>
+      <h1 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-4">Page Not Found</h1>
+      <p class="text-slate-600 mb-10 leading-relaxed">
+        Sorry, we couldn't find the page you're looking for. It may have been moved, or the link might be incorrect. Let's get you back on track.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/">
+          <button class="w-full sm:w-auto inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-404-home">
+            <span class="icon-[ph--house] w-5 h-5 inline-block align-middle"></span> Back to Home
+          </button>
+        </a>
+        <a href="/quote">
+          <button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-100" data-testid="button-404-quote">
+            Get a Quote <span class="icon-[ph--arrow-right] w-5 h-5 inline-block"></span>
+          </button>
+        </a>
+      </div>
+      <p class="mt-10 text-sm text-slate-500">
+        Need help? Call us at{" "}
+        <a href={siteInfo.contact.phoneUrl} class="text-green-600 hover:text-green-700 font-medium">
+          {siteInfo.contact.phone}
+        </a>
+      </p>
+    </div>
+  </div>
+</Layout>

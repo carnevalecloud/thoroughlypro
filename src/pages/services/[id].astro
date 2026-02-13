@@ -1,0 +1,155 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { services } from "../../data/services";
+
+export async function getStaticPaths() {
+  return services.map((service) => ({ params: { id: service.id } }));
+}
+
+const { id } = Astro.params;
+const service = services.find((s) => s.id === id);
+---
+
+{service ? (
+  <PageLayout title={service.title} description={service.shortDesc} image={`/images/services/${service.id}.png`}>
+    <div class="min-h-screen bg-background" data-testid={`page-service-${service.id}`}>
+      <section class="relative min-h-[400px] flex items-center" data-testid="section-service-hero">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style={`background-image: url('/images/services/${service.id}.png');`} />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/40" />
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
+          <div class="w-20 h-20 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-6 border border-white/20">
+            {service.icon === "Warehouse" && <span class="icon-[ph--warehouse] w-10 h-10 text-white inline-block"></span>}
+            {service.icon === "Package" && <span class="icon-[ph--package] w-10 h-10 text-white inline-block"></span>}
+            {service.icon === "Sparkles" && <span class="icon-[ph--sparkle] w-10 h-10 text-white inline-block"></span>}
+            {service.icon === "Layers" && <span class="icon-[ph--stack] w-10 h-10 text-white inline-block"></span>}
+          </div>
+          <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-service-title">{service.title}</h1>
+          <p class="text-xl text-slate-300 max-w-2xl mx-auto">{service.shortDesc}</p>
+        </div>
+      </section>
+
+      <section class="py-16 lg:py-24 bg-white" data-testid="section-service-details">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <div class="grid lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-12">
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-4">About This Service</h2>
+                <p class="text-lg text-slate-600 leading-relaxed">{service.fullDesc}</p>
+              </div>
+
+              <div class="p-8 bg-slate-50 rounded-lg">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">What's Included</h2>
+                <ul class="grid md:grid-cols-2 gap-4">
+                  {service.features.map((feature) => (
+                    <li class="flex items-start gap-3 text-slate-700">
+                      <span class="icon-[ph--check-circle] w-4 h-4 text-green-500 flex-shrink-0 inline-block"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Who This Service Is For</h2>
+                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                  {service.targetAudiences.map((audience) => (
+                    <div class="flex items-center gap-2 px-4 py-3 bg-sky-50 rounded-lg text-slate-700">
+                      <span class="icon-[ph--check-circle] w-4 h-4 text-sky-600 flex-shrink-0 inline-block"></span>
+                      {audience}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-1">
+              <div class="p-8 shadow-lg sticky top-32 z-40 rounded-lg border border-slate-200 bg-white">
+                <h2 class="text-xl font-bold text-slate-900 mb-3">Ready to Transform Your Facility?</h2>
+                <p class="text-slate-600 mb-6">Give us a call to schedule a walk-through and discuss your needs.</p>
+                <div class="space-y-3">
+                  <a href="/quote">
+                    <button class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-service-quote">
+                      Request a Quote <span class="icon-[ph--arrow-right] w-5 h-5 inline-block"></span>
+                    </button>
+                  </a>
+                  <a href="tel:6034968229" class="block">
+                    <button class="w-full inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-50" data-testid="button-service-call">
+                      <span class="icon-[ph--phone] w-5 h-5 inline-block"></span> (603) 496-8229
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 bg-slate-50" data-testid="section-trust-building">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <h2 class="text-2xl font-bold text-slate-900 mb-4 text-center">Why Choose Thoroughly Pro</h2>
+          <p class="text-slate-600 text-center max-w-2xl mx-auto mb-12">Trusted by Southern NH facilities since 1983</p>
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="p-6 text-center rounded-lg border border-slate-200 bg-white">
+              <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4"><span class="icon-[ph--trophy] w-6 h-6 text-green-600 inline-block"></span></div>
+              <h3 class="font-bold text-slate-900 mb-2">40+ Years Experience</h3>
+              <p class="text-sm text-slate-600">Serving industrial and commercial clients since 1983</p>
+            </div>
+            <div class="p-6 text-center rounded-lg border border-slate-200 bg-white">
+              <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center mx-auto mb-4"><span class="icon-[ph--shield] w-6 h-6 text-sky-600 inline-block"></span></div>
+              <h3 class="font-bold text-slate-900 mb-2">Fully Insured</h3>
+              <p class="text-sm text-slate-600">Complete liability coverage for your peace of mind</p>
+            </div>
+            <div class="p-6 text-center rounded-lg border border-slate-200 bg-white">
+              <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4"><span class="icon-[ph--clock] w-6 h-6 text-amber-600 inline-block"></span></div>
+              <h3 class="font-bold text-slate-900 mb-2">Flexible Scheduling</h3>
+              <p class="text-sm text-slate-600">Work around your operations with minimal disruption</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-16 bg-white" data-testid="section-other-services">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+          <h2 class="text-2xl font-bold text-slate-900 mb-8 text-center">Other Services</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            {services.filter((s) => s.id !== service.id).slice(0, 3).map((other) => (
+              <a href={`/services/${other.id}`}>
+                <div class="p-6 rounded-lg border border-slate-200 hover-elevate cursor-pointer h-full">
+                  <div class="w-12 h-12 rounded-lg bg-sky-100 flex items-center justify-center mb-4">
+                    {other.icon === "Warehouse" && <span class="icon-[ph--warehouse] w-6 h-6 text-sky-600 inline-block"></span>}
+                    {other.icon === "Package" && <span class="icon-[ph--package] w-6 h-6 text-sky-600 inline-block"></span>}
+                    {other.icon === "Sparkles" && <span class="icon-[ph--sparkle] w-6 h-6 text-sky-600 inline-block"></span>}
+                    {other.icon === "Layers" && <span class="icon-[ph--stack] w-6 h-6 text-sky-600 inline-block"></span>}
+                  </div>
+                  <h3 class="font-bold text-slate-900 mb-2">{other.title}</h3>
+                  <p class="text-sm text-slate-600">{other.shortDesc}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div class="text-center mt-8">
+            <a href="/services">
+              <button class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-50" data-testid="button-view-all-services">
+                <span class="icon-[ph--arrow-left] w-5 h-5 inline-block"></span> View All Services
+              </button>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </PageLayout>
+) : (
+  <PageLayout title="Service Not Found" description="The service you're looking for doesn't exist.">
+    <div class="min-h-screen bg-background flex items-center justify-center">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <h1 class="text-3xl font-bold text-slate-900 mb-4">Service Not Found</h1>
+        <p class="text-slate-600 mb-8">The service you're looking for doesn't exist.</p>
+        <a href="/services">
+          <button class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium bg-sky-600 text-white hover:bg-sky-700">
+            <span class="icon-[ph--arrow-left] w-5 h-5 inline-block"></span> Back to Services
+          </button>
+        </a>
+      </div>
+    </div>
+  </PageLayout>
+)}

@@ -4,6 +4,10 @@ export const services = [
     title: "Commercial & Industrial Cleaning",
     shortDesc:
       "Daily cleaning services for manufacturing facilities that need consistent, reliable care.",
+    keywords:
+      "commercial cleaning, industrial cleaning, manufacturing facility cleaning, daily cleaning, Southern New Hampshire",
+    keywords:
+      "commercial cleaning, industrial cleaning, manufacturing facility cleaning, daily cleaning, Southern New Hampshire",
     fullDesc:
       "Our commercial and industrial cleaning services are designed for manufacturing environments that demand consistent, reliable cleaning. We work with you to understand your unique challenges and develop tailored cleaning programs that keep your facility running smoothly.",
     icon: "Warehouse",
@@ -27,6 +31,10 @@ export const services = [
     title: "Facility & Warehouse Cleanouts",
     shortDesc:
       "Complete cleanout services for facilities transitioning, relocating, or renovating.",
+    keywords:
+      "facility cleanout, warehouse cleanout, debris removal, post-construction cleanup, Southern New Hampshire",
+    keywords:
+      "facility cleanout, warehouse cleanout, debris removal, post-construction cleanup, Southern New Hampshire",
     fullDesc:
       "When your facility needs a fresh start, our cleanout services handle everything. From removing debris and unwanted materials to deep cleaning every surface, we prepare your space for its next chapter. We listen to your timeline and work around your schedule.",
     icon: "Package",
@@ -50,6 +58,8 @@ export const services = [
     title: "Carpet Cleaning & Extraction",
     shortDesc:
       "Professional carpet cleaning with powerful extraction equipment for visible results.",
+    keywords:
+      "carpet cleaning, carpet extraction, commercial carpet cleaning, stain removal, Southern New Hampshire",
     fullDesc:
       "Our carpet cleaning services deliver results that consistently surprise our clients. Using professional-grade extraction equipment, we remove deep-seated dirt, stains, and allergens that regular vacuuming can't reach. See your carpets restored to their original condition.",
     icon: "Sparkles",
@@ -73,6 +83,8 @@ export const services = [
     title: "Floor Stripping & Rewaxing",
     shortDesc:
       "Restore and protect your floors with professional stripping and rewaxing services.",
+    keywords:
+      "floor stripping, floor waxing, floor care, VCT floor maintenance, commercial floor cleaning, Southern New Hampshire",
     fullDesc:
       "Protect your flooring investment with our professional floor care services. We strip away old wax buildup, clean the underlying surface, and apply fresh protective coatings that extend the life of your floors and keep them looking their best.",
     icon: "Layers",

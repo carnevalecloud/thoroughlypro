@@ -21,6 +21,8 @@ export const siteInfo = {
       "Thoroughly Pro has been a trusted commercial cleaning partner in Southern New Hampshire since 1983. We listen first, then deliver tailored solutions for industrial manufacturing facilities.",
     defaultTitle:
       "Thoroughly Pro | Your Trusted Facility Partner Since 1983",
+    defaultKeywords:
+      "commercial cleaning, industrial cleaning, Southern New Hampshire, facility maintenance, manufacturing cleaning, Thoroughly Pro, Bradford NH",
   },
 };
 

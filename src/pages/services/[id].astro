@@ -11,7 +11,7 @@ const service = services.find((s) => s.id === id);
 ---
 
 {service ? (
-  <PageLayout title={service.title} description={service.shortDesc} image={`/images/services/${service.id}.png`}>
+  <PageLayout title={service.title} description={service.shortDesc} image={`/images/services/${service.id}.png`} keywords={service.keywords}>
     <div class="min-h-screen bg-background" data-testid={`page-service-${service.id}`}>
       <section class="relative min-h-[400px] flex items-center" data-testid="section-service-hero">
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style={`background-image: url('/images/services/${service.id}.png');`} />
@@ -139,7 +139,7 @@ const service = services.find((s) => s.id === id);
     </div>
   </PageLayout>
 ) : (
-  <PageLayout title="Service Not Found" description="The service you're looking for doesn't exist.">
+  <PageLayout title="Service Not Found" description="The service you're looking for doesn't exist." keywords="Thoroughly Pro, commercial cleaning, services">
     <div class="min-h-screen bg-background flex items-center justify-center">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <h1 class="text-3xl font-bold text-slate-900 mb-4">Service Not Found</h1>

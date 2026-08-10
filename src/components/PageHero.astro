@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  minHeight?: string;
+  overlay?: "standard" | "strong";
+  testid?: string;
+  titleTestid?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  minHeight = "400px",
+  overlay = "standard",
+  testid,
+  titleTestid,
+} = Astro.props;
+
+const overlays: Record<string, string> = {
+  standard: "from-slate-900/80 via-slate-900/60 to-slate-900/40",
+  strong: "from-slate-900/90 via-slate-900/75 to-slate-900/50",
+};
+---
+
+<section class="relative flex items-center" style={`min-height: ${minHeight}`} data-testid={testid}>
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style={`background-image: url('${image}');`} />
+  <div class={`absolute inset-0 bg-gradient-to-r ${overlays[overlay]}`} />
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
+    <slot name="eyebrow" />
+    <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid={titleTestid}>{title}</h1>
+    <p class="text-xl text-slate-300 max-w-2xl mx-auto">{description}</p>
+  </div>
+</section>

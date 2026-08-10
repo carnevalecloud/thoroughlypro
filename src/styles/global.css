@@ -2,6 +2,31 @@
 
 @plugin "@iconify/tailwind4";
 
+/* Icon names are resolved dynamically through <Icon>, so Tailwind's static
+   scanner can't discover them from source text. Every icon used anywhere on
+   the site must be listed here so its utility class actually gets generated. */
+@source inline("icon-[ph--arrow-left]");
+@source inline("icon-[ph--arrow-right]");
+@source inline("icon-[ph--briefcase]");
+@source inline("icon-[ph--caret-down]");
+@source inline("icon-[ph--check-circle]");
+@source inline("icon-[ph--clock]");
+@source inline("icon-[ph--envelope-simple]");
+@source inline("icon-[ph--factory]");
+@source inline("icon-[ph--hand-waving]");
+@source inline("icon-[ph--handshake]");
+@source inline("icon-[ph--headphones]");
+@source inline("icon-[ph--house]");
+@source inline("icon-[ph--map-pin]");
+@source inline("icon-[ph--package]");
+@source inline("icon-[ph--phone]");
+@source inline("icon-[ph--question]");
+@source inline("icon-[ph--shield]");
+@source inline("icon-[ph--sparkle]");
+@source inline("icon-[ph--stack]");
+@source inline("icon-[ph--trophy]");
+@source inline("icon-[ph--warehouse]");
+
 @theme {
   --color-background: hsl(210 40% 98% / <alpha-value>);
   --color-foreground: hsl(222 47% 11% / <alpha-value>);

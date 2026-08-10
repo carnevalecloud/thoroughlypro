@@ -1,0 +1,46 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  href?: string;
+  type?: "button" | "submit";
+  variant?: "cta" | "primary" | "outline-light" | "outline-dark";
+  icon?: string;
+  iconPosition?: "left" | "right";
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  href,
+  type = "button",
+  variant = "primary",
+  icon,
+  iconPosition = "left",
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  cta: "bg-green-600 text-white hover:bg-green-700",
+  primary: "bg-sky-600 text-white hover:bg-sky-700",
+  "outline-light": "border-2 border-white/30 text-white bg-white/10 hover:bg-white/20",
+  "outline-dark": "border border-slate-300 hover:bg-slate-50",
+};
+
+const classes = `inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium transition-colors ${variants[variant]} ${className}`;
+---
+
+{href ? (
+  <a href={href} class={classes} {...rest}>
+    {icon && iconPosition === "left" && <Icon name={icon} class="w-5 h-5" />}
+    <slot />
+    {icon && iconPosition === "right" && <Icon name={icon} class="w-5 h-5" />}
+  </a>
+) : (
+  <button type={type} class={classes} {...rest}>
+    {icon && iconPosition === "left" && <Icon name={icon} class="w-5 h-5" />}
+    <slot />
+    {icon && iconPosition === "right" && <Icon name={icon} class="w-5 h-5" />}
+  </button>
+)}

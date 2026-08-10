@@ -2,6 +2,9 @@
 import PageLayout from "../layouts/PageLayout.astro";
 import { siteInfo } from "../data/siteInfo";
 import { services } from "../data/services";
+import Icon from "../components/ui/Icon.astro";
+import Button from "../components/ui/Button.astro";
+import IconBadge from "../components/ui/IconBadge.astro";
 
 const facilityTypes = [
   "Manufacturing Plant",
@@ -27,11 +30,9 @@ const facilityTypes = [
           <p class="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
             The fastest way to get started is to give us a call. We'll schedule a walk-through to understand your specific needs.
           </p>
-          <a href={siteInfo.contact.phoneUrl}>
-            <button class="inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-quote-call-top">
-              <span class="icon-[ph--phone] w-5 h-5 inline-block align-middle"></span> Call {siteInfo.contact.phone}
-            </button>
-          </a>
+          <Button variant="cta" icon="ph--phone" href={siteInfo.contact.phoneUrl} data-testid="button-quote-call-top">
+            Call {siteInfo.contact.phone}
+          </Button>
           <p class="text-sm text-slate-500 mt-4">Or fill out the form below and we'll contact you within 24 hours.</p>
         </div>
 
@@ -84,9 +85,9 @@ const facilityTypes = [
                   <label for="additional_details" class="block text-sm font-medium text-slate-700 mb-1">Additional Details</label>
                   <textarea id="additional_details" name="additional_details" rows="5" placeholder="Tell us about your facility and specific needs..." class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="textarea-message" />
                 </div>
-                <button type="submit" class="w-full inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-submit-quote">
+                <Button type="submit" variant="cta" class="w-full" data-testid="button-submit-quote">
                   Request Free Consultation
-                </button>
+                </Button>
               </form>
             </div>
           </div>
@@ -96,21 +97,21 @@ const facilityTypes = [
               <h3 class="text-lg font-semibold mb-6">Contact Information</h3>
               <div class="space-y-4">
                 <a href={siteInfo.contact.phoneUrl} class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors" data-testid="link-quote-phone">
-                  <div class="w-10 h-10 rounded-lg bg-green-600 flex items-center justify-center"><span class="icon-[ph--phone] w-5 h-5 text-white inline-block"></span></div>
+                  <IconBadge icon="ph--phone" class="w-10 h-10 rounded-lg bg-green-600" iconClass="w-5 h-5 text-white" />
                   <div>
                     <p class="text-sm text-slate-400">Call Us</p>
                     <p class="font-medium">{siteInfo.contact.phone}</p>
                   </div>
                 </a>
                 <a href={`mailto:${siteInfo.contact.email}`} class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors" data-testid="link-quote-email">
-                  <div class="w-10 h-10 rounded-lg bg-sky-600 flex items-center justify-center"><span class="icon-[ph--envelope-simple] w-5 h-5 text-white inline-block"></span></div>
+                  <IconBadge icon="ph--envelope-simple" class="w-10 h-10 rounded-lg bg-sky-600" iconClass="w-5 h-5 text-white" />
                   <div>
                     <p class="text-sm text-slate-400">Email Us</p>
                     <p class="font-medium text-sm">{siteInfo.contact.email}</p>
                   </div>
                 </a>
                 <a href={siteInfo.contact.address.mapsLink} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors" data-testid="link-quote-address">
-                  <div class="w-10 h-10 rounded-lg bg-slate-700 flex items-center justify-center"><span class="icon-[ph--map-pin] w-5 h-5 text-white inline-block"></span></div>
+                  <IconBadge icon="ph--map-pin" class="w-10 h-10 rounded-lg bg-slate-700" iconClass="w-5 h-5 text-white" />
                   <div>
                     <p class="text-sm text-slate-400">Location</p>
                     <p class="font-medium text-sm">
@@ -123,7 +124,7 @@ const facilityTypes = [
             </div>
             <div class="p-6 bg-green-50 border border-green-200 rounded-lg" data-testid="card-response-time">
               <div class="flex items-start gap-4">
-                <span class="icon-[ph--clock] w-6 h-6 text-green-600 inline-block"></span>
+                <Icon name="ph--clock" class="w-6 h-6 text-green-600" />
                 <div>
                   <h4 class="font-semibold text-slate-900 mb-1">Quick Response</h4>
                   <p class="text-sm text-slate-600">We respond to all inquiries within 24 hours during business days.</p>
@@ -135,7 +136,7 @@ const facilityTypes = [
               <ul class="space-y-3">
                 {["Initial phone consultation", "Free on-site walk-through", "Customized maintenance proposal", "Flexible scheduling options"].map((item) => (
                   <li class="flex items-center gap-3 text-sm text-slate-600">
-                    <span class="icon-[ph--check-circle] w-4 h-4 text-green-500 inline-block"></span>
+                    <Icon name="ph--check-circle" class="w-4 h-4 text-green-500" />
                     {item}
                   </li>
                 ))}

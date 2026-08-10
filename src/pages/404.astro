@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { siteInfo } from "../data/siteInfo";
+import Button from "../components/ui/Button.astro";
 ---
 
 <Layout title="Page Not Found" description="The page you're looking for doesn't exist. Return to Thoroughly Pro's home page for commercial cleaning services in Southern New Hampshire." keywords="Thoroughly Pro, commercial cleaning, Southern New Hampshire">
@@ -13,16 +14,12 @@ import { siteInfo } from "../data/siteInfo";
         Sorry, we couldn't find the page you're looking for. It may have been moved, or the link might be incorrect. Let's get you back on track.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/">
-          <button class="w-full sm:w-auto inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-404-home">
-            <span class="icon-[ph--house] w-5 h-5 inline-block align-middle"></span> Back to Home
-          </button>
-        </a>
-        <a href="/quote">
-          <button class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-100" data-testid="button-404-quote">
-            Get a Quote <span class="icon-[ph--arrow-right] w-5 h-5 inline-block"></span>
-          </button>
-        </a>
+        <Button variant="cta" icon="ph--house" href="/" class="w-full sm:w-auto" data-testid="button-404-home">
+          Back to Home
+        </Button>
+        <Button variant="outline-dark" icon="ph--arrow-right" iconPosition="right" href="/quote" class="w-full sm:w-auto" data-testid="button-404-quote">
+          Get a Quote
+        </Button>
       </div>
       <p class="mt-10 text-sm text-slate-500">
         Need help? Call us at{" "}

@@ -1,6 +1,7 @@
 ---
 import { siteInfo, navigation } from "../data/siteInfo";
 import { services } from "../data/services";
+import Icon from "./ui/Icon.astro";
 ---
 
 <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm" data-testid="navbar">
@@ -29,7 +30,7 @@ import { services } from "../data/services";
                       class="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
                       data-testid="link-dropdown-all-services"
                     >
-                      <span class="icon-[ph--stack] w-4 h-4 text-sky-600 inline-block"></span> All Services
+                      <Icon name="ph--stack" class="w-4 h-4 text-sky-600" /> All Services
                     </a>
                   </li>
                   {services.map((service) => (
@@ -39,10 +40,7 @@ import { services } from "../data/services";
                         class="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
                         data-testid={`link-dropdown-${service.id}`}
                       >
-                        {service.icon === "Warehouse" && <span class="icon-[ph--warehouse] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
-                        {service.icon === "Package" && <span class="icon-[ph--package] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
-                        {service.icon === "Sparkles" && <span class="icon-[ph--sparkle] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
-                        {service.icon === "Layers" && <span class="icon-[ph--stack] w-4 h-4 text-sky-600 inline-block shrink-0"></span>}
+                        <Icon name={service.icon} class="w-4 h-4 text-sky-600 shrink-0" />
                         {service.title}
                       </a>
                     </li>
@@ -68,7 +66,7 @@ import { services } from "../data/services";
           class="flex items-center gap-2 text-base font-medium text-slate-600 hover:text-slate-900 transition-colors"
           data-testid="link-phone-header"
         >
-          <span class="icon-[ph--phone] w-4 h-4 inline-block" aria-hidden="true"></span>
+          <Icon name="ph--phone" class="w-4 h-4" />
           {siteInfo.contact.phone}
         </a>
         <a
@@ -101,7 +99,7 @@ import { services } from "../data/services";
       <div class="flex flex-col gap-4">
         {navigation.main.map((item) =>
           item.name === "Services" ? (
-            <div class="flex flex-col gap-2" key={item.name}>
+            <div class="flex flex-col gap-2">
               <a href="/services" class="text-base font-medium text-slate-600" data-testid="link-mobile-services">
                 {item.name}
               </a>

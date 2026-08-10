@@ -1,5 +1,6 @@
 ---
 import { siteInfo, navigation } from "../data/siteInfo";
+import Icon from "./ui/Icon.astro";
 const currentYear = new Date().getFullYear();
 ---
 
@@ -14,7 +15,7 @@ const currentYear = new Date().getFullYear();
           Your trusted commercial cleaning partner since 1983. We listen first, then deliver tailored solutions for industrial manufacturing facilities across Southern New Hampshire.
         </p>
         <div class="flex items-center gap-2 text-sm text-slate-400">
-          <span class="icon-[ph--clock] w-4 h-4 inline-block" aria-hidden="true"></span>
+          <Icon name="ph--clock" class="w-4 h-4" />
           <span>Response within 24 hours</span>
         </div>
       </div>
@@ -43,19 +44,19 @@ const currentYear = new Date().getFullYear();
         <ul class="space-y-4">
           <li>
             <a href={siteInfo.contact.phoneUrl} class="flex items-center gap-3 text-slate-400 hover:text-white transition-colors" data-testid="link-footer-phone">
-              <span class="icon-[ph--phone] w-5 h-5 text-green-500 inline-block"></span>
+              <Icon name="ph--phone" class="w-5 h-5 text-green-500" />
               {siteInfo.contact.phone}
             </a>
           </li>
           <li>
             <a href={`mailto:${siteInfo.contact.email}`} class="flex items-center gap-3 text-slate-400 hover:text-white transition-colors" data-testid="link-footer-email">
-              <span class="icon-[ph--envelope-simple] w-5 h-5 text-green-500 inline-block"></span>
+              <Icon name="ph--envelope-simple" class="w-5 h-5 text-green-500" />
               {siteInfo.contact.email}
             </a>
           </li>
           <li>
             <a href={siteInfo.contact.address.mapsLink} target="_blank" rel="noopener noreferrer" class="flex items-start gap-3 text-slate-400 hover:text-white transition-colors" data-testid="link-footer-address">
-              <span class="icon-[ph--map-pin] w-5 h-5 text-green-500 inline-block"></span>
+              <Icon name="ph--map-pin" class="w-5 h-5 text-green-500" />
               <span>
                 {siteInfo.contact.address.line1}<br />
                 {siteInfo.contact.address.line2}

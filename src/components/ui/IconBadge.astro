@@ -1,0 +1,19 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  icon: string;
+  class?: string;
+  iconClass?: string;
+}
+
+const {
+  icon,
+  class: className = "w-12 h-12 rounded-lg bg-sky-100",
+  iconClass = "w-6 h-6 text-sky-600",
+} = Astro.props;
+---
+
+<div class={`flex items-center justify-center flex-shrink-0 ${className}`}>
+  <Icon name={icon} class={iconClass} />
+</div>

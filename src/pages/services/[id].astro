@@ -1,6 +1,10 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
 import { services } from "../../data/services";
+import Icon from "../../components/ui/Icon.astro";
+import Button from "../../components/ui/Button.astro";
+import IconBadge from "../../components/ui/IconBadge.astro";
+import PageHero from "../../components/PageHero.astro";
 
 export async function getStaticPaths() {
   return services.map((service) => ({ params: { id: service.id } }));
@@ -8,25 +12,42 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params;
 const service = services.find((s) => s.id === id);
+
+const trustPoints = [
+  { icon: "ph--trophy", color: "green", title: "40+ Years Experience", description: "Serving industrial and commercial clients since 1983" },
+  { icon: "ph--shield", color: "sky", title: "Fully Insured", description: "Complete liability coverage for your peace of mind" },
+  { icon: "ph--clock", color: "amber", title: "Flexible Scheduling", description: "Work around your operations with minimal disruption" },
+];
+
+const badgeColors: Record<string, string> = {
+  green: "bg-green-100",
+  sky: "bg-sky-100",
+  amber: "bg-amber-100",
+};
+const iconColors: Record<string, string> = {
+  green: "text-green-600",
+  sky: "text-sky-600",
+  amber: "text-amber-600",
+};
 ---
 
 {service ? (
   <PageLayout title={service.title} description={service.shortDesc} image={`/images/services/${service.id}.png`} keywords={service.keywords}>
     <div class="min-h-screen bg-background" data-testid={`page-service-${service.id}`}>
-      <section class="relative min-h-[400px] flex items-center" data-testid="section-service-hero">
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style={`background-image: url('/images/services/${service.id}.png');`} />
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/40" />
-        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
-          <div class="w-20 h-20 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-6 border border-white/20">
-            {service.icon === "Warehouse" && <span class="icon-[ph--warehouse] w-10 h-10 text-white inline-block"></span>}
-            {service.icon === "Package" && <span class="icon-[ph--package] w-10 h-10 text-white inline-block"></span>}
-            {service.icon === "Sparkles" && <span class="icon-[ph--sparkle] w-10 h-10 text-white inline-block"></span>}
-            {service.icon === "Layers" && <span class="icon-[ph--stack] w-10 h-10 text-white inline-block"></span>}
-          </div>
-          <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4" data-testid="text-service-title">{service.title}</h1>
-          <p class="text-xl text-slate-300 max-w-2xl mx-auto">{service.shortDesc}</p>
-        </div>
-      </section>
+      <PageHero
+        testid="section-service-hero"
+        titleTestid="text-service-title"
+        title={service.title}
+        description={service.shortDesc}
+        image={`/images/services/${service.id}.png`}
+      >
+        <IconBadge
+          slot="eyebrow"
+          icon={service.icon}
+          class="w-20 h-20 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 mx-auto mb-6"
+          iconClass="w-10 h-10 text-white"
+        />
+      </PageHero>
 
       <section class="py-16 lg:py-24 bg-white" data-testid="section-service-details">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
@@ -42,7 +63,7 @@ const service = services.find((s) => s.id === id);
                 <ul class="grid md:grid-cols-2 gap-4">
                   {service.features.map((feature) => (
                     <li class="flex items-start gap-3 text-slate-700">
-                      <span class="icon-[ph--check-circle] w-4 h-4 text-green-500 flex-shrink-0 inline-block"></span>
+                      <Icon name="ph--check-circle" class="w-4 h-4 text-green-500 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -54,7 +75,7 @@ const service = services.find((s) => s.id === id);
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {service.targetAudiences.map((audience) => (
                     <div class="flex items-center gap-2 px-4 py-3 bg-sky-50 rounded-lg text-slate-700">
-                      <span class="icon-[ph--check-circle] w-4 h-4 text-sky-600 flex-shrink-0 inline-block"></span>
+                      <Icon name="ph--check-circle" class="w-4 h-4 text-sky-600 flex-shrink-0" />
                       {audience}
                     </div>
                   ))}
@@ -67,16 +88,12 @@ const service = services.find((s) => s.id === id);
                 <h2 class="text-xl font-bold text-slate-900 mb-3">Ready to Transform Your Facility?</h2>
                 <p class="text-slate-600 mb-6">Give us a call to schedule a walk-through and discuss your needs.</p>
                 <div class="space-y-3">
-                  <a href="/quote">
-                    <button class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700" data-testid="button-service-quote">
-                      Request a Quote <span class="icon-[ph--arrow-right] w-5 h-5 inline-block"></span>
-                    </button>
-                  </a>
-                  <a href="tel:6034968229" class="block">
-                    <button class="w-full inline-flex items-center justify-center rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-50" data-testid="button-service-call">
-                      <span class="icon-[ph--phone] w-5 h-5 inline-block"></span> (603) 496-8229
-                    </button>
-                  </a>
+                  <Button variant="cta" icon="ph--arrow-right" iconPosition="right" href="/quote" class="w-full" data-testid="button-service-quote">
+                    Request a Quote
+                  </Button>
+                  <Button variant="outline-dark" icon="ph--phone" href="tel:6034968229" class="w-full" data-testid="button-service-call">
+                    (603) 496-8229
+                  </Button>
                 </div>
               </div>
             </div>
@@ -89,21 +106,17 @@ const service = services.find((s) => s.id === id);
           <h2 class="text-2xl font-bold text-slate-900 mb-4 text-center">Why Choose Thoroughly Pro</h2>
           <p class="text-slate-600 text-center max-w-2xl mx-auto mb-12">Trusted by Southern NH facilities since 1983</p>
           <div class="grid md:grid-cols-3 gap-6 mb-12">
-            <div class="p-6 text-center rounded-lg border border-slate-200 bg-white">
-              <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4"><span class="icon-[ph--trophy] w-6 h-6 text-green-600 inline-block"></span></div>
-              <h3 class="font-bold text-slate-900 mb-2">40+ Years Experience</h3>
-              <p class="text-sm text-slate-600">Serving industrial and commercial clients since 1983</p>
-            </div>
-            <div class="p-6 text-center rounded-lg border border-slate-200 bg-white">
-              <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center mx-auto mb-4"><span class="icon-[ph--shield] w-6 h-6 text-sky-600 inline-block"></span></div>
-              <h3 class="font-bold text-slate-900 mb-2">Fully Insured</h3>
-              <p class="text-sm text-slate-600">Complete liability coverage for your peace of mind</p>
-            </div>
-            <div class="p-6 text-center rounded-lg border border-slate-200 bg-white">
-              <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4"><span class="icon-[ph--clock] w-6 h-6 text-amber-600 inline-block"></span></div>
-              <h3 class="font-bold text-slate-900 mb-2">Flexible Scheduling</h3>
-              <p class="text-sm text-slate-600">Work around your operations with minimal disruption</p>
-            </div>
+            {trustPoints.map((point) => (
+              <div class="p-6 text-center rounded-lg border border-slate-200 bg-white">
+                <IconBadge
+                  icon={point.icon}
+                  class={`w-12 h-12 rounded-full ${badgeColors[point.color]} mx-auto mb-4`}
+                  iconClass={`w-6 h-6 ${iconColors[point.color]}`}
+                />
+                <h3 class="font-bold text-slate-900 mb-2">{point.title}</h3>
+                <p class="text-sm text-slate-600">{point.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -115,12 +128,7 @@ const service = services.find((s) => s.id === id);
             {services.filter((s) => s.id !== service.id).slice(0, 3).map((other) => (
               <a href={`/services/${other.id}`}>
                 <div class="p-6 rounded-lg border border-slate-200 hover-elevate cursor-pointer h-full">
-                  <div class="w-12 h-12 rounded-lg bg-sky-100 flex items-center justify-center mb-4">
-                    {other.icon === "Warehouse" && <span class="icon-[ph--warehouse] w-6 h-6 text-sky-600 inline-block"></span>}
-                    {other.icon === "Package" && <span class="icon-[ph--package] w-6 h-6 text-sky-600 inline-block"></span>}
-                    {other.icon === "Sparkles" && <span class="icon-[ph--sparkle] w-6 h-6 text-sky-600 inline-block"></span>}
-                    {other.icon === "Layers" && <span class="icon-[ph--stack] w-6 h-6 text-sky-600 inline-block"></span>}
-                  </div>
+                  <IconBadge icon={other.icon} class="w-12 h-12 rounded-lg bg-sky-100 mb-4" />
                   <h3 class="font-bold text-slate-900 mb-2">{other.title}</h3>
                   <p class="text-sm text-slate-600">{other.shortDesc}</p>
                 </div>
@@ -128,11 +136,9 @@ const service = services.find((s) => s.id === id);
             ))}
           </div>
           <div class="text-center mt-8">
-            <a href="/services">
-              <button class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-50" data-testid="button-view-all-services">
-                <span class="icon-[ph--arrow-left] w-5 h-5 inline-block"></span> View All Services
-              </button>
-            </a>
+            <Button variant="outline-dark" icon="ph--arrow-left" href="/services" data-testid="button-view-all-services">
+              View All Services
+            </Button>
           </div>
         </div>
       </section>
@@ -144,11 +150,9 @@ const service = services.find((s) => s.id === id);
       <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <h1 class="text-3xl font-bold text-slate-900 mb-4">Service Not Found</h1>
         <p class="text-slate-600 mb-8">The service you're looking for doesn't exist.</p>
-        <a href="/services">
-          <button class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium bg-sky-600 text-white hover:bg-sky-700">
-            <span class="icon-[ph--arrow-left] w-5 h-5 inline-block"></span> Back to Services
-          </button>
-        </a>
+        <Button variant="primary" icon="ph--arrow-left" href="/services">
+          Back to Services
+        </Button>
       </div>
     </div>
   </PageLayout>

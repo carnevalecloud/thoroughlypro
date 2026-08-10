@@ -1,0 +1,52 @@
+---
+import Icon from "./ui/Icon.astro";
+
+interface Props {
+  service: {
+    id: string;
+    title: string;
+    shortDesc: string;
+    icon: string;
+  };
+  variant?: "preview" | "list";
+}
+
+const { service, variant = "preview" } = Astro.props;
+const isPreview = variant === "preview";
+---
+
+<a href={`/services/${service.id}`} class="block">
+  <div
+    class={
+      isPreview
+        ? "overflow-hidden bg-white shadow-lg rounded-lg hover-elevate flex flex-col h-full cursor-pointer"
+        : "overflow-hidden rounded-lg border border-slate-200 hover-elevate cursor-pointer h-full shadow-sm"
+    }
+    data-testid={`card-service-${service.id}`}
+  >
+    <div class={isPreview ? "relative aspect-video w-full overflow-hidden" : "relative h-48"}>
+      <img src={`/images/services/${service.id}.png`} alt={service.title} class="w-full h-full object-cover" />
+      {!isPreview && <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />}
+      <div
+        class={
+          isPreview
+            ? "absolute top-4 left-4 w-12 h-12 rounded-lg bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md"
+            : "absolute bottom-4 left-4 w-12 h-12 rounded-lg bg-sky-600 flex items-center justify-center"
+        }
+      >
+        <Icon name={service.icon} class={isPreview ? "w-6 h-6 text-sky-600" : "w-6 h-6 text-white"} />
+      </div>
+    </div>
+    <div class={isPreview ? "p-8 flex-1 flex flex-col" : "p-6"}>
+      {isPreview ? (
+        <h3 class="text-xl font-semibold text-slate-900 mb-3">{service.title}</h3>
+      ) : (
+        <h2 class="text-xl font-bold text-slate-900 mb-2">{service.title}</h2>
+      )}
+      <p class={isPreview ? "text-slate-600 mb-6 leading-relaxed" : "text-slate-600 text-sm leading-relaxed"}>{service.shortDesc}</p>
+      <span class={`${isPreview ? "mt-auto" : "mt-4"} flex items-center gap-1.5 text-sky-600 font-semibold text-sm`}>
+        Learn more <Icon name="ph--arrow-right" class="w-4 h-4" />
+      </span>
+    </div>
+  </div>
+</a>

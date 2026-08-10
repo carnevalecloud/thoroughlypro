@@ -1,0 +1,15 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  icon?: string;
+  class?: string;
+}
+
+const { icon, class: className = "" } = Astro.props;
+---
+
+<span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-sm ${className}`}>
+  {icon && <Icon name={icon} class="w-4 h-4" />}
+  <slot />
+</span>

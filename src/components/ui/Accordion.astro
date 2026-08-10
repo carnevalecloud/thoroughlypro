@@ -1,0 +1,24 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  items: { q: string; a: string }[];
+  testidPrefix?: string;
+}
+
+const { items, testidPrefix = "accordion-item" } = Astro.props;
+---
+
+<div class="space-y-4">
+  {items.map((item, index) => (
+    <details class="group rounded-lg border border-slate-200 bg-slate-50 overflow-hidden" data-testid={`${testidPrefix}-${index}`}>
+      <summary class="cursor-pointer list-none px-6 py-5 font-semibold text-slate-900 hover:bg-slate-100 transition-colors [&::-webkit-details-marker]:hidden">
+        {item.q}
+        <Icon name="ph--caret-down" class="w-5 h-5 float-right group-open:rotate-180 transition-transform" />
+      </summary>
+      <div class="px-6 pb-5 text-slate-600 leading-relaxed border-t border-slate-200 pt-2">
+        {item.a}
+      </div>
+    </details>
+  ))}
+</div>

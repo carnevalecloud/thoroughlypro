@@ -15,8 +15,10 @@
     "tailwindcss": "^4.0.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@iconify/json": "^2.2.439",
     "@iconify/tailwind4": "^1.2.1",
-    "@tailwindcss/vite": "^4.0.0"
+    "@tailwindcss/vite": "^4.0.0",
+    "typescript": "^5.9.3"
   }
 }

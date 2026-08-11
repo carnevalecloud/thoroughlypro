@@ -5,6 +5,7 @@ interface Props {
   href?: string;
   type?: "button" | "submit";
   variant?: "cta" | "primary" | "outline-light" | "outline-dark";
+  size?: "sm" | "md";
   icon?: string;
   iconPosition?: "left" | "right";
   class?: string;
@@ -15,6 +16,7 @@ const {
   href,
   type = "button",
   variant = "primary",
+  size = "md",
   icon,
   iconPosition = "left",
   class: className = "",
@@ -28,7 +30,12 @@ const variants: Record<string, string> = {
   "outline-dark": "border border-slate-300 hover:bg-slate-50",
 };
 
-const classes = `inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium transition-colors ${variants[variant]} ${className}`;
+const sizes: Record<string, string> = {
+  sm: "px-4 py-2 text-sm",
+  md: "px-6 py-3 text-base",
+};
+
+const classes = `inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors ${sizes[size]} ${variants[variant]} ${className}`;
 ---
 
 {href ? (

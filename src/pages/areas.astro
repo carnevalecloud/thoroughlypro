@@ -29,11 +29,13 @@ import CtaBand from "../components/CtaBand.astro";
     <Section testid="section-towns">
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
         {serviceTowns.map((town, index) => (
-          <div class="p-6 text-center rounded-lg border border-slate-200 hover-elevate overflow-visible" data-testid={`card-town-${index}`}>
-            <IconBadge icon="ph--map-pin" class="w-12 h-12 rounded-full bg-sky-100 mx-auto mb-4" />
-            <h3 class="text-lg font-bold text-slate-900">{town.name}</h3>
-            <p class="text-sm text-slate-500">New Hampshire</p>
-          </div>
+          <a href={`/areas/${town.slug}`} data-testid={`card-town-${index}`}>
+            <div class="p-6 text-center rounded-lg border border-slate-200 hover-elevate overflow-visible h-full">
+              <IconBadge icon="ph--map-pin" class="w-12 h-12 rounded-full bg-sky-100 mx-auto mb-4" />
+              <h3 class="text-lg font-bold text-slate-900">{town.name}</h3>
+              <p class="text-sm text-slate-500">{town.county}</p>
+            </div>
+          </a>
         ))}
       </div>
     </Section>

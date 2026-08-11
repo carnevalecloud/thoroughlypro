@@ -1,7 +1,6 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
 import { siteInfo } from "../data/siteInfo";
-import { services } from "../data/services";
 import Icon from "../components/ui/Icon.astro";
 import Button from "../components/ui/Button.astro";
 import IconBadge from "../components/ui/IconBadge.astro";
@@ -15,6 +14,34 @@ const facilityTypes = [
   "Retail Space",
   "Other",
 ];
+
+const serviceTypes = [
+  {
+    value: "Janitorial / Daily Cleaning",
+    icon: "ph--warehouse",
+    description: "Routine commercial & industrial cleaning programs",
+  },
+  {
+    value: "Floor Care (Stripping, Waxing & Carpet Cleaning)",
+    icon: "ph--stack",
+    description: "Floor stripping, rewaxing, and carpet extraction",
+  },
+  {
+    value: "Industrial / Manufacturing Cleaning",
+    icon: "ph--factory",
+    description: "Production floors, warehouses & facility cleanouts",
+  },
+  {
+    value: "One-Time Deep Clean",
+    icon: "ph--package",
+    description: "Move-in/move-out, post-construction, or a single deep clean",
+  },
+];
+
+const squareFootages = ["Under 5,000 sq ft", "5,000 - 15,000 sq ft", "15,000 - 50,000 sq ft", "50,000+ sq ft"];
+const frequencies = ["One-Time", "Daily", "Weekly", "Bi-Weekly", "Monthly"];
+
+const quoteSteps = ["Service Type", "Facility Details", "Location & Contact"];
 ---
 
 <PageLayout
@@ -39,57 +66,230 @@ const facilityTypes = [
         <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
           <div class="lg:col-span-2">
             <div id="quote-form" class="p-8 bg-white rounded-lg shadow-sm border border-slate-200" data-testid="card-quote-form">
-              <form action="https://forms.carnevale.cloud/process.php" method="POST" class="space-y-6">
+              <div class="mb-10" data-testid="quote-progress">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-semibold text-slate-900" id="quote-step-label" data-testid="quote-step-label">
+                    Step 1 of {quoteSteps.length}: {quoteSteps[0]}
+                  </span>
+                  <span class="text-sm text-slate-500" id="quote-step-count">1 / {quoteSteps.length}</span>
+                </div>
+                <div class="h-2 rounded-full bg-slate-200 overflow-hidden">
+                  <div
+                    id="quote-progress-bar"
+                    class="h-full bg-sky-600 transition-all duration-300 ease-out"
+                    style={`width: ${(1 / quoteSteps.length) * 100}%`}
+                  />
+                </div>
+              </div>
+
+              <form action="https://forms.carnevale.cloud/process.php" method="POST" class="space-y-6" id="quote-form-el">
                 <input type="hidden" name="form_tools_form_id" value="14" />
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
-                    <input type="text" id="name" name="name" required minlength="2" placeholder="John Smith" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-name" />
+
+                <div class="quote-step space-y-2" data-step="0">
+                  <p class="text-sm text-slate-500 mb-4">What type of service does your facility need? <span class="text-red-600">*</span></p>
+                  <div class="grid sm:grid-cols-2 gap-4">
+                    {serviceTypes.map((type, index) => (
+                      <div>
+                        <input type="radio" id={`service_type_${index}`} name="service_interest" value={type.value} required class="peer sr-only" />
+                        <label
+                          for={`service_type_${index}`}
+                          class="flex flex-col gap-3 p-5 h-full rounded-lg border-2 border-slate-200 cursor-pointer hover:border-sky-300 peer-checked:border-sky-600 peer-checked:bg-sky-50 transition-colors"
+                          data-testid={`option-service-type-${index}`}
+                        >
+                          <IconBadge icon={type.icon} class="w-11 h-11 rounded-lg bg-sky-100" />
+                          <span class="font-semibold text-slate-900">{type.value}</span>
+                          <span class="text-sm text-slate-500">{type.description}</span>
+                        </label>
+                      </div>
+                    ))}
                   </div>
-                  <div>
-                    <label for="company" class="block text-sm font-medium text-slate-700 mb-1">Company Name</label>
-                    <input type="text" id="company" name="company" placeholder="Your Company" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-company" />
+                  <p id="service-type-error" class="hidden text-sm text-red-600 mt-2" data-testid="error-service-type">
+                    Please select a service type to continue.
+                  </p>
+                </div>
+
+                <div class="quote-step space-y-6" data-step="1" hidden>
+                  <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="facility_type" class="block text-sm font-medium text-slate-700 mb-1">Facility Type <span class="text-red-600">*</span></label>
+                      <select id="facility_type" name="facility_type" required class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="select-facility-type">
+                        <option value="">Select facility type</option>
+                        {facilityTypes.map((type) => (
+                          <option value={type}>{type}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label for="square_footage" class="block text-sm font-medium text-slate-700 mb-1">Approximate Square Footage <span class="text-red-600">*</span></label>
+                      <select id="square_footage" name="square_footage" required class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="select-square-footage">
+                        <option value="">Select a range</option>
+                        {squareFootages.map((range) => (
+                          <option value={range}>{range}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="cleaning_frequency" class="block text-sm font-medium text-slate-700 mb-1">Desired Cleaning Frequency <span class="text-red-600">*</span></label>
+                      <select id="cleaning_frequency" name="cleaning_frequency" required class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="select-frequency">
+                        <option value="">Select a frequency</option>
+                        {frequencies.map((frequency) => (
+                          <option value={frequency}>{frequency}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label for="company" class="block text-sm font-medium text-slate-700 mb-1">Company Name</label>
+                      <input type="text" id="company" name="company" placeholder="Your Company" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-company" />
+                    </div>
                   </div>
                 </div>
-                <div class="grid md:grid-cols-2 gap-6">
+
+                <div class="quote-step space-y-6" data-step="2" hidden>
                   <div>
-                    <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="john@company.com" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-email" />
+                    <label for="location" class="block text-sm font-medium text-slate-700 mb-1">Facility City / Town <span class="text-red-600">*</span></label>
+                    <input type="text" id="location" name="location" required placeholder="e.g. Keene, NH" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-location" />
+                  </div>
+                  <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label for="name" class="block text-sm font-medium text-slate-700 mb-1">Full Name <span class="text-red-600">*</span></label>
+                      <input type="text" id="name" name="name" required minlength="2" placeholder="John Smith" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-name" />
+                    </div>
+                    <div>
+                      <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email Address <span class="text-red-600">*</span></label>
+                      <input type="email" id="email" name="email" required placeholder="john@company.com" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-email" />
+                    </div>
                   </div>
                   <div>
-                    <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
+                    <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Phone Number <span class="text-red-600">*</span></label>
                     <input type="tel" id="phone" name="phone" required minlength="10" placeholder="(603) 555-1234" class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="input-phone" />
                   </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label for="facility_type" class="block text-sm font-medium text-slate-700 mb-1">Facility Type *</label>
-                    <select id="facility_type" name="facility_type" required class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="select-facility-type">
-                      <option value="">Select facility type</option>
-                      {facilityTypes.map((type) => (
-                        <option value={type}>{type}</option>
-                      ))}
-                    </select>
+                    <label for="additional_details" class="block text-sm font-medium text-slate-700 mb-1">Additional Details</label>
+                    <textarea id="additional_details" name="additional_details" rows="4" placeholder="Tell us about your facility and specific needs..." class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="textarea-message" />
                   </div>
-                  <div>
-                    <label for="service_interest" class="block text-sm font-medium text-slate-700 mb-1">Service Interest *</label>
-                    <select id="service_interest" name="service_interest" required class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="select-service-interest">
-                      <option value="">Select a service</option>
-                      {services.map((service) => (
-                        <option value={service.title}>{service.title}</option>
-                      ))}
-                    </select>
+                  <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                    <h3 class="text-sm font-semibold text-slate-900 mb-2">Review Your Information</h3>
+                    <div id="quote-review-summary" class="text-sm" data-testid="quote-review-summary"></div>
                   </div>
                 </div>
-                <div>
-                  <label for="additional_details" class="block text-sm font-medium text-slate-700 mb-1">Additional Details</label>
-                  <textarea id="additional_details" name="additional_details" rows="5" placeholder="Tell us about your facility and specific needs..." class="w-full rounded-md border border-slate-300 px-3 py-2 focus:border-sky-500 focus:ring-1 focus:ring-sky-500" data-testid="textarea-message" />
+
+                <div class="flex items-center justify-between gap-4 pt-2">
+                  <Button type="button" variant="outline-dark" id="quote-back-btn" class="hidden" data-testid="button-quote-back">
+                    Back
+                  </Button>
+                  <div class="flex-1"></div>
+                  <Button type="button" variant="cta" icon="ph--arrow-right" iconPosition="right" id="quote-action-btn" data-testid="button-quote-action">
+                    <span id="quote-action-label">Continue</span>
+                  </Button>
                 </div>
-                <Button type="submit" variant="cta" class="w-full" data-testid="button-submit-quote">
-                  Request Free Consultation
-                </Button>
               </form>
             </div>
+
+            <script>
+              const steps = Array.from(document.querySelectorAll<HTMLElement>(".quote-step"));
+              const backBtn = document.getElementById("quote-back-btn") as HTMLButtonElement | null;
+              const actionBtn = document.getElementById("quote-action-btn") as HTMLButtonElement | null;
+              const actionLabel = document.getElementById("quote-action-label");
+              const stepLabel = document.getElementById("quote-step-label");
+              const stepCount = document.getElementById("quote-step-count");
+              const progressBar = document.getElementById("quote-progress-bar");
+              const serviceTypeError = document.getElementById("service-type-error");
+              const form = document.getElementById("quote-form-el") as HTMLFormElement | null;
+              const stepLabels = ["Service Type", "Facility Details", "Location & Contact"];
+              let currentStep = 0;
+
+              function fieldValue(name: string) {
+                const el = form?.elements.namedItem(name);
+                if (!el) return "";
+                if (el instanceof RadioNodeList) {
+                  const checked = Array.from(el).find((n) => (n as HTMLInputElement).checked) as HTMLInputElement | undefined;
+                  return checked?.value || "";
+                }
+                if (el instanceof HTMLSelectElement) return el.selectedOptions[0]?.textContent?.trim() || "";
+                if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return el.value.trim();
+                return "";
+              }
+
+              function populateReview() {
+                const summary = document.getElementById("quote-review-summary");
+                if (!summary) return;
+                summary.replaceChildren();
+                const rows: [string, string][] = [
+                  ["Service Type", fieldValue("service_interest")],
+                  ["Facility Type", fieldValue("facility_type")],
+                  ["Square Footage", fieldValue("square_footage")],
+                  ["Frequency", fieldValue("cleaning_frequency")],
+                  ["Company", fieldValue("company") || "—"],
+                  ["Location", fieldValue("location")],
+                  ["Name", fieldValue("name")],
+                  ["Email", fieldValue("email")],
+                  ["Phone", fieldValue("phone")],
+                ];
+                for (const [label, value] of rows) {
+                  const row = document.createElement("div");
+                  row.className = "flex justify-between gap-4 py-1.5 border-b border-slate-200 last:border-0";
+                  const labelEl = document.createElement("span");
+                  labelEl.className = "text-slate-500";
+                  labelEl.textContent = label;
+                  const valueEl = document.createElement("span");
+                  valueEl.className = "font-medium text-slate-900 text-right";
+                  valueEl.textContent = value;
+                  row.append(labelEl, valueEl);
+                  summary.appendChild(row);
+                }
+              }
+
+              function showStep(index: number) {
+                steps.forEach((step, i) => {
+                  step.hidden = i !== index;
+                });
+                const isLast = index === steps.length - 1;
+                backBtn?.classList.toggle("hidden", index === 0);
+                if (actionLabel) actionLabel.textContent = isLast ? "Request Free Consultation" : "Continue";
+                if (actionBtn) actionBtn.type = isLast ? "submit" : "button";
+                if (stepLabel) stepLabel.textContent = `Step ${index + 1} of ${steps.length}: ${stepLabels[index]}`;
+                if (stepCount) stepCount.textContent = `${index + 1} / ${steps.length}`;
+                if (progressBar) progressBar.style.width = `${((index + 1) / steps.length) * 100}%`;
+                if (isLast) populateReview();
+                currentStep = index;
+              }
+
+              function validateStep(index: number) {
+                const container = steps[index];
+                if (!container) return true;
+
+                if (index === 0) {
+                  const checked = container.querySelector('input[name="service_interest"]:checked');
+                  serviceTypeError?.classList.toggle("hidden", !!checked);
+                  return !!checked;
+                }
+
+                const invalid = container.querySelector<HTMLElement>(":invalid");
+                if (invalid && "reportValidity" in invalid) {
+                  (invalid as HTMLInputElement).reportValidity();
+                  return false;
+                }
+                return true;
+              }
+
+              actionBtn?.addEventListener("click", () => {
+                if (currentStep === steps.length - 1) return;
+                if (!validateStep(currentStep)) return;
+                showStep(Math.min(currentStep + 1, steps.length - 1));
+              });
+
+              backBtn?.addEventListener("click", () => {
+                showStep(Math.max(currentStep - 1, 0));
+              });
+
+              form?.addEventListener("input", () => {
+                if (currentStep === steps.length - 1) populateReview();
+              });
+
+              showStep(0);
+            </script>
           </div>
 
           <div class="space-y-6">

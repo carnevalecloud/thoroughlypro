@@ -1,12 +1,13 @@
 ---
 import { siteInfo, navigation } from "../data/siteInfo";
+import { serviceTowns } from "../data/areas";
 import Icon from "./ui/Icon.astro";
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-slate-900 text-slate-300" data-testid="footer">
   <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
       <div class="lg:col-span-2">
         <a href="/" class="flex items-center mb-6" data-testid="link-footer-logo">
           <img src="/tp-logo.webp" alt={siteInfo.name} class="h-14 w-auto" />
@@ -36,6 +37,19 @@ const currentYear = new Date().getFullYear();
           <li>
             <a href="/quote" class="text-slate-400 hover:text-white transition-colors" data-testid="link-footer-quote">Get a Quote</a>
           </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-white font-semibold mb-6" data-testid="text-footer-areas">Service Areas</h3>
+        <ul class="space-y-4">
+          {serviceTowns.map((town) => (
+            <li>
+              <a href={`/areas/${town.slug}`} class="text-slate-400 hover:text-white transition-colors" data-testid={`link-footer-area-${town.slug}`}>
+                {town.name}, NH
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 

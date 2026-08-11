@@ -9,6 +9,7 @@ import IconBadge from "../components/ui/IconBadge.astro";
 import Section from "../components/ui/Section.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import CtaBand from "../components/CtaBand.astro";
+import { serviceTowns } from "../data/areas";
 
 const trustStats = [
   { icon: "ph--clock", title: "Since 1983", subtitle: "40+ Years Experience" },
@@ -114,22 +115,22 @@ const differentiators = [
         </div>
         <div>
           <div class="grid grid-cols-3 gap-4 mb-4">
-            {["Chesterfield", "Keene", "Concord"].map((town) => (
-              <div class="p-5 rounded-xl bg-white/10 border border-sky-500/30 hover:bg-white/15 transition-colors text-center">
+            {serviceTowns.slice(0, 3).map((town) => (
+              <a href={`/areas/${town.slug}`} class="p-5 rounded-xl bg-white/10 border border-sky-500/30 hover:bg-white/15 transition-colors text-center" data-testid={`link-home-area-${town.slug}`}>
                 <div class="w-12 h-12 rounded-lg bg-sky-500/30 flex items-center justify-center mx-auto mb-3">
                   <Icon name="ph--factory" class="w-6 h-6 text-sky-400" />
                 </div>
-                <p class="font-bold text-white text-lg">{town}</p>
+                <p class="font-bold text-white text-lg">{town.name}</p>
                 <p class="text-xs text-slate-400">NH</p>
-              </div>
+              </a>
             ))}
           </div>
           <div class="grid grid-cols-4 gap-3">
-            {["Swanzey", "Lebanon", "Newport", "New London"].map((town) => (
-              <div class="p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-colors text-center">
-                <p class="font-medium text-white text-sm">{town}</p>
+            {serviceTowns.slice(3).map((town) => (
+              <a href={`/areas/${town.slug}`} class="p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-colors text-center" data-testid={`link-home-area-${town.slug}`}>
+                <p class="font-medium text-white text-sm">{town.name}</p>
                 <p class="text-xs text-slate-500">NH</p>
-              </div>
+              </a>
             ))}
           </div>
         </div>

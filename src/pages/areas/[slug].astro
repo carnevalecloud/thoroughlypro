@@ -1,0 +1,196 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import { serviceTowns, getTownBySlug } from "../../data/areas";
+import { services } from "../../data/services";
+import { siteInfo } from "../../data/siteInfo";
+import Icon from "../../components/ui/Icon.astro";
+import IconBadge from "../../components/ui/IconBadge.astro";
+import Pill from "../../components/ui/Pill.astro";
+import Section from "../../components/ui/Section.astro";
+import PageHero from "../../components/PageHero.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import JsonLd from "../../components/JsonLd.astro";
+
+export async function getStaticPaths() {
+  return serviceTowns.map((town) => ({ params: { slug: town.slug } }));
+}
+
+const { slug } = Astro.params;
+const town = getTownBySlug(slug!);
+const baseUrl = "https://thoroughlypro.com";
+---
+
+{town ? (
+  <PageLayout
+    title={`Commercial Cleaning in ${town.name}, NH`}
+    description={town.intro}
+    keywords={`commercial cleaning ${town.name} NH, industrial cleaning ${town.name}, facility maintenance ${town.name} New Hampshire, ${town.county}`}
+  >
+    <JsonLd
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: `Thoroughly Pro - ${town.name}, NH`,
+        image: `${baseUrl}/images/hero.png`,
+        url: `${baseUrl}/areas/${town.slug}`,
+        telephone: siteInfo.contact.phone,
+        email: siteInfo.contact.email,
+        priceRange: "$$",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Bradford",
+          addressRegion: "NH",
+          addressCountry: "US",
+        },
+        areaServed: {
+          "@type": "City",
+          name: town.name,
+          containedInPlace: {
+            "@type": "AdministrativeArea",
+            name: town.county,
+          },
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: `Facility Cleaning Services in ${town.name}, NH`,
+          itemListElement: services.map((service) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: service.title,
+              description: service.shortDesc,
+              areaServed: town.name,
+              url: `${baseUrl}/services/${service.id}`,
+            },
+          })),
+        },
+      }}
+    />
+    <JsonLd
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
+          { "@type": "ListItem", position: 2, name: "Service Areas", item: `${baseUrl}/areas` },
+          { "@type": "ListItem", position: 3, name: town.name, item: `${baseUrl}/areas/${town.slug}` },
+        ],
+      }}
+    />
+
+    <div class="min-h-screen bg-background" data-testid={`page-area-${town.slug}`}>
+      <PageHero
+        testid="section-area-hero"
+        titleTestid="text-area-hero-title"
+        title={`Commercial Cleaning in ${town.name}, NH`}
+        description={town.intro}
+        image="/images/nh-landscape.png"
+        minHeight="450px"
+        overlay="strong"
+      >
+        <Pill slot="eyebrow" icon="ph--map-pin" class="bg-sky-500/20 text-sky-200 border-sky-500/30 mb-4">
+          {town.county} &middot; {town.region}
+        </Pill>
+      </PageHero>
+
+      <Section testid="section-area-description">
+        <div class="grid lg:grid-cols-3 gap-12 lg:gap-16">
+          <div class="lg:col-span-2">
+            <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-6">Serving {town.name} Since 1983</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-8">{town.description}</p>
+            <ul class="space-y-4">
+              {town.highlights.map((highlight) => (
+                <li class="flex items-start gap-3 text-slate-700">
+                  <Icon name="ph--check-circle" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <div class="p-8 shadow-lg rounded-lg border border-slate-200 bg-white sticky top-32">
+              <h3 class="text-lg font-bold text-slate-900 mb-3">Get Started in {town.name}</h3>
+              <p class="text-slate-600 mb-6 text-sm">
+                Call to schedule a walk-through, or request a quote and we'll follow up within 24 hours.
+              </p>
+              <div class="space-y-3">
+                <a href={siteInfo.contact.phoneUrl} class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700 transition-colors" data-testid="button-area-call">
+                  <Icon name="ph--phone" class="w-5 h-5" />
+                  {siteInfo.contact.phone}
+                </a>
+                <a href="/quote" class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-50 transition-colors" data-testid="button-area-quote">
+                  Request a Quote
+                  <Icon name="ph--arrow-right" class="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section background="slate-50" testid="section-area-services">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-slate-900 mb-4">Services Available in {town.name}</h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Every service we offer is available to facilities in {town.name} and the surrounding {town.region}.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service) => (
+            <a href={`/services/${service.id}`} data-testid={`link-area-service-${service.id}`}>
+              <div class="p-6 rounded-lg border border-slate-200 bg-white hover-elevate cursor-pointer h-full">
+                <IconBadge icon={service.icon} class="w-12 h-12 rounded-lg bg-sky-100 mb-4" />
+                <h3 class="font-bold text-slate-900 mb-2">{service.title}</h3>
+                <p class="text-sm text-slate-600">{service.shortDesc}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      {town.nearbyTowns.length > 0 && (
+        <Section testid="section-area-nearby">
+          <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">Also Serving Nearby Communities</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+              {town.nearbyTowns.map((nearbySlug) => {
+                const nearbyTown = getTownBySlug(nearbySlug);
+                return nearbyTown ? (
+                  <a
+                    href={`/areas/${nearbyTown.slug}`}
+                    class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-slate-200 hover-elevate text-slate-700 font-medium"
+                    data-testid={`link-nearby-${nearbyTown.slug}`}
+                  >
+                    <Icon name="ph--map-pin" class="w-4 h-4 text-sky-600" />
+                    {nearbyTown.name}, NH
+                  </a>
+                ) : null;
+              })}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      <CtaBand
+        testid="section-area-cta"
+        title={`Ready to Get Started in ${town.name}?`}
+        description={`Let's discuss how Thoroughly Pro can help maintain your ${town.name} facility. Give us a call to schedule a walk-through.`}
+        primaryTestid="button-area-cta-call"
+        secondaryTestid="button-area-cta-quote"
+      />
+    </div>
+  </PageLayout>
+) : (
+  <PageLayout title="Service Area Not Found" description="The service area you're looking for doesn't exist." keywords="Thoroughly Pro, commercial cleaning, service areas">
+    <div class="min-h-screen bg-background flex items-center justify-center">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <h1 class="text-3xl font-bold text-slate-900 mb-4">Service Area Not Found</h1>
+        <p class="text-slate-600 mb-8">The service area you're looking for doesn't exist.</p>
+        <a href="/areas" class="inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium bg-sky-600 text-white hover:bg-sky-700 transition-colors">
+          Back to Service Areas
+        </a>
+      </div>
+    </div>
+  </PageLayout>
+)}

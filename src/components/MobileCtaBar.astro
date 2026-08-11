@@ -1,0 +1,17 @@
+---
+import { siteInfo, navigation } from "../data/siteInfo";
+import Button from "./ui/Button.astro";
+---
+
+<div
+  class="md:hidden fixed bottom-0 inset-x-0 z-50 flex items-stretch gap-2 p-3 bg-white/95 backdrop-blur-sm border-t border-slate-200 shadow-[0_-4px_12px_rgba(0,0,0,0.06)]"
+  style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));"
+  data-testid="mobile-cta-bar"
+>
+  <Button variant="outline-dark" size="sm" icon="ph--phone" href={siteInfo.contact.phoneUrl} class="flex-1" data-testid="button-mobile-bar-call">
+    Call Now
+  </Button>
+  <Button variant="cta" size="sm" icon="ph--arrow-right" iconPosition="right" href={navigation.cta.href} class="flex-1" data-testid="button-mobile-bar-quote">
+    {navigation.cta.name}
+  </Button>
+</div>

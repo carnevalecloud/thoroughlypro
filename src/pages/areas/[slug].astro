@@ -10,6 +10,7 @@ import Section from "../../components/ui/Section.astro";
 import PageHero from "../../components/PageHero.astro";
 import CtaBand from "../../components/CtaBand.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import Accordion from "../../components/ui/Accordion.astro";
 
 export async function getStaticPaths() {
   return serviceTowns.map((town) => ({ params: { slug: town.slug } }));
@@ -22,9 +23,9 @@ const baseUrl = "https://thoroughlypro.com";
 
 {town ? (
   <PageLayout
-    title={`Commercial Cleaning in ${town.name}, NH`}
+    title={`Commercial Cleaning in ${town.name}, NH | Thoroughly Pro`}
     description={town.intro}
-    keywords={`commercial cleaning ${town.name} NH, industrial cleaning ${town.name}, facility maintenance ${town.name} New Hampshire, ${town.county}`}
+    keywords={`commercial cleaning ${town.name} NH, industrial cleaning ${town.name}, facility maintenance ${town.name} New Hampshire, janitorial services ${town.name}, ${town.county}`}
   >
     <JsonLd
       schema={{
@@ -73,8 +74,22 @@ const baseUrl = "https://thoroughlypro.com";
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
           { "@type": "ListItem", position: 2, name: "Service Areas", item: `${baseUrl}/areas` },
-          { "@type": "ListItem", position: 3, name: town.name, item: `${baseUrl}/areas/${town.slug}` },
+          { "@type": "ListItem", position: 3, name: `${town.name}, NH`, item: `${baseUrl}/areas/${town.slug}` },
         ],
+      }}
+    />
+    <JsonLd
+      schema={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: town.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a,
+          },
+        })),
       }}
     />
 
@@ -85,7 +100,7 @@ const baseUrl = "https://thoroughlypro.com";
         title={`Commercial Cleaning in ${town.name}, NH`}
         description={town.intro}
         image="/images/nh-landscape.png"
-        minHeight="450px"
+        minHeight="460px"
         overlay="strong"
       >
         <Pill slot="eyebrow" icon="ph--map-pin" class="bg-sky-500/20 text-sky-200 border-sky-500/30 mb-4">
@@ -94,72 +109,199 @@ const baseUrl = "https://thoroughlypro.com";
       </PageHero>
 
       <Section testid="section-area-description">
-        <div class="grid lg:grid-cols-3 gap-12 lg:gap-16">
+        <div class="grid lg:grid-cols-3 gap-12 lg:gap-16 items-start">
           <div class="lg:col-span-2">
-            <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-6">Serving {town.name} Since 1983</h2>
-            <p class="text-lg text-slate-600 leading-relaxed mb-8">{town.description}</p>
-            <ul class="space-y-4">
+            <span class="text-sm font-semibold tracking-wide uppercase text-sky-600 mb-2 block">
+              Trusted Regional Facility Partner
+            </span>
+            <h2 class="text-2xl lg:text-4xl font-bold text-slate-900 mb-6">
+              Serving {town.name} Facilities Since 1983
+            </h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-8">
+              {town.description}
+            </p>
+
+            <h3 class="text-lg font-bold text-slate-900 mb-4">Why {town.name} Facilities Choose Us:</h3>
+            <ul class="space-y-4 mb-8">
               {town.highlights.map((highlight) => (
                 <li class="flex items-start gap-3 text-slate-700">
-                  <Icon name="ph--check-circle" class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>{highlight}</span>
+                  <Icon name="ph--check-circle" class="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
+                  <span class="leading-relaxed">{highlight}</span>
                 </li>
               ))}
             </ul>
+
+            <div class="grid sm:grid-cols-3 gap-4 pt-4 border-t border-slate-200">
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-2xl font-bold text-sky-600 mb-1">Since 1983</p>
+                <p class="text-xs text-slate-500 font-medium">Over 40 Years of Local NH Experience</p>
+              </div>
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-2xl font-bold text-sky-600 mb-1">100%</p>
+                <p class="text-xs text-slate-500 font-medium">Licensed, Bonded & Insured</p>
+              </div>
+              <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <p class="text-2xl font-bold text-sky-600 mb-1">24 Hours</p>
+                <p class="text-xs text-slate-500 font-medium">Prompt Walk-Through & Proposal Turnaround</p>
+              </div>
+            </div>
           </div>
 
           <div>
-            <div class="p-8 shadow-lg rounded-lg border border-slate-200 bg-white sticky top-32">
-              <h3 class="text-lg font-bold text-slate-900 mb-3">Get Started in {town.name}</h3>
-              <p class="text-slate-600 mb-6 text-sm">
-                Call to schedule a walk-through, or request a quote and we'll follow up within 24 hours.
+            <div class="p-8 shadow-xl rounded-2xl border border-slate-200 bg-white sticky top-32">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs font-semibold mb-4">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                Now Scheduling Walk-Throughs
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 mb-2">Get Started in {town.name}</h3>
+              <p class="text-slate-600 mb-6 text-sm leading-relaxed">
+                Call now to book an on-site walk-through, or submit a request and we'll contact you within 24 business hours.
               </p>
               <div class="space-y-3">
-                <a href={siteInfo.contact.phoneUrl} class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium bg-green-600 text-white hover:bg-green-700 transition-colors" data-testid="button-area-call">
+                <a
+                  href={siteInfo.contact.phoneUrl}
+                  class="w-full inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold bg-green-600 text-white hover:bg-green-700 shadow-md transition-colors"
+                  data-testid="button-area-call"
+                >
                   <Icon name="ph--phone" class="w-5 h-5" />
                   {siteInfo.contact.phone}
                 </a>
-                <a href="/quote" class="w-full inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-medium border border-slate-300 hover:bg-slate-50 transition-colors" data-testid="button-area-quote">
+                <a
+                  href={`/quote?location=${encodeURIComponent(town.name + ', NH')}`}
+                  class="w-full inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-base font-semibold border-2 border-slate-300 hover:border-slate-400 hover:bg-slate-50 text-slate-800 transition-colors"
+                  data-testid="button-area-quote"
+                >
                   Request a Quote
-                  <Icon name="ph--arrow-right" class="w-5 h-5" />
+                  <Icon name="ph--arrow-right" class="w-5 h-5 text-slate-500" />
                 </a>
+              </div>
+              <div class="mt-6 pt-6 border-t border-slate-100 space-y-2 text-xs text-slate-500">
+                <p class="flex items-center gap-2">
+                  <Icon name="ph--check" class="w-4 h-4 text-green-600 shrink-0" /> Free on-site facility evaluation
+                </p>
+                <p class="flex items-center gap-2">
+                  <Icon name="ph--check" class="w-4 h-4 text-green-600 shrink-0" /> Customized scope & transparent pricing
+                </p>
+                <p class="flex items-center gap-2">
+                  <Icon name="ph--check" class="w-4 h-4 text-green-600 shrink-0" /> Direct supervisor communication
+                </p>
               </div>
             </div>
           </div>
         </div>
       </Section>
 
+      <Section background="slate-50" testid="section-area-facilities">
+        <div class="text-center mb-12">
+          <span class="text-sm font-semibold tracking-wide uppercase text-sky-600 mb-2 block">
+            Tailored Industry Expertise
+          </span>
+          <h2 class="text-3xl font-bold text-slate-900 mb-4">
+            Facilities We Serve in {town.name}
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            From precision production lines to executive suites, our cleaning protocols adapt to the specific operational demands of {town.name} businesses.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {town.facilityTypes.map((facility, index) => (
+            <div
+              class="p-6 rounded-xl border border-slate-200 bg-white shadow-sm flex flex-col justify-between hover-elevate transition-all"
+              data-testid={`card-facility-${index}`}
+            >
+              <div>
+                <IconBadge icon={facility.icon} class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 mb-4" />
+                <h3 class="text-lg font-bold text-slate-900 mb-2">{facility.name}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{facility.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section testid="section-area-challenges">
+        <div class="text-center mb-12">
+          <span class="text-sm font-semibold tracking-wide uppercase text-sky-600 mb-2 block">
+            Practical Problem Solving
+          </span>
+          <h2 class="text-3xl font-bold text-slate-900 mb-4">
+            Addressing {town.name}'s Facility Demands
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Commercial environments in New Hampshire face unique logistical and seasonal challenges. Here is how our teams solve them.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          {town.challenges.map((challenge, index) => (
+            <div
+              class="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm hover-elevate"
+              data-testid={`card-challenge-${index}`}
+            >
+              <IconBadge icon={challenge.icon} class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 mb-5" />
+              <h3 class="text-xl font-bold text-slate-900 mb-3">{challenge.title}</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">{challenge.solution}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
       <Section background="slate-50" testid="section-area-services">
         <div class="text-center mb-12">
+          <span class="text-sm font-semibold tracking-wide uppercase text-sky-600 mb-2 block">
+            Comprehensive Capabilities
+          </span>
           <h2 class="text-3xl font-bold text-slate-900 mb-4">Services Available in {town.name}</h2>
           <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-            Every service we offer is available to facilities in {town.name} and the surrounding {town.region}.
+            Every service we offer is fully available to commercial and industrial facilities in {town.name} and across {town.region}.
           </p>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service) => (
             <a href={`/services/${service.id}`} data-testid={`link-area-service-${service.id}`}>
-              <div class="p-6 rounded-lg border border-slate-200 bg-white hover-elevate cursor-pointer h-full">
-                <IconBadge icon={service.icon} class="w-12 h-12 rounded-lg bg-sky-100 mb-4" />
-                <h3 class="font-bold text-slate-900 mb-2">{service.title}</h3>
-                <p class="text-sm text-slate-600">{service.shortDesc}</p>
+              <div class="p-6 rounded-xl border border-slate-200 bg-white hover-elevate cursor-pointer h-full flex flex-col justify-between">
+                <div>
+                  <IconBadge icon={service.icon} class="w-12 h-12 rounded-lg bg-sky-100 text-sky-600 mb-4" />
+                  <h3 class="font-bold text-slate-900 mb-2">{service.title}</h3>
+                  <p class="text-sm text-slate-600 mb-4">{service.shortDesc}</p>
+                </div>
+                <div class="text-sm font-semibold text-sky-600 flex items-center gap-1">
+                  Explore Service <Icon name="ph--arrow-right" class="w-4 h-4" />
+                </div>
               </div>
             </a>
           ))}
         </div>
       </Section>
 
+      <Section testid="section-area-faq">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <span class="text-sm font-semibold tracking-wide uppercase text-sky-600 mb-2 block">
+              Frequently Asked Questions
+            </span>
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">
+              Cleaning & Maintenance in {town.name}
+            </h2>
+            <p class="text-lg text-slate-600">
+              Common questions about our commercial cleaning capabilities, contracts, and schedules in {town.name}.
+            </p>
+          </div>
+          <Accordion items={town.faqs} testidPrefix="faq-town" />
+        </div>
+      </Section>
+
       {town.nearbyTowns.length > 0 && (
-        <Section testid="section-area-nearby">
+        <Section background="slate-50" testid="section-area-nearby">
           <div class="max-w-3xl mx-auto text-center">
             <h2 class="text-2xl font-bold text-slate-900 mb-4">Also Serving Nearby Communities</h2>
+            <p class="text-slate-600 mb-6">We provide seamless regional facility support across neighboring towns in {town.county}:</p>
             <div class="flex flex-wrap justify-center gap-4">
               {town.nearbyTowns.map((nearbySlug) => {
                 const nearbyTown = getTownBySlug(nearbySlug);
                 return nearbyTown ? (
                   <a
                     href={`/areas/${nearbyTown.slug}`}
-                    class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-slate-200 hover-elevate text-slate-700 font-medium"
+                    class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-slate-200 bg-white hover-elevate text-slate-700 font-medium shadow-sm transition-all"
                     data-testid={`link-nearby-${nearbyTown.slug}`}
                   >
                     <Icon name="ph--map-pin" class="w-4 h-4 text-sky-600" />
@@ -174,8 +316,8 @@ const baseUrl = "https://thoroughlypro.com";
 
       <CtaBand
         testid="section-area-cta"
-        title={`Ready to Get Started in ${town.name}?`}
-        description={`Let's discuss how Thoroughly Pro can help maintain your ${town.name} facility. Give us a call to schedule a walk-through.`}
+        title={`Ready to Upgrade Facility Care in ${town.name}?`}
+        description={`Let's discuss how Thoroughly Pro can help maintain your ${town.name} facility with customized, reliable service. Give us a call or request a quote today.`}
         primaryTestid="button-area-cta-call"
         secondaryTestid="button-area-cta-quote"
       />
@@ -194,3 +336,4 @@ const baseUrl = "https://thoroughlypro.com";
     </div>
   </PageLayout>
 )}
+

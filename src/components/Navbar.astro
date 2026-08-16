@@ -1,6 +1,7 @@
 ---
 import { siteInfo, navigation } from "../data/siteInfo";
 import { services } from "../data/services";
+import { serviceTowns } from "../data/areas";
 import Icon from "./ui/Icon.astro";
 import Button from "./ui/Button.astro";
 ---
@@ -28,10 +29,10 @@ import Button from "./ui/Button.astro";
                   <li>
                     <a
                       href="/services"
-                      class="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                      class="flex items-center gap-3 rounded-md p-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
                       data-testid="link-dropdown-all-services"
                     >
-                      <Icon name="ph--stack" class="w-4 h-4 text-sky-600" /> All Services
+                      All Services
                     </a>
                   </li>
                   {services.map((service) => (
@@ -43,6 +44,41 @@ import Button from "./ui/Button.astro";
                       >
                         <Icon name={service.icon} class="w-4 h-4 text-sky-600 shrink-0" />
                         {service.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : item.name === "Service Areas" ? (
+            <div class="relative group">
+              <button
+                type="button"
+                class="text-base font-medium text-slate-600 hover:text-sky-600 bg-transparent border-none cursor-pointer"
+                data-testid="dropdown-service-areas"
+              >
+                {item.name}
+              </button>
+              <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <ul class="grid w-64 gap-1 p-2 bg-white rounded-lg shadow-lg border border-slate-200">
+                  <li>
+                    <a
+                      href="/areas"
+                      class="flex items-center gap-3 rounded-md p-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+                      data-testid="link-dropdown-all-areas"
+                    >
+                      All Service Areas
+                    </a>
+                  </li>
+                  {serviceTowns.map((town) => (
+                    <li>
+                      <a
+                        href={`/areas/${town.slug}`}
+                        class="flex items-center gap-3 rounded-md p-2 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+                        data-testid={`link-dropdown-area-${town.slug}`}
+                      >
+                        <Icon name="ph--map-pin" class="w-4 h-4 text-sky-600 shrink-0" />
+                        {town.name}, NH
                       </a>
                     </li>
                   ))}
@@ -108,6 +144,23 @@ import Button from "./ui/Button.astro";
                     data-testid={`link-mobile-${service.id}`}
                   >
                     {service.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : item.name === "Service Areas" ? (
+            <div class="flex flex-col gap-2">
+              <a href="/areas" class="text-base font-medium text-slate-600" data-testid="link-mobile-areas">
+                {item.name}
+              </a>
+              <div class="pl-4 flex flex-col gap-2">
+                {serviceTowns.map((town) => (
+                  <a
+                    href={`/areas/${town.slug}`}
+                    class="text-sm text-slate-500 hover:text-slate-700"
+                    data-testid={`link-mobile-area-${town.slug}`}
+                  >
+                    {town.name}, NH
                   </a>
                 ))}
               </div>

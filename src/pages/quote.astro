@@ -288,6 +288,21 @@ const quoteSteps = ["Service Type", "Facility Details", "Location & Contact"];
                 if (currentStep === steps.length - 1) populateReview();
               });
 
+              // Handle URL params prefilling
+              const urlParams = new URLSearchParams(window.location.search);
+              const locParam = urlParams.get("location") || urlParams.get("area") || urlParams.get("town");
+              if (locParam) {
+                const locInput = document.getElementById("location") as HTMLInputElement | null;
+                if (locInput) locInput.value = locParam;
+              }
+              const serviceParam = urlParams.get("service");
+              if (serviceParam) {
+                const matchingRadio = Array.from(
+                  document.querySelectorAll<HTMLInputElement>('input[name="service_interest"]')
+                ).find((radio) => radio.value.toLowerCase().includes(serviceParam.toLowerCase()));
+                if (matchingRadio) matchingRadio.checked = true;
+              }
+
               showStep(0);
             </script>
           </div>
